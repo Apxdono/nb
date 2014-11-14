@@ -135,7 +135,7 @@
     };
 
     if (!angular.isFunction(angular.element.prototype.tooltip)) {
-        throw new Error('xtform requires a jquery tooltip plugin, like bootstrap.js');
+//        throw new Error('xtform requires a jquery tooltip plugin, like bootstrap.js');
     }
 
     angular.module('xtForm', [])

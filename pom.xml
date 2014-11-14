@@ -71,14 +71,20 @@
 
         <dependency>
             <groupId>org.webjars</groupId>
-            <artifactId>ng-grid</artifactId>
-            <version>2.0.14</version>
+            <artifactId>ui-grid</artifactId>
+            <version>3.0.0-rc.11</version>
         </dependency>
 
         <dependency>
             <groupId>org.webjars</groupId>
-            <artifactId>ui-grid</artifactId>
-            <version>3.0.0-rc.11</version>
+            <artifactId>requirejs</artifactId>
+            <version>2.1.14</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>requirejs-text</artifactId>
+            <version>2.0.10-2</version>
         </dependency>
 
         <dependency>
