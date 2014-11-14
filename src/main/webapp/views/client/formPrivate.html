@@ -1,0 +1,22 @@
+<div>
+
+    <heading icon=" glyphicon-user" label="Клиент"></heading>
+
+    <form name="form" class="form-horizontal" role="form" xt-form novalidate>
+        <input type="hidden" ng-model="model.type" ng-init="initField('type','PRIVATE')">
+        <base-input-required label="ФИО" field="name" type="text" model="model"></base-input-required>
+        <base-input-required label="Пасспортные данные" field="passportData" type="text" model="model"></base-input-required>
+        <base-input-required label="Прописка" field="registration" type="text" model="model"></base-input-required>
+        <div class="form-group">
+            <label class="control-label col-sm-2">ИНН</label>
+
+            <div class="col-sm-10 ">
+                <input type="text" ng-minlength="14" ng-maxlength="14" ng-model="model.inn" class="form-control"
+                       required xt-validate>
+            </div>
+        </div>
+        <checkbox field="active" model="model" label="Запись активна"/>
+        <save-cancel></save-cancel>
+    </form>
+    <post-render></post-render>
+</div>

@@ -1,0 +1,18 @@
+<div>
+    <heading icon="glyphicon-list" label="Список кооперативов"></heading>
+
+    <h4>Поиск</h4>
+    <div class="row">
+        <form name="form" class="form-inline" role="form" novalidate>
+            <filter-input label="Отображаемое имя" field="name" options="options"></filter-input>
+            <filter-input label="Председатель" field="chairman" options="options"></filter-input>
+        </form>
+    </div>
+    <new-search></new-search>
+    <paging options="options"></paging>
+
+    <div ui-grid="options" ui-grid-pagination class="grid"></div>
+
+    <paging options="options"></paging>
+    <post-render></post-render>
+</div>

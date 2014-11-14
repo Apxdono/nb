@@ -1,0 +1,18 @@
+<div class="paginator">
+        <span class="sim-button glyphicon glyphicon glyphicon-step-backward" ng-click="options.firstPage()"
+              ng-class="options.currentPage() === 1 ? 'disabled':''"></span>
+        <span class="sim-button glyphicon glyphicon-backward" ng-click="options.prevPage()"
+              ng-class="options.currentPage() === 1 ? 'disabled':''"></span>
+
+    <input type="number" min="1" max="{{options.pageData.totalPages}}" ng-model="options.currentPage" ng-change="options.fetchData()"
+           ng-model-options="{ getterSetter: true }" style="width:50px"> / {{options.pageData.totalPages}}
+
+        <span class="sim-button glyphicon glyphicon-forward" ng-click="options.nextPage()"
+              ng-class="options.pageData && options.currentPage() >= options.pageData.totalPages ? 'disabled':''"></span>
+        <span class="sim-button glyphicon glyphicon-step-forward" ng-click="options.lastPage()"
+              ng-class="options.pageData && options.currentPage() >= options.pageData.totalPages ? 'disabled':''"></span>
+
+    <select ng-model="options.size" ng-model-options="{ updateOn: 'blur change', getterSetter: true }"
+            ng-change="options.fetchData()" ng-options="size for size in options.pageSizes">
+    </select>
+</div>

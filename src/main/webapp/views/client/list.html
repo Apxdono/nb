@@ -1,0 +1,24 @@
+<div>
+    <heading icon="glyphicon-list" label="Список клиентов"></heading>
+
+    <h4>Поиск</h4>
+
+    <div class="row">
+        <form name="form" class="form-inline" role="form" novalidate>
+            <filter-input label="Отображаемое имя" field="name" options="options"></filter-input>
+        </form>
+    </div>
+    <div class="row" style="margin-top: 10px">
+        <div class="col-sm-4">
+            <button class="btn btn-success" ng-click="newClient()">Новая запись</button>
+            <button class="btn btn-primary" ng-click="options.fetchData()">Поиск</button>
+        </div>
+    </div>
+    <paging options="options"></paging>
+
+    <div ui-grid="options" ui-grid-pagination class="grid"></div>
+
+    <paging options="options"></paging>
+
+    <post-render></post-render>
+</div>
