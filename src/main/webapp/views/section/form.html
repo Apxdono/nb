@@ -1,0 +1,17 @@
+<div>
+
+    <heading icon=" glyphicon-th-large" label="Секция"></heading>
+
+    <form name="form" class="form-horizontal" role="form" xt-form novalidate>
+        <base-input-required label="Строительный номер" type="text" field="structuralNumber" model="model"></base-input-required>
+        <base-input-required label="Почтовый номер" type="text" field="postalNumber" model="model"></base-input-required>
+        <base-input-required label="Количество этажей" type="text" field="floorCount" model="model"></base-input-required>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button class="btn btn-primary" ng-click="save();">Сохранить</button>
+                <button class="btn btn-default" ng-click="cancel()">Отмена</button>
+            </div>
+        </div>
+    </form>
+    <post-render></post-render>
+</div>

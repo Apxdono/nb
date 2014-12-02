@@ -1,0 +1,13 @@
+<div>
+
+    <heading icon=" glyphicon-home" label="Дом"></heading>
+
+    <form name="form" class="form-horizontal" role="form" xt-form novalidate>
+        <base-input-required label="Адрес" type="text" field="address" model="model"></base-input-required>
+        <base-input-required label="Строительный номер" type="text" field="structuralNumber" model="model"></base-input-required>
+        <base-input-required label="Почтовый номер" type="text" field="zipCode" model="model"></base-input-required>
+        <checkbox field="active" model="model" label="Запись активна"/>
+        <save-cancel></save-cancel>
+    </form>
+    <post-render></post-render>
+</div>

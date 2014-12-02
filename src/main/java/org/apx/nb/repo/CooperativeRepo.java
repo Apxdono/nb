@@ -1,7 +1,6 @@
 package org.apx.nb.repo;
 
 import org.apx.nb.model.Cooperative;
-import org.apx.nb.model.UnitType;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;

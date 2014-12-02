@@ -9,8 +9,6 @@
 
     <link rel="stylesheet" href="/webjars/bootstrap/3.0.0/css/bootstrap.css">
     <link rel="stylesheet" href="/webjars/ui-grid/3.0.0-rc.11/ui-grid.min.css">
-    <link rel="stylesheet" href="resources/css/ngdialog.css">
-    <link rel="stylesheet" href="resources/css/ngdialog.theme.flat.css">
     <link href="resources/css/styles.css" rel="stylesheet">
     <!--[if lt IE 9]>
     <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -42,14 +40,14 @@
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
 
-                <li class="dropdown">
-                    <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#"><i
-                            class="glyphicon glyphicon-user"></i> Admin <span class="caret"></span></a>
+                <li class="dropdown" ng-controller="UserController">
+                    <a class="dropdown-toggle ng-cloak" role="button" data-toggle="dropdown" href="#" ng-cloak ><i
+                            class="glyphicon glyphicon-user" ></i> {{service.user.username}} <span class="caret"></span></a>
                     <ul id="g-account-menu" class="dropdown-menu" role="menu">
                         <li><a href="#">My Profile</a></li>
                     </ul>
                 </li>
-                <li><a href="#"><i class="glyphicon glyphicon-lock"></i> Logout</a></li>
+                <li><a href="/logout"><i class="glyphicon glyphicon-lock"></i> Выход</a></li>
             </ul>
         </div>
     </div>
@@ -68,19 +66,21 @@
 
                 <hr>
 
-                <ul class="nav nav-pills nav-stacked">
+                <ul class="nav nav-pills nav-stacked" ng-controller="UserController" ng-cloak>
                     <li class="nav-header"></li>
-                    <li><a href="#/cooperative/list"><i class="glyphicon glyphicon-th-list"></i> Кооператив </a></li>
-                    <li><a href="#/client/list"><i class="glyphicon glyphicon-user"></i> Клиенты </a></li>
-                    <li><a href="#/unittype/list"><i class="glyphicon glyphicon-align-left"></i> Типы объектов </a></li>
+                    <li  ng-show="hasAnyRole('user')"><a href="#/cooperative/list"><i class="glyphicon glyphicon-th-list"></i> Кооператив </a></li>
+                    <li  ng-show="hasAnyRole('admin')"><a href="#/client/list"><i class="glyphicon glyphicon-user"></i> Клиенты </a></li>
+                    <li  ng-show="hasAnyRole('user')"><a href="#/house/list"><i class="glyphicon glyphicon-home"></i> Дома </a></li>
+                    <li  ng-show="hasAnyRole('user')"><a href="#/unittype/list"><i class="glyphicon glyphicon-align-left"></i> Типы объектов </a></li>
                 </ul>
             </div>
-            <div class="col-sm-10" ng-view>
 
+            <div id="mainView" class="col-sm-10 ng-cloak" ng-cloak ng-view>
             </div>
             <!--/col-span-9-->
         </div>
     </div>
+    <div style="height: 75px;"></div>
 </div>
 
 <!-- /Main -->

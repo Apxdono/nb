@@ -1,5 +1,5 @@
 define(['./module','./constants'], function (services) {
-    services.factory('CommonService', function ($http) {
+    services.factory('CommonService', function ($http,$q) {
         var service = {
             entity: '',
             baseUrl: '/rest/api',

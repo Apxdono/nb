@@ -138,3 +138,21 @@ footer {
     border: 1px solid red;
     box-shadow: 0 0 2px red;
 }
+
+body.noscroll{
+    /*position:static;*/
+    /*overflow:hidden;*/
+    /*width: 100%;*/
+}
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+    display: none !important;
+}
+
+.green{
+    color:forestgreen;
+}
+
+.red {
+    color: orangered;
+}

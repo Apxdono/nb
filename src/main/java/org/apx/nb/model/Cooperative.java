@@ -1,5 +1,9 @@
 package org.apx.nb.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
+import com.fasterxml.jackson.databind.MapperFeature;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;

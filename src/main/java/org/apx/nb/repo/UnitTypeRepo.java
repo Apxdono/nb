@@ -1,5 +1,6 @@
 package org.apx.nb.repo;
 
+import org.apx.nb.model.Section;
 import org.apx.nb.model.UnitType;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -20,4 +21,7 @@ public interface UnitTypeRepo extends PagingAndSortingRepository<UnitType,String
 
     @Query(value = "SELECT i from UnitType i WHERE :name = '' OR lower(i.name) like('%' || lower(:name) || '%')")
     Page<UnitType> tableResult(@Param("name")String name, Pageable pageable);
+
+    List<UnitType> findByActiveIsTrue();
+
 }

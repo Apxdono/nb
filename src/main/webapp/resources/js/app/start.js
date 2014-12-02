@@ -1,3 +1,3 @@
-define(['angular','route','local-storage','forms'], function (angular) {
-    angular.bootstrap(document, ['nova']);
+define(['angularAMD','route','local-storage','forms'], function (angularAMD) {
+    angularAMD.bootstrap(angular.module('nova'));
 });

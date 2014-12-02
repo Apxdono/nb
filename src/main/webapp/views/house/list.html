@@ -1,0 +1,20 @@
+<div>
+    <heading icon="glyphicon-list" label="Список домов"></heading>
+
+    <h4>Поиск</h4>
+
+    <div class="row">
+        <form name="form" class="form-inline" role="form" novalidate>
+            <filter-input label="Адрес" field="address" options="options"></filter-input>
+            <filter-input label="Строительный номер" field="structuralNumber" options="options"></filter-input>
+            <filter-input label="Почтовый номер" field="zipCode" options="options"></filter-input>
+        </form>
+    </div>
+    <new-search></new-search>
+    <paging options="options"></paging>
+
+    <div ui-grid="options" ui-grid-pagination class="grid"></div>
+
+    <paging options="options"></paging>
+    <post-render></post-render>
+</div>

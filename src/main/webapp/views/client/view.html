@@ -2,10 +2,19 @@
     <heading icon=" glyphicon-user" label="Клиент"></heading>
 
     <form class="form-horizontal">
-        <fieldset disabled>
-            <view-row label="Отображаемое имя" value="model.name"></view-row>
-            <view-row label="Внутреннее имя" value="model.internalName"></view-row>
-            <view-checkbox label="Запись активно" value="model.active"/>
+        <fieldset disabled ng-show="model.type === 'PRIVATE'">
+            <view-row label="ФИО" value="model.name"></view-row>
+            <view-row label="Пасспортные данные" value="model.passportData"></view-row>
+            <view-row label="Прописка" value="model.registration"></view-row>
+            <view-row label="ИНН" value="model.inn"></view-row>
+            <view-checkbox label="Запись активна" value="model.active"></view-checkbox>
+        </fieldset>
+
+        <fieldset disabled ng-show="model.type === 'COMPANY'">
+            <view-row label="Название" value="model.name"></view-row>
+            <view-row label="Президент" value="model.president"></view-row>
+            <view-row label="Юридический адрес" value="model.legalAddress"></view-row>
+            <view-checkbox label="Запись активна" value="model.active"></view-checkbox>
         </fieldset>
         <view-edit></view-edit>
     </form>
