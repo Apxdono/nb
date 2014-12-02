@@ -9,28 +9,42 @@ define(['angular','jquery', '../module'], function (ng,jq, controllers) {
                     if (dd.hasOwnProperty(prop)) {
                         angular.forEach(dd[prop], function (o, k) {
                             $scope.options.data.push(o);
-                        })
+                        });
                     }
-
                 }
             }
             $scope.options.pageData = d["page"];
-            $scope.options.currentPage($scope.options.pageData.number + 1);
+            if($scope.options.currentPage() > $scope.options.pageData.number + 1){
+                $scope.options.currentPage($scope.options.pageData.number + 1);
+            }
         };
         var errorData = function (d) {
             $location.path("/403");
         };
-
-        function isEmpty(obj) {
-            for (var prop in obj) {
-                if (obj.hasOwnProperty(prop))
-                    return false;
+        $scope.model = {};
+        $scope.navCallbacks = {
+            'list' : function(){
+                $scope.options.data = [];
+                $scope.options.fetchData();
+            },
+            'view' : function(){
+                $scope.factory.read($routeParams.id).success($scope.fetchSingle);
+            },
+            'edit' : function(){
+                $scope.factory.read($routeParams.id).success($scope.fetchSingle);
             }
+        };
 
-            return true;
-        }
+        $scope.addNavCallback = function(action,callback){
+            var old = $scope.navCallbacks[action];
+            $scope.navCallbacks[action] = function(){
+                if(old) old();
+                callback();
+            };
+        };
 
         $scope.$location = $location;
+
         $scope.getSortParam = function () {
             var result = {};
             if ($scope.gridApi) {
@@ -50,32 +64,14 @@ define(['angular','jquery', '../module'], function (ng,jq, controllers) {
             return angular.extend({}, $scope.getSortParam(), $scope.options.filters, $scope.options.paging);
         };
 
-        $scope.model = {};
 
         $scope.init = function () {
-            if ($location.path().indexOf('/new') !== -1) {
-                return;
-            }
-            if ($location.path().indexOf('/list') !== -1) {
-                $scope.options.data = [];
-                var key = $scope.factory.entity + '.filters';
-                var f = localStorageService.get(key);
-                if (!isEmpty(f)) {
-                    $scope.options.filters = f;
+            for (var k in $scope.navCallbacks){
+                if($location.path().indexOf(k) != -1){
+                    $scope.action = k;
+                    if($scope.navCallbacks[k]()) $scope.navCallbacks[k]();
+                    break;
                 }
-                $scope.$watch('options.filters', function (newval, oldval) {
-                    if (isEmpty(newval)) {
-                        return;
-                    }
-                    var key = $scope.factory.entity + '.filters';
-                    localStorageService.set(key, newval);
-                    $scope.options.currentPage(1);
-                }, true);
-            }
-            if ($routeParams.id) {
-                $scope.factory.read($routeParams.id).success($scope.fetchSingle);
-            } else {
-                $scope.options.fetchData();
             }
         };
 
@@ -137,9 +133,7 @@ define(['angular','jquery', '../module'], function (ng,jq, controllers) {
         };
 
 //table options
-        $scope.options = angular.extend({},Grids.defaultGrid);
-        $scope.options.currentPage(1);
-        $scope.options.size(10);
+        $scope.options = new Grids.defaultGrid($scope,$scope.factory.entity);
         $scope.options.fetchData = function () {
             if ($scope.factory) {
                 $scope.factory.list($scope.prepareParams()).success(setData).error(errorData);

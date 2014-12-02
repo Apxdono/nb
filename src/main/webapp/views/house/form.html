@@ -6,6 +6,15 @@
         <base-input-required label="Адрес" type="text" field="address" model="model"></base-input-required>
         <base-input-required label="Строительный номер" type="text" field="structuralNumber" model="model"></base-input-required>
         <base-input-required label="Почтовый номер" type="text" field="zipCode" model="model"></base-input-required>
+        <div class="form-group">
+            <label class="control-label col-sm-2" >Кооператив</label>
+            <div class="col-sm-10 ">
+                <select required xt-validate class="form-control" ng-model="model.cooperative">
+                    <option ng-repeat="c in coops" value="{{c._links.self.href}}">{{c.name}}</option>
+                </select>
+            </div>
+
+        </div>
         <checkbox field="active" model="model" label="Запись активна"/>
         <save-cancel></save-cancel>
     </form>

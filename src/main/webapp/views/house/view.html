@@ -12,6 +12,7 @@
             <view-row label="Адрес" value="model.address"></view-row>
             <view-row label="Строительный номер" value="model.structuralNumber"></view-row>
             <view-row label="Почтовый номер" value="model.zipCode"></view-row>
+            <view-row label="Кооператив" value="selectedCoop.name"></view-row>
             <view-checkbox label="Запись активна" value="model.active"/>
         </fieldset>
         <view-edit></view-edit>
@@ -20,10 +21,14 @@
         <div class="row" style="margin-top: 10px">
             <div class="col-sm-4">
                 <button class="btn btn-success" ng-click="newSection()">Новая запись</button>
+                <button class="btn btn-default" ng-click="toList()">К списку домов</button>
             </div>
         </div>
         <br/>
-        <div ui-grid="nestedOptions" ui-grid-pagination class="grid"></div>
+        <div ui-grid="nestedOptions" ui-grid-pagination class="grid" ng-show="nestedOptions.data.length > 0">
+
+        </div>
+        <h4 ng-hide="nestedOptions.data.length > 0">Нет данных для просмотра</h4>
     </div>
     <post-render></post-render>
 </div>

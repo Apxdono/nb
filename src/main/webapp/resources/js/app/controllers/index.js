@@ -5,6 +5,7 @@ define([
     './coop/crud-controller',
     './user/user-ctrl',
     './house/crud-controller',
-    './section/crud-controller'
+    './section/crud-controller',
+    './unit/crud-controller'
 ], function () {
 });

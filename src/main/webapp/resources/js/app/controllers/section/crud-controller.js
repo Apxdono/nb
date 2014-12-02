@@ -1,10 +1,8 @@
 define(['../module','text!/views/table/deletedCell.html','../base/base-controller'], function (controllers,deletedTpl) {
-    controllers.controller('SectionCtrl', function ($scope, $controller, $injector,$routeParams,$location, $http, Constants, Grids, SectionService) {
+    controllers.controller('SectionCtrl', function ($scope, $controller, $injector,$routeParams,$location,$timeout, $http, Constants,Func, Grids,Share, HouseService, SectionService) {
         $scope.factory = SectionService;
         $controller('BaseController', {$scope: $scope});
         $scope.path = Constants.section.path;
-        var docId = $routeParams.house;
-        $scope.model = {house : 'http://localhost:9000/rest/api/houses/'+docId};
 
         $scope.nestedOptions = angular.extend({},Grids.nestedGrid);
         $scope.nestedOptions.columnDefs = [
@@ -12,6 +10,30 @@ define(['../module','text!/views/table/deletedCell.html','../base/base-controlle
             {name: 'Почтовый номер', width: '30%', field: 'postalNumber'},
             {name: 'Количество этажей', width: '30%', field: 'floorCount'}
         ];
+
+        $scope.house = Share.get("selectedHouse");
+
+        $scope.newUnit = function () {
+            $location.path('/unit/' + $scope.model.id + '/new');
+        }
+
+        $scope.getHouse = function(){
+            var housePromise = $routeParams.house ? HouseService.read($routeParams.house) : HouseService.getMe($scope.model._links.house.href);
+            housePromise.success(function (data) {
+                $timeout(function(){
+                    $scope.house = data;
+                    $scope.tabIndex = parseInt($routeParams.index || 0);
+                    if($scope.action === 'new'){
+                        $scope.model.house = $scope.house._links.self.href;
+                    }
+                });
+            });
+        }
+
+        $scope.addNavCallback('new',function(){
+            $scope.getHouse();
+        });
+
 
         $scope.toList = function(){
                 $location.path('/house/view/'+$scope.house.id+'/1');
@@ -21,35 +43,21 @@ define(['../module','text!/views/table/deletedCell.html','../base/base-controlle
             if($scope.model.id){
                 $location.path('/section/view/'+$scope.model.id);
             } else {
-                $location.path('/house/view/'+docId || $scope.house.id+'/1');
+                $scope.toList();
             }
         };
 
-        $scope.toView = function (mdl) {
-            var hash = '/section/view/' + mdl.id;
-            $location.path(hash);
-        };
-
-        $scope.house = {};
-
         $scope.fetchSingle = function(data){
             $scope.model = data;
-            $http.get($scope.model._links.house.href).success(function(data){
-                $scope.house = data;
-            });
+            $scope.getHouse();
             $http.get($scope.model["_links"].units.href).success(function(data){
-                var dd = data["_embedded"]
-                $scope.nestedOptions.data = [];
-                if (dd) {
-                    for (var prop in dd) {
-                        if (dd.hasOwnProperty(prop)) {
-                            angular.forEach(dd[prop], function (o, k) {
-                                $scope.nestedOptions.data.push(o);
-                            })
-                        }
-
+                $timeout(function(){
+                    if(!Func.isEmpty(data)){
+                        var dd = data["_embedded"]
+                        $scope.nestedOptions.data = dd['units'] || [];
                     }
-                }
+
+                },0);
             });
         };
 

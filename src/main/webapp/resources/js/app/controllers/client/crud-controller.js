@@ -1,4 +1,4 @@
-define(['../module','../base/base-controller','text!/views/client/preCreateDialog.html'], function (controllers,bc,dlgtemplate) {
+define(['../module','../base/base-controller','text!/views/client/preCreateDialog.html','text!/views/table/deletedCell.html'], function (controllers,bc,dlgtemplate,deletedTpl) {
     controllers.controller('ClientCtrl', function ($scope, $controller, $location, $modal, Constants, ClientService) {
         $scope.factory = ClientService;
         $controller('BaseController', {$scope: $scope});
@@ -6,7 +6,7 @@ define(['../module','../base/base-controller','text!/views/client/preCreateDialo
         $scope.options.columnDefs = [
             {name: 'ФИО/Название', field: 'name', sort: {direction: 'asc'}, cellTemplate: '<div class="ui-grid-cell-contents"><a href="#' + $scope.path + '/view/{{row.entity.id}}">{{row.entity[col.field]}}</a> </div>'},
             {name: 'Тип', field: 'type', cellTemplate: '<div class="ui-grid-cell-contents"><span>{{row.entity.type =="PRIVATE"? "Физ. лицо" : "Юр. лицо"}}</span> </div>'},
-            {name: 'Запись активна', field: 'active', cellTemplate: '<div class="ui-grid-cell-contents">{{row.entity[col.field]?"Да":"Нет"}}</div>'}
+            {name: 'Запись активна', field: 'active', cellTemplate: deletedTpl}
         ];
 
         $scope.dialog;

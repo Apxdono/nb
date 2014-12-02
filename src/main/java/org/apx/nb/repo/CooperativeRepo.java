@@ -12,7 +12,7 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
  * Created by oleg on 11/12/14.
  */
 @RepositoryRestResource
-public interface CooperativeRepo extends PagingAndSortingRepository<Cooperative,String> {
+public interface CooperativeRepo extends BaseRepository<Cooperative,String> {
 
     @Query(value = "SELECT i from Cooperative i WHERE (:name = '' OR lower(i.name) like('%' || lower(:name) || '%')) AND (:chairman = '' OR lower(i.chairman) like('%' || lower(:chairman) || '%')))")
     Page<Cooperative> tableResult(@Param("name") String name,@Param("chairman") String chairman, Pageable pageable);

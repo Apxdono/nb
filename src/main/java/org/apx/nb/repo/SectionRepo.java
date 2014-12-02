@@ -13,7 +13,6 @@ import java.util.List;
  * Created by oleg on 11/12/14.
  */
 @RepositoryRestResource
-public interface SectionRepo extends PagingAndSortingRepository<Section,String> {
+public interface SectionRepo extends BaseRepository<Section,String> {
 
-    List<Section> findByActiveIsTrue();
 }

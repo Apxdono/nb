@@ -11,7 +11,8 @@
     <new-search></new-search>
     <paging options="options"></paging>
 
-    <div ui-grid="options" ui-grid-pagination class="grid"></div>
+    <div ui-grid="options" ui-grid-pagination class="grid" ng-show="options.data.length > 0"></div>
+    <h4 ng-hide="options.data.length > 0">Нет данных для просмотра</h4>
 
     <paging options="options"></paging>
     <post-render></post-render>

@@ -1,0 +1,19 @@
+<div>
+    <heading icon=" glyphicon-lock" label="Квартира"></heading>
+
+    <form class="form-horizontal">
+        <fieldset disabled>
+            <view-row label="Номер" value="model.number"></view-row>
+            <view-row label="Строительный номер" value="model.structuralNumber"></view-row>
+            <view-row label="Почтовый номер" value="model.postalNumber"></view-row>
+            <view-row label="Этаж" value="model.floor"></view-row>
+            <view-row label="Стояк" value="model.span"></view-row>
+            <view-row label="Количество комнат" value="model.roomCount"></view-row>
+            <view-row label="Стоимость ( 100% )" value="model.startingPrice"></view-row>
+            <view-checkbox label="Забронирована" value="model.booked" ></view-checkbox>
+        </fieldset>
+        <view-edit></view-edit>
+    </form>
+
+    <post-render></post-render>
+</div>

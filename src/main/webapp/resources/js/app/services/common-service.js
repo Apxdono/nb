@@ -17,6 +17,12 @@ define(['./module','./constants'], function (services) {
             },
             update: function (model) {
                 return $http.put(this.baseUrl + '/' + this.entity + '/' + model.id, model);
+            },
+            active : function (){
+                return $http.get(this.baseUrl+'/'+this.entity+'/search/findByActiveIsTrueOrderByNameAsc');
+            },
+            getMe : function(url){
+                return $http.get(url);
             }
 
         }

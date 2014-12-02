@@ -14,6 +14,7 @@ define(['app','angular','./services/constants'], function (app,angular) {
         $routeProvider.when('/client/edit/company/:id', { templateUrl: '/views/client/formCompany.html', controller: 'ClientCtrl'});
 
         $routeProvider.when('/section/:house/new',{templateUrl:'/views/section/form.html',controller:'SectionCtrl'});
+        $routeProvider.when('/unit/:section/new',{templateUrl:'/views/unit/form.html',controller:'UnitCtrl'});
 
         $routeProvider.when('/403', { templateUrl: '/403.html'});
         $routeProvider.otherwise({redirectTo: '/'});

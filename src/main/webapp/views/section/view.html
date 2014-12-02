@@ -1,6 +1,8 @@
 <div>
-    <heading icon=" lyphicon-th-large" label="Секция"></heading>
 
+    <a href="#/house/view/{{house.id}}/1"><strong><i class="glyphicon glyphicon-home"></i> Дом </strong></a> >>
+    <a href="javascript:void(0)"><strong><i class="glyphicon glyphicon-th-large"></i> Секция </strong></a>
+    <hr>
     <ul class="nav nav-tabs" ng-init="tabIndex = 0">
         <li role="presentation" ng-class="{'active':tabIndex ===0}" ng-click="tabIndex = 0"><a>Основная информация</a></li>
         <li role="presentation" ng-class="{'active':tabIndex ===1}" ng-click="tabIndex = 1"><a>Квартиры</a></li>
@@ -16,7 +18,17 @@
         <view-edit></view-edit>
     </form>
     <div ng-show="tabIndex === 1">
-        <div ui-grid="nestedOptions" ui-grid-pagination class="grid"></div>
+        <div class="row" style="margin-top: 10px">
+            <div class="col-sm-4">
+                <button class="btn btn-success" ng-click="newUnit()">Новая запись</button>
+                <button class="btn btn-default" ng-click="toList()">К списку секций</button>
+            </div>
+        </div>
+        <br/>
+        <div ui-grid="nestedOptions" ui-grid-pagination class="grid" ng-show="nestedOptions.data.length > 0">
+
+        </div>
+        <h4 ng-hide="nestedOptions.data.length > 0">Нет данных для просмотра</h4>
     </div>
     <post-render></post-render>
 </div>
