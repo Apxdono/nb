@@ -2,6 +2,7 @@ define(['app','angular','./services/constants'], function (app,angular) {
     app.config(function ($routeProvider) {
         var consts = angular.injector(['nova.services']).get('Constants');
         angular.forEach(consts, function (object, key) {
+            if(key === 'consts') return;
             $routeProvider.when(object.path + '/list', { templateUrl: '/views' + object.path + '/list.html', controller: object.controller});
             $routeProvider.when(object.path + '/new', { templateUrl: '/views' + object.path + '/form.html', controller: object.controller});
             $routeProvider.when(object.path + '/view/:id/:index?', { templateUrl: '/views' + object.path + '/view.html', controller: object.controller});

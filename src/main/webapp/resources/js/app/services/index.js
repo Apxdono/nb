@@ -3,6 +3,7 @@ define([
     './functions',
     './share',
     './grids',
+    './contacttype/service',
     './unittype/service',
     './client/service',
     './coop/service',

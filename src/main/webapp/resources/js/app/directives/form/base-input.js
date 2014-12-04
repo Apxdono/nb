@@ -7,7 +7,10 @@ define(['./../module','text!/views/elements/form/baseInput.html'], function (dir
                 field: '@',
                 model:'=',
                 label: '@',
-                type : '@'
+                type : '@',
+                labelSpan : '@',
+                inputSpan: '@',
+                noGroup : '='
             },
             template: template
         }

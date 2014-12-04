@@ -7,7 +7,10 @@ define(['./../module','text!/views/elements/form/baseInputRequired.html'], funct
                 field: '@',
                 model:'=',
                 label: '@',
-                type : '@'
+                type : '@',
+                labelSpan : '@',
+                inputSpan: '@',
+                noGroup : '='
             },
             template: template
         }

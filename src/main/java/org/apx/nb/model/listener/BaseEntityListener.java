@@ -12,6 +12,6 @@ public class BaseEntityListener {
 
     @PrePersist
     public void prePersist(IEntity bo){
-        bo.setId(UUID.randomUUID().toString());
+        if(bo.getId() == null) bo.setId(UUID.randomUUID().toString());
     }
 }

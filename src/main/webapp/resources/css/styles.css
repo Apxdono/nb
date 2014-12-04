@@ -6,6 +6,18 @@ i {
   font-size:16px;
 }
 
+body{
+    background-color: #eee;
+}
+
+hr {
+    border-color: #CCC;
+}
+
+h4.section{
+    border-bottom: 1px solid #CCC;
+}
+
 .nav > li > a {
   color:#787878;
 }
@@ -155,4 +167,26 @@ body.noscroll{
 
 .red {
     color: orangered;
+}
+
+
+.bread:after {
+    font-weight: bold;
+    color:#428bca;
+    padding: 0 10px;
+    content: '>>';
+}
+
+.ui-grid-row div.ui-grid-cell.label-warning{
+    background-color: #f0ad4e;
+}
+
+.ui-grid-row div.ui-grid-cell.label-success{
+    background-color: #5cb85c;
+}
+
+.label.label-empty{
+    background-color: #fdfdfd;
+    color:#666;
+    border: 1px solid #a7a7a7;
 }

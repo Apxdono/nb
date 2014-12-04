@@ -1,8 +1,10 @@
 package org.apx.nb.model;
 
 import org.apx.nb.model.enums.ClientType;
+import org.apx.nb.model.listener.ClientListener;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -10,6 +12,7 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "clients")
+@EntityListeners({ClientListener.class})
 @Inheritance(strategy = InheritanceType.JOINED)
 @Access(AccessType.FIELD)
 public class Client extends BaseObject {
@@ -18,8 +21,8 @@ public class Client extends BaseObject {
     @Column(name = "type")
     ClientType type;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "client", targetEntity = Contact.class)
-    Set<Contact> contacts;
+    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL, mappedBy = "client", targetEntity = Contact.class , orphanRemoval = true)
+    Set<Contact> contacts = new HashSet<>();
 
 
     public ClientType getType() {
@@ -35,6 +38,12 @@ public class Client extends BaseObject {
     }
 
     public void setContacts(Set<Contact> contacts) {
-        this.contacts = contacts;
+        if(this.contacts != null){
+            this.contacts.clear();
+            this.contacts.addAll(contacts);
+        } else {
+            this.contacts = contacts;
+        }
+
     }
 }

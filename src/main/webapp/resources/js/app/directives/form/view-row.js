@@ -5,7 +5,10 @@ define(['./../module','text!/views/elements/form/viewRow.html'], function (direc
             replace:true,
             scope: {
                 value:'=',
-                label: '@'
+                label: '@',
+                labelSpan : '@',
+                valueSpan: '@',
+                noGroup: '='
             },
             template :template
         }

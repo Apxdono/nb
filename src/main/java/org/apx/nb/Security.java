@@ -14,8 +14,13 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.servlet.configuration.EnableWebMvcSecurity;
+import org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint;
 
 import javax.persistence.EntityManager;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 /**
  * Created by oleg on 24.11.2014.
@@ -57,4 +62,5 @@ public class Security extends WebSecurityConfigurerAdapter {
                 dataSource(((EntityManagerFactoryInfo) em.getEntityManagerFactory()).getDataSource()).
                 usersByUsernameQuery(USER_QUERY).authoritiesByUsernameQuery(AUTHORITIES_QUERY);
     }
+
 }

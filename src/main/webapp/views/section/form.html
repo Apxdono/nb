@@ -1,6 +1,9 @@
 <div>
 
-    <heading icon=" glyphicon-th-large" label="Секция"></heading>
+    <a href="#/house/view/{{house.id}}/1"><strong><i class="glyphicon glyphicon-home"></i> Дом </strong></a>
+    <span class="bread"></span>
+    <a href="#/section/view/{{model.id}}"><strong><i class="glyphicon glyphicon-th-large"></i> Секция </strong></a>
+    <hr>
 
     <form name="form" class="form-horizontal" role="form" xt-form novalidate>
         <base-input-required label="Строительный номер" type="text" field="structuralNumber" model="model"></base-input-required>

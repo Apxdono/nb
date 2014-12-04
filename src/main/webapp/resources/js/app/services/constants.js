@@ -37,6 +37,16 @@ define(['./module'], function (services) {
                 entity: 'units',
                 path: '/unit',
                 controller: 'UnitCtrl'
+            },
+            consts : {
+                contactTypesLabels : {
+                    "CONTACT_PHONE":"Контактный телефон",
+                    "MOBILE_PHONE":"Мобильный телефон",
+                    "HOME_PHONE":"Домашний телефон",
+                    "EMAIL":"Электронная почта",
+                    "SKYPE":"Skype",
+                    "FAX":"Факс"
+                }
             }
 
         };

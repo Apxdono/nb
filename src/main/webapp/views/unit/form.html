@@ -1,11 +1,35 @@
 <div>
 
-    <heading icon=" glyphicon-lock" label="Квартира"></heading>
+    <heading label="Дом" icon="glyphicon-home" has-next="true" href="#/house/view/{{house.id}}/1"></heading>
+    <heading label="Секция" icon="glyphicon-th-large" has-next="true" href="#/section/view/{{section.id}}/1"></heading>
+    <heading label="Квартира" icon="glyphicon-lock" href="#/unit/view/{{model.id}}"></heading>
 
     <form name="form" class="form-horizontal" role="form" xt-form novalidate>
-        <base-input-required label="Строительный номер" type="text" field="structuralNumber" model="model"></base-input-required>
-        <base-input-required label="Почтовый номер" type="text" field="postalNumber" model="model"></base-input-required>
-        <base-input-required label="Количество этажей" type="text" field="floorCount" model="model"></base-input-required>
+        <h4 class="section">Общая информация</h4>
+        <div class="form-group">
+            <base-input-required label="Номер" type="text" field="number" model="model" input-span="2" no-group="true"></base-input-required>
+            <base-input-required label="Строительный номер" type="text" field="structuralNumber" no-group="true" input-span="2" model="model"></base-input-required>
+            <base-input-required label="Почтовый номер" type="text" field="postalNumber" model="model" input-span="2" no-group="true"></base-input-required>
+        </div>
+        <div class="form-group">
+            <base-input-required label="Этаж" type="number" field="floor" model="model" input-span="2" no-group="true"></base-input-required>
+            <base-input-required label="Стояк" type="number" field="span" no-group="true" input-span="2" model="model"></base-input-required>
+            <base-input-required label="Количество комнат" type="number" field="roomCount" model="model" input-span="2" no-group="true"></base-input-required>
+        </div>
+        <div class="form-group">
+            <base-input-required label="Стоимость ( 100% )" type="number" field="startingPrice" model="model" input-span="2" no-group="true"></base-input-required>
+        </div>
+        <h4 class="section">Метраж</h4>
+        <div class="form-group">
+            <base-input-required label="Общий" type="number" field="WHOLE" model="model.areas" input-span="1" no-group="true"></base-input-required>
+            <base-input-required label="Жилой" type="number" field="HABITABLE" model="model.areas" label-span="1" input-span="1" no-group="true"></base-input-required>
+            <base-input-required label="По МБТИ" type="number" field="MBTI" model="model.areas" label-span="1" input-span="1" no-group="true"></base-input-required>
+            <base-input-required label="Фактический" type="number" field="ACTUAL" model="model.areas" label-span="1" input-span="1" no-group="true"></base-input-required>
+        </div>
+        <div class="form-group">
+
+        </div>
+        <checkbox label="Забронирована" field="booked" model="model" ></checkbox>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
                 <button class="btn btn-primary" ng-click="save();">Сохранить</button>
@@ -13,5 +37,6 @@
             </div>
         </div>
     </form>
+
     <post-render></post-render>
 </div>

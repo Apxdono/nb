@@ -4,6 +4,7 @@ import org.apx.nb.model.enums.ContactType;
 import org.apx.nb.model.listener.BaseEntityListener;
 
 import javax.persistence.*;
+import java.util.UUID;
 
 /**
  * Created by oleg on 10/23/14.
@@ -16,9 +17,9 @@ import javax.persistence.*;
 public class Contact implements IEntity {
 
     @Id
-    String id;
+    String id = UUID.randomUUID().toString();
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "client_id", referencedColumnName = "id")
     Client client;
 
@@ -28,6 +29,12 @@ public class Contact implements IEntity {
     @Column(name = "type",length = 36)
     @Enumerated(EnumType.STRING)
     ContactType type;
+
+    @Column(name = "main")
+    Boolean main = false;
+
+    @Column(name = "deleted")
+    Boolean deleted = false;
 
     public String getId() {
         return id;
@@ -63,6 +70,22 @@ public class Contact implements IEntity {
     }
 
 
+    public Boolean getMain() {
+        return main;
+    }
+
+    public void setMain(Boolean main) {
+        this.main = main;
+    }
+
+    public Boolean getDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        this.deleted = deleted;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -77,6 +100,6 @@ public class Contact implements IEntity {
 
     @Override
     public int hashCode() {
-        return id.hashCode();
+        return id != null ? id.hashCode() : 0;
     }
 }

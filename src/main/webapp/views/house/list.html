@@ -1,4 +1,4 @@
-<div>
+<div ng-cloak>
     <heading icon="glyphicon-list" label="Список домов"></heading>
 
     <h4>Поиск</h4>
@@ -13,7 +13,7 @@
     <new-search></new-search>
     <paging options="options"></paging>
 
-    <div ui-grid="options" ui-grid-pagination class="grid" ng-show="options.data.length > 0"></div>
+    <div ui-grid="options" ui-grid-pagination ng-cloak class="grid" ng-show="options.data.length > 0"></div>
     <h4 ng-hide="options.data.length > 0">Нет данных для просмотра</h4>
 
     <paging options="options"></paging>

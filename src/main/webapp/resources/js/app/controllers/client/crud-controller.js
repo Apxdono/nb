@@ -1,5 +1,5 @@
 define(['../module','../base/base-controller','text!/views/client/preCreateDialog.html','text!/views/table/deletedCell.html'], function (controllers,bc,dlgtemplate,deletedTpl) {
-    controllers.controller('ClientCtrl', function ($scope, $controller, $location, $modal, Constants, ClientService) {
+    controllers.controller('ClientCtrl', function ($scope, $controller, $location, $modal, Constants, ContactTypes, ClientService) {
         $scope.factory = ClientService;
         $controller('BaseController', {$scope: $scope});
         $scope.path = Constants.client.path;
@@ -9,6 +9,9 @@ define(['../module','../base/base-controller','text!/views/client/preCreateDialo
             {name: 'Запись активна', field: 'active', cellTemplate: deletedTpl}
         ];
 
+        ContactTypes.get(function (data) {
+            $scope.ctypes = data;
+        });
         $scope.dialog;
         $scope.toNew = function () {
             $scope.dialog.close();
@@ -43,6 +46,23 @@ define(['../module','../base/base-controller','text!/views/client/preCreateDialo
             });
         };
 
+
+        $scope.fetchSingle = function (data) {
+            $scope.model = data;
+        };
+
+        $scope.contact = {};
+        $scope.addContact = function(){
+            if (!$scope.form2.$valid) {
+                return;
+            }
+            $scope.model.contacts.push($scope.contact);
+            $scope.contact = {};
+        };
+
+        $scope.deleteContact = function(index){
+            $scope.model.contacts[index].deleted = true;
+        }
 
     });
 });

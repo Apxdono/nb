@@ -4,9 +4,12 @@ define(['./../module','text!/views/elements/common/heading.html'], function (dir
         var dir = {
             restrict: 'E',
             replace:true,
+
             scope: {
                 label: '@',
-                icon: '@'
+                icon: '@',
+                href : '@',
+                hasNext : '='
             },
             template: template
         };

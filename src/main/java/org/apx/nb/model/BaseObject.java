@@ -3,6 +3,7 @@ package org.apx.nb.model;
 import org.apx.nb.model.listener.BaseEntityListener;
 
 import javax.persistence.*;
+import java.util.UUID;
 
 /**
  * Created by oleg on 30.09.2014.

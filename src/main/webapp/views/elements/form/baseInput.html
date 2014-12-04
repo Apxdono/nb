@@ -1,6 +1,6 @@
-<div class="form-group">
-    <label class="control-label col-sm-2">{{label}}</label>
-    <div class="col-sm-10 ">
-        <input type="{{type}}" ng-model="model[field]" class="form-control">
+<div ng-class="{'form-group' : !noGroup}">
+    <label class="control-label col-sm-{{ labelSpan|| '2'}}" for="{{field}}">{{label}}</label>
+    <div class="col-sm-{{ inputSpan|| '10'}}">
+        <input id="{{field}}" name="{{field}}" type="{{type}}" ng-model="model[field]" class="form-control">
     </div>
 </div>

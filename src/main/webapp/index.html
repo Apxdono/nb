@@ -25,7 +25,9 @@
     <script type="text/javascript" src="/webjars/requirejs/2.1.14/require.js" data-main="/resources/js/app/main.js"></script>
 </head>
 
-<body>
+<body class="auth">
+
+<div id="content">
 <!-- Header -->
 <div id="top-nav" class="navbar navbar-inverse navbar-static-top">
     <div class="container-fluid">
@@ -38,10 +40,10 @@
             <a class="navbar-brand" href="#">Новабудова</a>
         </div>
         <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav navbar-right">
+            <ul class="nav navbar-nav navbar-right ng-cloak" ng-controller="UserController">
 
-                <li class="dropdown" ng-controller="UserController">
-                    <a class="dropdown-toggle ng-cloak" role="button" data-toggle="dropdown" href="#" ng-cloak ><i
+                <li class="dropdown" >
+                    <a class="dropdown-toggle " role="button" data-toggle="dropdown" href="#" ng-cloak ><i
                             class="glyphicon glyphicon-user" ></i> {{service.user.username}} <span class="caret"></span></a>
                     <ul id="g-account-menu" class="dropdown-menu" role="menu">
                         <li><a href="#">My Profile</a></li>
@@ -82,10 +84,10 @@
     </div>
     <div style="height: 75px;"></div>
 </div>
-
+</div>
 <!-- /Main -->
 
-<footer class="text-center navbar-fixed-bottom">Created by Oleg Yakovenko <a href="#"><strong>2014</strong></a></footer>
+<footer class="text-center navbar-fixed-bottom" style="border-top: 1px solid #CCC">Created by Oleg Yakovenko <a href="#"><strong>2014</strong></a></footer>
 <!-- script references -->
 
 
