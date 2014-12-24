@@ -14,9 +14,20 @@ import org.springframework.security.access.prepost.PostAuthorize;
 /**
  * Created by oleg on 11/12/14.
  */
-@NoRepositoryBean
+
+@RepositoryRestResource
+//    @NoRepositoryBean
 public interface ContactRepo extends PagingAndSortingRepository<Contact,String> {
 
+    @Override
+    void delete(String s);
 
+    @Override
+    void delete(Contact entity);
 
+    @Override
+    void delete(Iterable<? extends Contact> entities);
+
+    @Override
+    <E extends Contact> Iterable<E> save(Iterable<E> entities);
 }

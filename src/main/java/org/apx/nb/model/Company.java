@@ -9,23 +9,24 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "companies")
-@Access(AccessType.FIELD)
+@Access(AccessType.PROPERTY)
+@DiscriminatorValue("company")
 public class Company extends Client {
 
-    @Column
     String president;
 
-    @Column(name = "legal_address", length = 512)
     String legalAddress;
 
     public Company(){
         type = ClientType.COMPANY;
     }
 
+    @Column
     public String getPresident() {
         return president;
     }
 
+    @Column(name = "legal_address", length = 512)
     public String getLegalAddress() {
         return legalAddress;
     }

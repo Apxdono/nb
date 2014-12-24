@@ -5,6 +5,7 @@ import org.apx.nb.model.Contact;
 
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
+import java.util.Iterator;
 
 /**
  * Created by oleg on 03.12.2014.
@@ -23,13 +24,12 @@ public class ClientListener {
 
     protected void processContacts(Client cl){
         if(cl.getContacts() != null){
-            for (Contact contact : cl.getContacts()) {
-                if(contact.getClient() == null){
+            Iterator<Contact> it = cl.getContacts().iterator();
+            while (it.hasNext()){
+                Contact contact = it.next();
+                if(contact.getClient() == null) {
                     contact.setClient(cl);
-                } else if(contact.getDeleted()) {
-                    contact.setClient(null);
                 }
-
             }
         }
     }

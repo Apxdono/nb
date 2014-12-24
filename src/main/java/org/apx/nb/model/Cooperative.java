@@ -14,39 +14,40 @@ import java.util.List;
 
 @Entity
 @Table(name = "cooperatives")
-@Access(AccessType.FIELD)
+@Access(AccessType.PROPERTY)
 public class Cooperative extends BaseObject {
 
-    @Column(length = 512)
     String address;
 
-    @Column(length = 512)
     String requisits;
 
-    @Column
     String chairman;
 
-    @ElementCollection(fetch = FetchType.EAGER,targetClass = String.class)
-    @CollectionTable(name = "coop_curators")
-    @Column(name = "curator")
+
     List<String> curators;
 
     public Cooperative() {
         curators = new ArrayList<String>();
     }
 
+    @Column(length = 512)
     public String getAddress() {
         return address;
     }
 
+    @Column(length = 512)
     public String getRequisits() {
         return requisits;
     }
 
+    @Column
     public String getChairman() {
         return chairman;
     }
 
+    @ElementCollection(fetch = FetchType.EAGER,targetClass = String.class)
+    @CollectionTable(name = "coop_curators")
+    @Column(name = "curator")
     public List<String> getCurators() {
         return curators;
     }

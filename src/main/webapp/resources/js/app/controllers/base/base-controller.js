@@ -1,18 +1,20 @@
 define(['angular','jquery', '../module'], function (ng,jq, controllers) {
     'use strict';
-    controllers.controller('BaseController', function ($scope, $routeParams, $location, localStorageService,Grids) {
+    controllers.controller('BaseController', function ($scope, $routeParams, $location, Func, localStorageService,Grids) {
         var setData = function (d) {
-            var dd = d["_embedded"]
+//            var dd = d["_embedded"]
             $scope.options.data = [];
-            if (dd) {
-                for (var prop in dd) {
-                    if (dd.hasOwnProperty(prop)) {
-                        angular.forEach(dd[prop], function (o, k) {
-                            $scope.options.data.push(o);
-                        });
-                    }
-                }
-            }
+//            if (dd) {
+//                for (var prop in dd) {
+//                    if (dd.hasOwnProperty(prop)) {
+//                        angular.forEach(dd[prop], function (o, k) {
+//                            $scope.options.data.push(o);
+//                        });
+//                    }
+//                }
+//            }
+            Func.copyHalData($scope.options.data,d);
+
             $scope.options.pageData = d["page"];
             if($scope.options.currentPage() > $scope.options.pageData.number + 1){
                 $scope.options.currentPage($scope.options.pageData.number + 1);

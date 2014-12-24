@@ -2,6 +2,7 @@
     <heading icon=" glyphicon-user" label="Клиент"></heading>
 
     <form class="form-horizontal">
+        <h4 class="section">Основная информация</h4>
         <fieldset disabled ng-show="model.type === 'PRIVATE'">
             <view-row label="ФИО" value="model.name"></view-row>
             <view-row label="Пасспортные данные" value="model.passportData"></view-row>
@@ -16,6 +17,12 @@
             <view-row label="Юридический адрес" value="model.legalAddress"></view-row>
             <view-checkbox label="Запись активна" value="model.active"></view-checkbox>
         </fieldset>
+
+        <h4 class="section">Контакты</h4>
+        <fieldset>
+            <view-row label="{{contact.type.label}}" value="contact.contact" ng-repeat="contact in model.contacts | orderBy:contactSort"></view-row>
+        </fieldset>
+
         <view-edit></view-edit>
     </form>
     <post-render></post-render>

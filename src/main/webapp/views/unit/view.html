@@ -5,15 +5,38 @@
     <heading label="Квартира" icon="glyphicon-lock" href="#/unit/view/{{model.id}}"></heading>
 
     <form class="form-horizontal">
+        <h4 class="section">Общая информация</h4>
         <fieldset disabled>
-            <view-row label="Номер" value="model.number"></view-row>
-            <view-row label="Строительный номер" value="model.structuralNumber"></view-row>
-            <view-row label="Почтовый номер" value="model.postalNumber"></view-row>
-            <view-row label="Этаж" value="model.floor"></view-row>
-            <view-row label="Стояк" value="model.span"></view-row>
-            <view-row label="Количество комнат" value="model.roomCount"></view-row>
-            <view-row label="Стоимость ( 100% )" value="model.startingPrice"></view-row>
-            <view-checkbox label="Забронирована" value="model.booked" ></view-checkbox>
+            <div class="form-group">
+                <view-row label="Номер" value="model.number" value-span="2" no-group="true"></view-row>
+                <view-row label="Строительный номер" value="model.structuralNumber" value-span="2"
+                          no-group="true"></view-row>
+                <view-row label="Почтовый номер" value="model.postalNumber" value-span="2" no-group="true"></view-row>
+            </div>
+
+            <div class="form-group">
+                <view-row label="Этаж" value="model.floor" value-span="2" no-group="true"></view-row>
+                <view-row label="Стояк" value="model.span" value-span="2" no-group="true"></view-row>
+                <view-row label="Количество комнат" value="model.roomCount" value-span="2" no-group="true"></view-row>
+            </div>
+            <div class="form-group">
+                <view-row label="Стоимость ( 100% )" value="model.startingPrice" value-span="2" no-group="true"></view-row>
+                <view-row label="Тип" value="model.type.name" value-span="2" no-group="true"></view-row>
+            </div>
+
+            <h4 class="section">Метраж</h4>
+
+            <div class="form-group">
+                <view-row label="Общий" value="model.areas.WHOLE" label-span="2" value-span="1"
+                          no-group="true"></view-row>
+                <view-row label="Жилой" value="model.areas.HABITABLE" label-span="1" value-span="1"
+                          no-group="true"></view-row>
+                <view-row label="По МБТИ" value="model.areas.MBTI" label-span="1" value-span="1"
+                          no-group="true"></view-row>
+                <view-row label="Фактический" value="model.areas.ACTUAL" label-span="1" value-span="1"
+                          no-group="true"></view-row>
+            </div>
+            <view-checkbox label="Забронирована" value="model.booked"></view-checkbox>
         </fieldset>
         <view-edit></view-edit>
     </form>

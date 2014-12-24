@@ -1,5 +1,5 @@
-define(['../module','../base/base-controller','text!/views/client/preCreateDialog.html','text!/views/table/deletedCell.html'], function (controllers,bc,dlgtemplate,deletedTpl) {
-    controllers.controller('ClientCtrl', function ($scope, $controller, $location, $modal, Constants, ContactTypes, ClientService) {
+define(['../module', '../base/base-controller', 'text!/views/client/preCreateDialog.html', 'text!/views/table/deletedCell.html'], function (controllers, bc, dlgtemplate, deletedTpl) {
+    controllers.controller('ClientCtrl', function ($scope, $controller, $location, $modal, Constants, ContactTypes, ClientService,ContactService) {
         $scope.factory = ClientService;
         $controller('BaseController', {$scope: $scope});
         $scope.path = Constants.client.path;
@@ -8,6 +8,14 @@ define(['../module','../base/base-controller','text!/views/client/preCreateDialo
             {name: 'Тип', field: 'type', cellTemplate: '<div class="ui-grid-cell-contents"><span>{{row.entity.type =="PRIVATE"? "Физ. лицо" : "Юр. лицо"}}</span> </div>'},
             {name: 'Запись активна', field: 'active', cellTemplate: deletedTpl}
         ];
+
+        var resetContact = function(){
+            $scope.contact = {};
+            if($scope.model.id){
+                $scope.contact.client = $scope.model._links.self.href;
+            }
+        };
+        resetContact();
 
         ContactTypes.get(function (data) {
             $scope.ctypes = data;
@@ -45,23 +53,28 @@ define(['../module','../base/base-controller','text!/views/client/preCreateDialo
                 size: 'sm'
             });
         };
-
+        $scope.model = {contacts : []};
 
         $scope.fetchSingle = function (data) {
             $scope.model = data;
+            resetContact();
         };
-
-        $scope.contact = {};
-        $scope.addContact = function(){
+        
+        $scope.addContact = function () {
             if (!$scope.form2.$valid) {
                 return;
             }
+
             $scope.model.contacts.push($scope.contact);
-            $scope.contact = {};
+            resetContact();
         };
 
-        $scope.deleteContact = function(index){
-            $scope.model.contacts[index].deleted = true;
+        $scope.deleteContact = function (contact) {
+            $scope.model.contacts.splice($scope.model.contacts.indexOf(contact),1);
+        }
+
+        $scope.contactSort = function(a){
+            return a.type.name==='CONTACT_PHONE' ? 0 : 1;
         }
 
     });

@@ -2,6 +2,7 @@ package org.apx.nb.model;
 
 import org.apx.nb.model.enums.ContactType;
 import org.apx.nb.model.listener.BaseEntityListener;
+import org.apx.nb.model.listener.ContactListener;
 
 import javax.persistence.*;
 import java.util.UUID;
@@ -12,34 +13,30 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "contacts")
-@EntityListeners({BaseEntityListener.class})
-@Access(AccessType.FIELD)
+@Access(AccessType.PROPERTY)
 public class Contact implements IEntity {
 
-    @Id
     String id = UUID.randomUUID().toString();
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "client_id", referencedColumnName = "id")
+
     Client client;
 
-    @Column(name = "contact")
     String contact;
 
-    @Column(name = "type",length = 36)
-    @Enumerated(EnumType.STRING)
+
     ContactType type;
 
-    @Column(name = "main")
     Boolean main = false;
 
-    @Column(name = "deleted")
     Boolean deleted = false;
 
+    @Id
     public String getId() {
         return id;
     }
 
+    @ManyToOne(cascade = CascadeType.ALL, targetEntity = Client.class)
+    @JoinColumn(name = "client_id", referencedColumnName = "id")
     public Client getClient() {
         return client;
     }
@@ -48,6 +45,7 @@ public class Contact implements IEntity {
         this.client = client;
     }
 
+    @Column(name = "contact")
     public String getContact() {
         return contact;
     }
@@ -60,7 +58,8 @@ public class Contact implements IEntity {
         this.contact = contact;
     }
 
-
+    @Column(name = "type",length = 36)
+    @Enumerated(EnumType.STRING)
     public ContactType getType() {
         return type;
     }
@@ -69,7 +68,7 @@ public class Contact implements IEntity {
         this.type = type;
     }
 
-
+    @Column(name = "main")
     public Boolean getMain() {
         return main;
     }
@@ -78,6 +77,7 @@ public class Contact implements IEntity {
         this.main = main;
     }
 
+    @Column(name = "deleted")
     public Boolean getDeleted() {
         return deleted;
     }
@@ -100,6 +100,6 @@ public class Contact implements IEntity {
 
     @Override
     public int hashCode() {
-        return id != null ? id.hashCode() : 0;
+        return id != null ? id.hashCode()+deleted.hashCode() : 0;
     }
 }

@@ -9,46 +9,50 @@ import java.util.List;
  */
 @Entity
 @Table(name = "houses")
-@Access(AccessType.FIELD)
+@Access(AccessType.PROPERTY)
 public class House extends BaseObject {
 
-    @ManyToOne(fetch = FetchType.EAGER, targetEntity = Cooperative.class)
-    @JoinColumn(name = "coop_id")
+
     Cooperative cooperative;
 
-    @Column(length = 512)
+
     String address;
 
-    @Column(length = 10)
+
     String structuralNumber;
 
-    @Column(length = 10)
+
     String zipCode;
 
-    @OneToMany(targetEntity = Section.class,mappedBy = "house")
+
     List<Section> sections;
 
     public House(){
         sections = new ArrayList<Section>();
     }
 
-
+    @ManyToOne(fetch = FetchType.EAGER, targetEntity = Cooperative.class)
+    @JoinColumn(name = "coop_id")
     public Cooperative getCooperative() {
         return cooperative;
     }
 
+    @Column(length = 512)
     public String getAddress() {
         return address;
     }
 
+    @Column(length = 10,name = "structural_number")
     public String getStructuralNumber() {
         return structuralNumber;
     }
 
+    @Column(length = 10,name = "zip_code")
     public String getZipCode() {
         return zipCode;
     }
 
+    @OneToMany(targetEntity = Section.class,mappedBy = "house")
     public List<Section> getSections() {
         return sections;
     }

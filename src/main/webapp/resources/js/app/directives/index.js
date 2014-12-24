@@ -2,6 +2,7 @@ define([
     './table/pagination',
     './table/filter-input',
     './common/heading',
+    './common/do-select',
     './common/new-and-search',
     './common/post-render',
     './common/save-and-cancel',

@@ -6,6 +6,7 @@ define([
     './user/user-ctrl',
     './house/crud-controller',
     './section/crud-controller',
-    './unit/crud-controller'
+    './unit/crud-controller',
+    './unit/price-controller'
 ], function () {
 });

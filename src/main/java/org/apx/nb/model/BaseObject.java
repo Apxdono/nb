@@ -11,23 +11,18 @@ import java.util.UUID;
 
 @MappedSuperclass
 @EntityListeners({BaseEntityListener.class})
-@Access(AccessType.FIELD)
+@Access(AccessType.PROPERTY)
 public abstract class BaseObject implements IEntity {
 
-    @Id
-    @Column(length = 36)
+
     String id;
 
-    @Column
     String name;
 
-    @Column(name = "internal_name")
     String internalName;
 
-    @Version
     Long version;
 
-    @Column
     Boolean active;
 
     public BaseObject(){
@@ -38,6 +33,8 @@ public abstract class BaseObject implements IEntity {
         active = true;
     }
 
+    @Id
+    @Column(length = 36)
     public String getId() {
         return id;
     }
@@ -46,6 +43,7 @@ public abstract class BaseObject implements IEntity {
         this.id = id;
     }
 
+    @Column
     public String getName() {
         return name;
     }
@@ -54,6 +52,7 @@ public abstract class BaseObject implements IEntity {
         this.name = name;
     }
 
+    @Column(name = "internal_name")
     public String getInternalName() {
         return internalName;
     }
@@ -62,6 +61,7 @@ public abstract class BaseObject implements IEntity {
         this.internalName = internalName;
     }
 
+    @Version
     public Long getVersion() {
         return version;
     }
@@ -70,6 +70,7 @@ public abstract class BaseObject implements IEntity {
         this.version = version;
     }
 
+    @Column
     public Boolean getActive() {
         return active;
     }

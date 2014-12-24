@@ -190,3 +190,8 @@ body.noscroll{
     color:#666;
     border: 1px solid #a7a7a7;
 }
+
+.dd-fix .dropdown-menu{
+    position: static;
+    width: 100%;
+}

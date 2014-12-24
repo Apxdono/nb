@@ -25,20 +25,21 @@
                 </div>
             </div>
             <checkbox field="active" model="model" label="Запись активна"></checkbox>
+            <save-cancel></save-cancel>
         </form>
     </div>
+
     <div ng-show="tabIndex === 1">
         <form name="form2" class="form-horizontal" role="form" xt-form novalidate>
             <h4 class="section">Добавить контакт</h4>
 
             <div class="form-group">
                 <label class="control-label col-sm-2">Тип контакта</label>
-
-                <div class="col-sm-2">
+                <div class="col-sm-3">
                     <select class="form-control" ng-model="contact.type" required xt-validate
-                            ng-options="item.name as item.label for item in ctypes"/>
+                            ng-options="item.label for item in ctypes"/>
                 </div>
-                <base-input-required model="contact" field="contact" label="Контактные данные" input-span="2"
+                <base-input-required model="contact" field="contact" label="Контактные данные" input-span="3"
                             no-group="true" ></base-input-required>
                 <div class="col-sm-2">
                     <button class="btn btn-primary" ng-click="addContact()">ОК</button>
@@ -46,16 +47,15 @@
             </div>
         </form>
         <h4 class="section">Контакты</h4>
-
-        <div class="form-group" ng-repeat="contact in model.contacts">
-            <view-row label="{{contact.type.label}}" value="contact.contact" value-span="2" no-group="true"></view-row>
-            <div class="col-sm-8">
-                <button class="btn btn-success" ng-click="">Редактировать</button>
-                <button class="btn btn-warning" ng-click="deleteContact($index)">Удалить</button>
+        <div class="form-horizontal">
+        <div class="form-group" ng-repeat="contact in model.contacts | orderBy:contactSort">
+            <view-row label="{{contact.type.label}}" value="contact.contact" value-span="8" no-group="true"></view-row>
+            <div class="col-sm-2">
+                <button class="btn btn-warning" ng-click="deleteContact(contact)">Удалить</button>
             </div>
         </div>
-
+        </div>
+        <save-cancel></save-cancel>
     </div>
-    <save-cancel></save-cancel>
     <post-render></post-render>
 </div>

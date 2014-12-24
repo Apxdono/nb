@@ -12,8 +12,9 @@ try{
             'angularAMD' : '/resources/js/lib/angular-amd',
             'angular-route': '/webjars/angularjs/1.3.0/angular-route',
             'angular-local-storage': '/webjars/angular-local-storage/0.1.5/angular-local-storage',
-            'angular-ui-bootstrap': '/webjars/angular-ui-bootstrap/0.11.2/ui-bootstrap',
-            'angular-ui-bootstrap-tpls': '/webjars/angular-ui-bootstrap/0.11.2/ui-bootstrap-tpls',
+            'angular-ui-bootstrap': '/webjars/angular-ui-bootstrap/0.12.0/ui-bootstrap',
+            'angular-ui-bootstrap-tpls': '/webjars/angular-ui-bootstrap/0.12.0/ui-bootstrap-tpls',
+            'russian-locale': '/resources/js/lib/russian-locale',
             'ui-grid': '/webjars/ui-grid/3.0.0-rc.11/ui-grid',
             'xtform': '/resources/js/lib/xtform'
         },
@@ -27,7 +28,7 @@ try{
             'angularAMD': ['angular'],
             'angular-route' : ['angular'],
             'angular-local-storage' : ['angular'],
-            'angular-ui-bootstrap' : ['angular', 'angular-ui-bootstrap-tpls'],
+            'angular-ui-bootstrap' : ['angular','angular-ui-bootstrap-tpls','russian-locale'],
             'angular-ui-bootstrap-tpls' : ['angular'],
             'ui-grid' : ['angular'],
             'xtform' : {

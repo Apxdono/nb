@@ -18,13 +18,21 @@ define(['./module','./constants'], function (services) {
             update: function (model) {
                 return $http.put(this.baseUrl + '/' + this.entity + '/' + model.id, model);
             },
+            destroy : function(model){
+                return $http.delete(this.baseUrl + '/' + this.entity + '/' + model.id, model);
+            },
+            opupdate: function (model) {
+                return $http.patch(this.baseUrl + '/' + this.entity + '/' + model.id, model);
+            },
             active : function (){
                 return $http.get(this.baseUrl+'/'+this.entity+'/search/findByActiveIsTrueOrderByNameAsc');
+            },
+            autocomplete : function (criteria){
+                return $http.get(this.baseUrl+'/'+this.entity+'/search/autocomplete?size=20&criteria='+criteria);
             },
             getMe : function(url){
                 return $http.get(url);
             }
-
         }
         return service;
     })

@@ -19,7 +19,8 @@ import java.util.List;
 @RepositoryRestResource
 public interface UnitTypeRepo extends BaseRepository<UnitType,String> {
 
-    @Query(value = "SELECT i from UnitType i WHERE :name = '' OR lower(i.name) like('%' || lower(:name) || '%')")
+    @Query(value = "SELECT i from UnitType i WHERE :name = '' OR lower(i.name) like concat('%',lower(:name),'%')")
     Page<UnitType> tableResult(@Param("name")String name, Pageable pageable);
 
+    List<UnitType> findByActiveIsTrueOrderByNameAsc();
 }

@@ -15,6 +15,6 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 @RepositoryRestResource
 public interface HouseRepo extends PagingAndSortingRepository<House,String> {
 
-    @Query(value = "SELECT i from House i WHERE (:address = '' OR lower(i.address) like('%' || lower(:address) || '%')) AND ( :structuralNumber='' OR i.structuralNumber = :structuralNumber) AND (:zipCode = '' OR i.zipCode = :zipCode)")
+    @Query(value = "SELECT i from House i WHERE (:address = '' OR lower(i.address) like concat('%', lower(:address) ,'%')) AND ( :structuralNumber='' OR i.structuralNumber = :structuralNumber) AND (:zipCode = '' OR i.zipCode = :zipCode)")
     Page<Cooperative> tableResult(@Param("address") String address, @Param("structuralNumber") String structuralNumber,@Param("zipCode") String zipCode,  Pageable pageable);
 }

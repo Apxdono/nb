@@ -9,30 +9,31 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "private_clients")
-@Access(AccessType.FIELD)
+@DiscriminatorValue("privateclient")
+@Access(AccessType.PROPERTY)
 public class PrivateClient extends Client {
 
-    @Column(length = 14)
     String inn;
 
-    @Column(name = "passport_data",length = 512)
     String passportData;
 
-    @Column(name = "registration",length = 512)
     String registration;
 
     public PrivateClient(){
         type = ClientType.PRIVATE;
     }
 
+    @Column(length = 14)
     public String getInn() {
         return inn;
     }
 
+    @Column(name = "passport_data",length = 512)
     public String getPassportData() {
         return passportData;
     }
 
+    @Column(name = "registration",length = 512)
     public String getRegistration() {
         return registration;
     }

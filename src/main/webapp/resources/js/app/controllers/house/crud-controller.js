@@ -25,6 +25,15 @@ define(['../module', 'text!/views/table/deletedCell.html', '../base/base-control
         $scope.coops = [];
         $scope.selectedCoop;
 
+        function getCoops() {
+            UnitTypeService.active().success(function (data) {
+                if (data["_embedded"]) {
+                    $scope.types = data["_embedded"]["unitTypes"];
+                }
+            });
+        };
+
+
         $scope.getCoops = function(){
             CoopService.active().success(function (data) {
                 $scope.coops = data["_embedded"]["cooperatives"];

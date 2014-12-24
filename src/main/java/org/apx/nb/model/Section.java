@@ -9,46 +9,49 @@ import java.util.List;
  */
 @Entity
 @Table(name = "sections")
-@Access(AccessType.FIELD)
+@Access(AccessType.PROPERTY)
 public class Section extends BaseObject {
 
-    @ManyToOne
-    @JoinColumn(name = "house_id")
+
     House house;
 
-    @Column(name = "floor_count")
+
     int floorCount =0;
 
-    @Column(name = "structural_number",length = 10)
+
     String structuralNumber;
 
-    @Column(name = "postal_number",length = 10)
+
     String postalNumber;
 
-    @OneToMany(mappedBy = "section", targetEntity = Unit.class, fetch = FetchType.LAZY)
     List<Unit> units;
 
     public Section(){
         units = new ArrayList<Unit>();
     }
 
-
+    @ManyToOne
+    @JoinColumn(name = "house_id")
     public House getHouse() {
         return house;
     }
 
+    @Column(name = "floor_count")
     public int getFloorCount() {
         return floorCount;
     }
 
+    @Column(name = "structural_number",length = 10)
     public String getStructuralNumber() {
         return structuralNumber;
     }
 
+    @Column(name = "postal_number",length = 10)
     public String getPostalNumber() {
         return postalNumber;
     }
 
+    @OneToMany(mappedBy = "section", targetEntity = Unit.class, fetch = FetchType.LAZY)
     public List<Unit> getUnits() {
         return units;
     }
