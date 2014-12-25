@@ -7,7 +7,6 @@ define(['../module', '../base/base-controller'], function (controllers) {
         $scope.house = Share.getShared("selectedHouse");
         $scope.section = Share.getShared("selectedSection");
         $scope.types = [];
-
         function getTypes() {
             UnitTypeService.active().success(function (data) {
                 if (data["_embedded"]) {
@@ -59,6 +58,7 @@ define(['../module', '../base/base-controller'], function (controllers) {
         function watchClient(){
             $scope.$watch('clientFound',function(n,o){
                 if(Func.isEmpty(n) || typeof n === 'string'){
+                    $scope.model.client = null;
                     return;
                 }
                 $scope.model.client  = $scope.clientFound._links.self.href;

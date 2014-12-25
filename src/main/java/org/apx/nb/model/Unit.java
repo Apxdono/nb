@@ -30,6 +30,8 @@ public class Unit extends BaseObject {
 
     int roomCount;
 
+    Boolean hasClient;
+
     Map<AreaType, Double> areas;
 
     Double startingPrice;
@@ -46,6 +48,7 @@ public class Unit extends BaseObject {
         areas = new HashMap<AreaType, Double>();
         prices = new ArrayList<>();
         payments = new ArrayList<>();
+        hasClient = false;
     }
 
     @ManyToOne(targetEntity = Section.class, fetch = FetchType.EAGER)
@@ -126,6 +129,11 @@ public class Unit extends BaseObject {
         return payments;
     }
 
+    @Column(name = "has_client")
+    public Boolean getHasClient() {
+        return hasClient;
+    }
+
     public void setSection(Section section) {
         this.section = section;
     }
@@ -180,5 +188,9 @@ public class Unit extends BaseObject {
 
     public void setPayments(List<Payment> payments) {
         this.payments = payments;
+    }
+
+    public void setHasClient(Boolean hasClient) {
+        this.hasClient = hasClient;
     }
 }

@@ -11,7 +11,7 @@ define(['../module', 'text!/views/table/deletedCell.html', '../base/base-control
 
         $scope.nestedOptions = angular.extend({}, Grids.nestedGrid);
         $scope.nestedOptions.columnDefs = [
-            {name: 'Строительный номер', width: '40%', field: 'structuralNumber', cellTemplate: '<div class="ui-grid-cell-contents"><a href="#' + '/section/view/{{row.entity.id}}">{{row.entity[col.field]+" "+row.entity.zipCode}}</a> </div>'},
+            {name: 'Строительный номер', width: '40%', field: 'structuralNumber', cellTemplate: '<div class="ui-grid-cell-contents"><a href="#' + '/section/view/{{row.entity.id}}">Секция {{row.entity[col.field]}}</a> </div>'},
             {name: 'Почтовый номер', width: '30%', field: 'postalNumber'},
             {name: 'Количество этажей', width: '30%', field: 'floorCount'}
         ];

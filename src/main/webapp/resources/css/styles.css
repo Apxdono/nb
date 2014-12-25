@@ -185,6 +185,11 @@ body.noscroll{
     background-color: #5cb85c;
 }
 
+div.label-success a {
+    color: #FFF;
+    font-weight: bold;
+}
+
 .label.label-empty{
     background-color: #fdfdfd;
     color:#666;

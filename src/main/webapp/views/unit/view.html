@@ -36,6 +36,17 @@
                 <view-row label="Фактический" value="model.areas.ACTUAL" label-span="1" value-span="1"
                           no-group="true"></view-row>
             </div>
+
+            <h4 class="section">Клиент</h4>
+            <div class="form-group">
+                <view-row label="Клиент" value="clientFound.name" no-group="true" value-span="2"></view-row>
+                <div class="col-sm-2">
+                    <p class="form-control-static">
+                        <a class="" href="#/client/view/{{clientFound.id}}" target="_blank">Просмотр</a>
+                    </p>
+                </div>
+            </div>
+
             <view-checkbox label="Забронирована" value="model.booked"></view-checkbox>
         </fieldset>
         <view-edit></view-edit>
