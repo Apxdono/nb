@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Новабудова</title>
+    <link href="/webjars/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <link href="resources/css/styles.css" rel="stylesheet">
+    <style type="text/css">
+        .waiting-for-angular{
+            display: none;
+        }
+    </style>
+</head>
+<body >
+    <div id="content" ng-controller="MainCtrl as main" >
+        <!-- Header -->
+        <div id="top-nav" class="navbar navbar-inverse navbar-static-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Новабудова</a>
+                </div>
+                <div class="navbar-collapse collapse" >
+                    <ul class="nav navbar-nav navbar-right" ng-cloak ng-show="main.loggedIn">
+                        <li class="dropdown" >
+                            <a class="dropdown-toggle " role="button" data-toggle="dropdown" ng-cloak ><i
+                                    class="glyphicon glyphicon-user" ></i> <span ng-bind="main.user.username"></span> <span class="caret"></span></a>
+                            <ul id="g-account-menu" class="dropdown-menu" role="menu">
+                                <li><a>Профиль</a></li>
+                            </ul>
+                        </li>
+                        <li><a ng-click="main.logout()"><i class="glyphicon glyphicon-lock"></i> Выход</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- /container -->
+        </div>
+        <!-- /Header -->
+
+        <!-- Main -->
+        <div id="wrap" >
+            <div class="container-fluid auth-container waiting-for-angular" style="width: 97%; margin: 0 auto;">
+                <div class="row">
+                    <form class="form-signin col-sm-offset-4 col-sm-4" role="form" method="post">
+                        <h2 class="form-signin-heading">Вход</h2>
+                        <div class="alert alert-danger" role="alert" ng-show="main.errorMessage">
+                            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                            <span class="sr-only"></span>
+                            {{main.errorMessage}}
+                        </div>
+                        <label for="username" class="sr-only">Логин</label>
+                        <input type="text" id="username" name="username" class="form-control" placeholder="Логин" required autofocus ng-model="main.username">
+                        <br/>
+                        <label for="password" class="sr-only">Пароль</label>
+                        <input type="password" id="password" name="password" class="form-control" placeholder="Пароль" required ng-model="main.password">
+                        <br/>
+                        <button class="btn btn-lg btn-primary btn-block" ng-click="main.submitLogin()" type="button">Войти</button>
+                    </form>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2">
+                        <!-- Left column -->
+                        <a href="#"><strong><i class="glyphicon glyphicon-list"></i> Меню</strong></a>
+
+                        <hr>
+
+                        <ul class="nav nav-pills nav-stacked">
+                            <li class="nav-header"></li>
+                            <li  ng-show="main.hasRole('user')"><a href="#/cooperative/list"><i class="glyphicon glyphicon-th-list"></i> Кооператив </a></li>
+                            <li  ng-show="main.hasRole('admin')"><a href="#/client/list"><i class="glyphicon glyphicon-user"></i> Клиенты </a></li>
+                            <li  ng-show="main.hasRole('user')"><a href="#/house/list"><i class="glyphicon glyphicon-home"></i> Дома </a></li>
+                            <li  ng-show="main.hasRole('user')"><a href="#/unittype/list"><i class="glyphicon glyphicon-align-left"></i> Типы объектов </a></li>
+                        </ul>
+                    </div>
+
+                    <div id="mainView" class="col-sm-10 ng-cloak" ng-cloak ng-view>
+                    </div>
+                    <!--/col-span-9-->
+                </div>
+            </div>
+            <div style="height: 75px;"></div>
+        </div>
+    </div>
+    <!-- /Main -->
+
+    <footer class="text-center navbar-fixed-bottom" style="border-top: 1px solid #CCC">Created by Oleg Yakovenko <a href="#"><strong>2014</strong></a></footer>
+    <!-- script references -->
+    <script type="text/javascript" src="/webjars/requirejs/2.1.14/require.js" data-main="/resources/app/main.js"></script>
+</body>
+</html>
