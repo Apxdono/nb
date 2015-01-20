@@ -4,39 +4,45 @@ define(['angular'], function (angular) {
         unitType: {
             entity: 'unitTypes',
             path: '/unittype',
-            controller: 'UnitTypesCtrl',
-            controllerUrl : './controllers/alala'
+            controller: 'BaseCtrl',
+            controllerUrl : './controllers/base-controller'
         },
         unit: {
             entity: 'units',
             path: '/unit',
-            controller: 'UnitCtrl'
+            controller: 'BaseCtrl',
+            controllerUrl : './controllers/base-controller'
         },
         coop: {
             entity: 'cooperatives',
             path: '/cooperative',
-            controller: 'CoopCtrl'
+            controller: 'BaseCtrl',
+            controllerUrl : './controllers/base-controller'
         },
         client: {
             entity: 'clients',
             subtypes : ['privateClients','companies'],
             path: '/client',
-            controller: 'ClientCtrl'
+            controller: 'BaseCtrl',
+            controllerUrl : './controllers/base-controller'
         },
         house: {
             entity: 'houses',
             path: '/house',
-            controller: 'HouseCtrl'
+            controller: 'BaseCtrl',
+            controllerUrl : './controllers/base-controller'
         },
         section: {
             entity: 'sections',
             path: '/section',
-            controller: 'SectionCtrl'
+            controller: 'BaseCtrl',
+            controllerUrl : './controllers/base-controller'
         },
         unit: {
             entity: 'units',
             path: '/unit',
-            controller: 'UnitCtrl'
+            controller: 'BaseCtrl',
+            controllerUrl : './controllers/base-controller'
         }
     }).constant('ContactTypeLabels',{
         "CONTACT_PHONE":"Контактный телефон",
