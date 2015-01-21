@@ -1,0 +1,9 @@
+<div>
+    <label>Название</label>
+    <input ng-model="options.filters.name">
+    <button ng-click="options.fetchData()">Применить</button>
+    <paging options="options"></paging>
+    <div ui-grid="options" ui-grid-pagination class="grid"></div>
+
+    <paging options="options"></paging>
+</div>

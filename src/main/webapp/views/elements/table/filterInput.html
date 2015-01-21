@@ -1,0 +1,7 @@
+<div class="col-sm-4">
+    <div class="input-group">
+        <label class="sr-only">{{label}}</label>
+        <input type="text" class="form-control" placeholder="{{label}}" ng-model="options.filters[field]" ng-init="options.initFilter(field,'')">
+        <div class="btn input-group-addon "  ng-click="options.filters[field] = '';options.fetchData()"><span style="color:dimgray" class="glyphicon glyphicon-remove"></span></div>
+    </div>
+</div>

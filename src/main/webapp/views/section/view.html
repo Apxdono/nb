@@ -1,0 +1,44 @@
+<div ng-init="entity='section'">
+
+    <a href="#/house/view/{{house.id}}/1"><strong><i class="glyphicon glyphicon-home"></i> Дом </strong></a>
+    <span class="bread"></span>
+    <a href="#/section/view/{{model.id}}"><strong><i class="glyphicon glyphicon-th-large"></i> Секция </strong></a>
+    <hr>
+    <ul class="nav nav-pills nav-justified">
+        <li role="presentation" ng-class="{'active':tabIndex ===0}" ng-click="tabIndex = 0"><a   href="javascript:void(1)">Основная информация</a></li>
+        <li role="presentation" ng-class="{'active':tabIndex ===1}" ng-click="tabIndex = 1"><a href="javascript:void(1)">Квартиры</a></li>
+
+    </ul>
+    <br/>
+
+    <form class="form-horizontal" ng-show="tabIndex === 0">
+        <fieldset disabled>
+            <view-row label="Строительный номер" value="model.structuralNumber"></view-row>
+            <view-row label="Почтовый номер" value="model.postalNumber"></view-row>
+            <view-row label="Количество этажей" value="model.floorCount"></view-row>
+        </fieldset>
+        <view-edit></view-edit>
+    </form>
+    <div ng-show="tabIndex === 1">
+        <div class="row" style="margin-top: 10px">
+            <div class="col-sm-8">
+                <button class="btn btn-success" ng-click="newUnit()">Новая запись</button>
+                <button class="btn btn-default" ng-click="toList()">К списку секций</button>
+            </div>
+            <div class="col-sm-4 well well-sm" >
+                <span>Легенда таблицы</span>
+                <span class="label label-empty">Доступна для продажи</span>
+                <span class="label label-warning">Забронирована</span>
+                <span class="label label-success">Закреплена за клиентом</span>
+            </div>
+
+        </div>
+        <br/>
+        <div ui-grid="nestedOptions" ui-grid-pagination class="grid" ng-show="nestedOptions.data.length > 0">
+        </div>
+
+
+        <h4 ng-hide="nestedOptions.data.length > 0">Нет данных для просмотра</h4>
+    </div>
+    <post-render></post-render>
+</div>

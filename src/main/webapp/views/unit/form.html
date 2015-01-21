@@ -1,0 +1,149 @@
+<div ng-init="entity='unit'">
+
+    <heading label="Дом" icon="glyphicon-home" has-next="true" href="#/house/view/{{house.id}}/1"></heading>
+    <heading label="Секция" icon="glyphicon-th-large" has-next="true" href="#/section/view/{{section.id}}/1"></heading>
+    <heading label="Квартира" icon="glyphicon-lock" href="#/unit/view/{{model.id}}"></heading>
+
+    <ul class="nav nav-pills nav-justified" ng-init="tabIndex = tabIndex || 0">
+        <li role="presentation" ng-class="{'active':tabIndex ===0}" ng-click="tabIndex = 0"><a
+                href="javascript:void(1)">Основная информация</a></li>
+        <li role="presentation" ng-class="{'active':tabIndex ===1}" ng-click="tabIndex = 1"><a
+                href="javascript:void(1)">Стоимость за метр</a></li>
+    </ul>
+    <br/>
+
+    <form name="form" class="form-horizontal" role="form" xt-form novalidate ng-show="tabIndex === 0">
+        <fieldset >
+            <div class="form-group">
+                <base-input-required label="Номер" type="text" field="number" model="model" input-span="2"
+                                     no-group="true"></base-input-required>
+                <base-input-required label="Строительный номер" type="text" field="structuralNumber" no-group="true"
+                                     input-span="2" model="model"></base-input-required>
+                <base-input-required label="Почтовый номер" type="text" field="postalNumber" model="model"
+                                     input-span="2"
+                                     no-group="true"></base-input-required>
+            </div>
+            <div class="form-group">
+                <base-input-required label="Этаж" type="number" field="floor" model="model" input-span="2"
+                                     no-group="true"></base-input-required>
+                <base-input-required label="Стояк" type="number" field="span" no-group="true" input-span="2"
+                                     model="model"></base-input-required>
+                <base-input-required label="Количество комнат" type="number" field="roomCount" model="model"
+                                     input-span="2"
+                                     no-group="true"></base-input-required>
+            </div>
+            <div class="form-group">
+                <base-input-required label="Стоимость ( 100% )" type="number" field="startingPrice" model="model"
+                                     input-span="2" no-group="true"></base-input-required>
+                <label class="control-label col-sm-2">Тип</label>
+
+                <div class="col-sm-2">
+                    <select id="type" do-select name="type" class="form-control"
+                            ng-options="type as type.name for type in types" ng-model="model.type">
+                    </select>
+                </div>
+            </div>
+            <h4 class="section">Метраж</h4>
+
+            <div class="form-group">
+                <base-input-required label="Общий" type="number" field="WHOLE" model="model.areas" input-span="1"
+                                     no-group="true"></base-input-required>
+                <base-input-required label="Жилой" type="number" field="HABITABLE" model="model.areas" label-span="1"
+                                     input-span="1" no-group="true"></base-input-required>
+                <base-input-required label="По МБТИ" type="number" field="MBTI" model="model.areas" label-span="1"
+                                     input-span="1" no-group="true"></base-input-required>
+                <base-input-required label="Фактический" type="number" field="ACTUAL" model="model.areas" label-span="1"
+                                     input-span="1" no-group="true"></base-input-required>
+            </div>
+            <h4 class="section">Клиент</h4>
+
+            <div class="form-group">
+                <label class="control-label col-sm-2">Поиск</label>
+
+                <div class="col-sm-10  dd-fix">
+                    <input id="cl" name="cl" class="form-control typeahead" typeahead-min-length="2"
+                           typeahead-wait-ms="600"
+                           typeahead="client as clientLabel(client) for client in clients($viewValue)"
+                           ng-model="clientFound">
+                    </input>
+                </div>
+            </div>
+            <div class="form-group" ng-show="clientFound">
+                <view-row label="Клиент" value="clientFound.name" no-group="true" value-span="2"></view-row>
+                <div class="col-sm-1">
+                    <p class="form-control-static">
+                        <a class="" href="#/client/view/{{clientFound.id}}" target="_blank">Просмотр</a>
+                    </p>
+                </div>
+                <div class="col-sm-">
+                    <p class="form-control-static">
+                        <a class="" href="javascript:void(0)" ng-really-click="clientFound = null"  ng-really-message="Вы уверены что хотите удалить клиента?">Удалить</a>
+                    </p>
+                </div>
+            </div>
+            <checkbox label="Забронирована" field="booked" model="model"></checkbox>
+        </fieldset>
+        <save-cancel></save-cancel>
+    </form>
+    <form name="formPrices" class="form-horizontal" role="form" xt-form novalidate  ng-show="tabIndex === 1 && model.id">
+        <fieldset>
+            <div ng-controller="UnitPriceController as upc">
+                <div class="form-group">
+                    <label for="startDate" class="control-label col-sm-2">Дата с</label>
+
+                    <div class="col-sm-2">
+                        <div class="input-group">
+                            <input id="startDate" type="text" class="form-control" datepicker-popup="{{format}}"
+                                   ng-model="model.startDate" is-open="opened1"  required xt-validate
+                                   datepicker-options="dateOptions" current-text="Сегодня" clear-text="Очистить"
+                                   close-text="Готово" ng-required="true"/>
+
+                            <div class="btn input-group-addon " ng-click="open($event,1)"><span
+                                    style="color:dimgray" class="glyphicon glyphicon-calendar"></span></div>
+                            </span>
+                        </div>
+                    </div>
+                    <label for="endDate" class="control-label col-sm-1">Дата по</label>
+
+                    <div class="col-sm-2">
+                        <div class="input-group">
+                            <input id="endDate" type="text" class="form-control" datepicker-popup="{{format}}"
+                                   ng-model="model.endDate" is-open="opened2" required xt-validate
+                                   datepicker-options="dateOptions" current-text="Сегодня" clear-text="Очистить"
+                                   close-text="Готово" ng-required="true"/>
+
+                            <div class="btn input-group-addon " ng-click="open($event,2)"><span
+                                    style="color:dimgray" class="glyphicon glyphicon-calendar"></span></div>
+                            </span>
+                        </div>
+                    </div>
+                    <base-input-required type="number" label="Стоимость" field="value" model="model" label-span="1"
+                                         input-span="2" no-group="true"></base-input-required>
+                    <div class="col-sm-2">
+                        <button class="btn btn-success" ng-click="addPrice()">Добавить</button>
+                    </div>
+                </div>
+
+                <div class="form-group" ng-repeat="price in prices | orderBy : 'startDate'">
+                    <view-row label="Дата с" value="price.startDate | date : 'dd.MM.yyyy' " value-span="2"
+                              no-group="true"></view-row>
+                    <view-row label="Дата по" value="price.endDate | date : 'dd.MM.yyyy' " label-span="1" value-span="2"
+                              no-group="true"></view-row>
+                    <view-row label="Стоимость" value="price.value" label-span="1" value-span="2"
+                              no-group="true"></view-row>
+                    <div class="col-sm-2">
+                        <button class="btn btn-warning" ng-really-click="deletePrice($index)"
+                                ng-really-message="Вы уверены что хотите удалить запись?">Удалить
+                        </button>
+                    </div>
+                </div>
+
+
+            </div>
+        </fieldset>
+
+        <save-cancel></save-cancel>
+    </form>
+
+    <post-render></post-render>
+</div>

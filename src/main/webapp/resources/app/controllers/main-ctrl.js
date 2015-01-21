@@ -34,7 +34,7 @@ define([
 
         $scope.api = RestService('unitTypes');
         $scope.api.gridResult({name : ''},{success : function(data){
-            $scope.unitTypes = $scope.api.extractEmbedded(data);
+            $scope.unitTypes = $scope.api.embedded(data);
         }});
 
         $scope.$on(Events.userDataSuccess,function(md,data){

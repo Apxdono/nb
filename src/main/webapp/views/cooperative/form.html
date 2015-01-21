@@ -1,0 +1,42 @@
+<div ng-cloak ng-init="entity='coop'">
+    <heading icon="glyphicon-th-list" label="Кооператив"></heading>
+
+    <form name="form" class="form-horizontal" role="form" xt-form novalidate>
+        <base-input-required label="Отображаемое имя" type="text" field="name" model="model"></base-input-required>
+        <base-input-required label="Внутреннее имя" type="text" field="internalName"
+                             model="model"></base-input-required>
+        <base-input-required label="Адрес" type="text" field="address" model="model"></base-input-required>
+        <base-input-required label="Реквизиты" type="text" field="requisits" model="model"></base-input-required>
+        <base-input-required label="Председатель" type="text" field="chairman" model="model"></base-input-required>
+        <checkbox field="active" model="model" label="Запись активна"/>
+        <div class="form-group" ng-init="initField('curators',[])">
+            <label class="control-label col-sm-2">Члены правления</label>
+
+            <div class="col-sm-10">
+                <div class="input-group">
+                    <input type="text" ng-model="currentCurator" ng-model-options="{ getterSetter : true }" class="form-control">
+                    <div class="btn input-group-addon " ng-click="addCurator()"><span
+                            style="color:dimgray" class="glyphicon glyphicon-plus"></span></div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <div class="list-group scroll-bastard" style="max-height: 150px;overflow-y: auto">
+                    <span class="list-group-item" ng-repeat="curator in model.curators">
+                        {{curator}}
+
+                        <span class="btn badge alert-danger" ng-click="removeCurator($index)"><span
+                                class="glyphicon glyphicon-remove"></span></span>
+
+                        <span class="btn badge alert-success" ng-click="editCurator($index)"><span
+                                class="glyphicon glyphicon-pencil"></span></span>
+
+                    </span>
+                </div>
+            </div>
+        </div>
+        <save-cancel></save-cancel>
+    </form>
+    <post-render></post-render>
+</div>

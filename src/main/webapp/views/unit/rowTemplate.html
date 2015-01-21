@@ -1,0 +1,4 @@
+<div ng-click="getExternalScopes().fnOne(row)"
+     ng-repeat="col in colContainer.renderedColumns track by col.colDef.name"
+     class="ui-grid-cell" ui-grid-cell ng-class="{'label-warning':row.entity.booked, 'label-success':row.entity['hasClient']}">
+</div>

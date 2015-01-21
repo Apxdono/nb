@@ -1,0 +1,5 @@
+<span>
+    <a href="{{href || $parent.$location.path()}}"><strong><i class="glyphicon {{icon}}"></i> {{label}} </strong></a>
+    <span class="bread" ng-show="hasNext"></span>
+    <hr ng-show="!hasNext">
+</span>

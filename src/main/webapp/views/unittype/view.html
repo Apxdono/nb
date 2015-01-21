@@ -1,0 +1,13 @@
+<div ng-init="entity='unitType'">
+    <heading icon=" glyphicon-align-left" label="Тип объекта"></heading>
+
+    <form class="form-horizontal">
+        <fieldset disabled>
+            <view-row label="Отображаемое имя" value="model.name"></view-row>
+            <view-row label="Сокращение" value="model.internalName"></view-row>
+            <view-checkbox label="Запись активна" value="model.active"/>
+        </fieldset>
+        <view-edit></view-edit>
+    </form>
+    <post-render></post-render>
+</div>

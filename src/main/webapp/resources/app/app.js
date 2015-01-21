@@ -8,7 +8,7 @@ define([
     'xtform',
     './constants',
     './services/service-module',
-    './directives/directive-module',
+    './directives/index',
     './controllers/controller-module',
     './controllers/main-ctrl'
 ], function (jQuery, angularAMD, angular) {
@@ -38,13 +38,19 @@ define([
             $routeProvider.when(object.path + '/list', angularAMD.route({
                 templateUrl: '/views' + object.path + '/list.html',
                 controller: object.controller,
-                controllerUrl: object.controllerUrl
+                controllerUrl: object.controllerUrl,
+                resolve: {
+                    isFiltered: function() { return true; }
+                }
             }));
             if (!object.hasOwnProperty("subtypes")) {
                 $routeProvider.when(object.path + '/new', angularAMD.route({
                     templateUrl: '/views' + object.path + '/form.html',
                     controller: object.controller,
-                    controllerUrl: object.controllerUrl
+                    controllerUrl: object.controllerUrl,
+                    resolve: {
+                        isFiltered: function() { return true; }
+                    }
                 }));
                 $routeProvider.when(object.path + '/view/:id/:index?', angularAMD.route({
                     templateUrl: '/views' + object.path + '/view.html',

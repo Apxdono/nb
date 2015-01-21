@@ -11,6 +11,13 @@ define(['angular', './service-module'], function (angular, services) {
                         return service.getResource(this['_links'][resName]['href']);
                     }
                     return null;
+                },
+
+                getLink: function(lnk){
+                    if (this['_links'] && this['_links'][lnk]) {
+                        return this['_links'][lnk]['href'];
+                    }
+                    return null;
                 }
 
             }
@@ -71,18 +78,15 @@ define(['angular', './service-module'], function (angular, services) {
                         url: this.baseUrl + '/' + this.entity + '/' + id
                     }), cbs);
                 },
-                create: function (model,cbs) {
-                    return resolvePromise($http({
-                            method : 'POST',
-                            url : this.baseUrl + '/' + this.entity,
-                            parameters : model
-                        }),cbs);
-                },
-                update: function (model,cbs) {
-                    return resolvePromise($http({
-                        method : 'PUT',
-                        url : this.baseUrl + '/' + this.entity + '/' + model.id,
-                        parameters : model
+                save:function(model,createcbs,updatecbs){
+                    var created = model.getLink && model.getLink('self');
+                    var method = created ? 'PUT' : 'POST';
+                    var url = created ? model.getLink('self') : [this.baseUrl,'/',this.entity].join('');
+                    var cbs = created ? updatecbs : createcbs;
+                    resolvePromise($http({
+                        method : method,
+                        url : url,
+                        data : model
                     }),cbs);
                 },
                 destroy: function (model) {
@@ -112,7 +116,7 @@ define(['angular', './service-module'], function (angular, services) {
                         params: parameters
                     }),cbs);
                 },
-                extractEmbedded : function(halData,filters){
+                embedded : function(halData,filters){
                     var embd = halData['_embedded'];
                     var result = [];
                     if (embd) {
@@ -124,6 +128,14 @@ define(['angular', './service-module'], function (angular, services) {
                         }
                     }
                     return result;
+                },
+                pageData : function(halData){
+                    return halData['page'] || {};
+                    //{
+//                    "size" : 20,
+//                        "totalElements" : 6,
+//                        "totalPages" : 1,
+//                        "number" : 0
                 },
                 getResource: function (url,cbs) {
                     return resolvePromise($http({

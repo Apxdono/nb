@@ -1,0 +1,19 @@
+<div ng-init="entity='unitType'">
+    <heading icon="glyphicon-list" label="Список типов объекта"></heading>
+
+    <h4>Поиск</h4>
+
+    <div class="row">
+        <form name="form" class="form-inline" role="form" novalidate>
+            <filter-input label="Название" field="name" options="options"></filter-input>
+        </form>
+    </div>
+    <new-search></new-search>
+    <paging ng-if="dataFetched" options="options"></paging>
+
+    <div ng-if="options" ui-grid="options" ui-grid-pagination class="grid" ng-show="dataFetched && options.data.length > 0"></div>
+    <h4 ng-if="dataFetched" ng-show="dataFetched && options.data.length < 1">Нет данных для просмотра</h4>
+
+    <paging ng-if="dataFetched" options="options"></paging>
+    <post-render></post-render>
+</div>

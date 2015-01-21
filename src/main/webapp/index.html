@@ -9,6 +9,7 @@
 
     <title>Новабудова</title>
     <link href="/webjars/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/webjars/ui-grid/3.0.0-rc.11/ui-grid.min.css">
 
 
     <link href="resources/css/styles.css" rel="stylesheet">
@@ -17,6 +18,15 @@
             display: none;
         }
     </style>
+    <script>
+        Object.size = function(obj) {
+            var size = 0, key;
+            for (key in obj) {
+                if (obj.hasOwnProperty(key)) size++;
+            }
+            return size;
+        };
+    </script>
 </head>
 <body >
     <div id="content" ng-controller="MainCtrl as main" >

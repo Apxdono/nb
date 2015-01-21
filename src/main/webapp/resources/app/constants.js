@@ -1,11 +1,19 @@
-define(['angular'], function (angular) {
+define([
+    'angular',
+    'text!/views/table/deletedCell.html'
+], function (angular,deletedTpl) {
     var constants = angular.module('nova.constants', []);
     constants.constant('Entity', {
         unitType: {
             entity: 'unitTypes',
             path: '/unittype',
             controller: 'BaseCtrl',
-            controllerUrl : './controllers/base-controller'
+            controllerUrl : './controllers/base-controller',
+            columnDefs : [
+                {name: 'Название', field: 'name', sort: {direction: 'asc'}, cellTemplate: '<div class="ui-grid-cell-contents"><a href="#/unittype/view/{{row.entity.id}}">{{row.entity[col.field]}}</a> </div>'},
+                {name: 'Сокращение', field: 'internalName'},
+                {name: 'Активно', field: 'active', cellTemplate: deletedTpl}
+            ]
         },
         unit: {
             entity: 'units',
@@ -55,7 +63,7 @@ define(['angular'], function (angular) {
         loginRequired: 'event:auth-loginRequired',
         loggedIn: 'event:auth-loginConfirmed',
         userDataSuccess: 'event:user-data-success'
-    }).constant('GridOptions', {
+    }).constant('Grids', {
         defaultGrid: function (scope, lsserv, entity) {
             var fkey = entity + ".list.filters",
                 pkey = entity + ".list.page",
@@ -84,7 +92,6 @@ define(['angular'], function (angular) {
                         self.paging.page = value - 1;
                         self.restrictCurrentPage();
                         lsserv.set(pkey, _currentPage);
-                        $log.info('current page set to ' + _currentPage);
                     }
                     return _currentPage;
                 },
