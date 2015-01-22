@@ -17,6 +17,14 @@
         .waiting-for-angular{
             display: none;
         }
+
+        body.modal-open{
+            margin-right: 0!important;
+        }
+
+        .modal {
+            overflow-y: hidden!important;
+        }
     </style>
     <script>
         Object.size = function(obj) {
@@ -26,6 +34,16 @@
             }
             return size;
         };
+
+        function copy(o,dest) {
+            var out, v, key;
+            dest = dest ? dest : (typeof o === 'object'?{}:[]);
+            for (key in o) {
+                v = o[key];
+                dest[key] =  v;
+            }
+            return dest;
+        }
     </script>
 </head>
 <body >

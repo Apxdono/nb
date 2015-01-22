@@ -13,7 +13,7 @@
             <view-row label="Строительный номер" value="model.structuralNumber"></view-row>
             <view-row label="Почтовый номер" value="model.zipCode"></view-row>
             <view-row label="Кооператив" value="selectedCoop.name"></view-row>
-            <view-checkbox label="Запись активна" value="model.active"/>
+            <view-checkbox label="Запись активна" value="model.active"></view-checkbox>
         </fieldset>
         <view-edit></view-edit>
     </form>
@@ -25,10 +25,10 @@
             </div>
         </div>
         <br/>
-        <div ui-grid="nestedOptions" ui-grid-pagination class="grid" ng-show="nestedOptions.data.length > 0">
+        <!--<div ui-grid="nestedOptions" ui-grid-pagination class="grid" ng-show="nestedOptions.data.length > 0">-->
 
-        </div>
-        <h4 ng-hide="nestedOptions.data.length > 0">Нет данных для просмотра</h4>
+        <!--</div>-->
+        <!--<h4 ng-hide="nestedOptions.data.length > 0">Нет данных для просмотра</h4>-->
     </div>
     <post-render></post-render>
 </div>

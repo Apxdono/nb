@@ -8,7 +8,7 @@ define([
     'xtform',
     './constants',
     './services/service-module',
-    './directives/index',
+    './directives/directive-module',
     './controllers/controller-module',
     './controllers/main-ctrl'
 ], function (jQuery, angularAMD, angular) {
@@ -40,7 +40,9 @@ define([
                 controller: object.controller,
                 controllerUrl: object.controllerUrl,
                 resolve: {
-                    isFiltered: function() { return true; }
+                    isFiltered: function () {
+                        return true;
+                    }
                 }
             }));
             if (!object.hasOwnProperty("subtypes")) {
@@ -49,7 +51,9 @@ define([
                     controller: object.controller,
                     controllerUrl: object.controllerUrl,
                     resolve: {
-                        isFiltered: function() { return true; }
+                        isFiltered: function () {
+                            return true;
+                        }
                     }
                 }));
                 $routeProvider.when(object.path + '/view/:id/:index?', angularAMD.route({
@@ -65,10 +69,40 @@ define([
             }
 
         });
-        $routeProvider.otherwise({redirectTo: '/'});
 
+        $routeProvider.when('/client/view/:id/:index?', angularAMD.route({
+            templateUrl: '/views/client/view.html',
+            controller: Entity.client.controller,
+            controllerUrl: Entity.client.controllerUrl
+        }));
+
+        $routeProvider.when('/client/new/private', angularAMD.route({
+            templateUrl: '/views/client/formPrivate.html',
+            controller: Entity.client.controller,
+            controllerUrl: Entity.client.controllerUrl
+        }));
+
+        $routeProvider.when('/client/new/company', angularAMD.route({
+            templateUrl: '/views/client/formCompany.html',
+            controller: Entity.client.controller,
+            controllerUrl: Entity.client.controllerUrl
+        }));
+
+        $routeProvider.when('/client/edit/private/:id', angularAMD.route({
+            templateUrl: '/views/client/formPrivate.html',
+            controller: Entity.client.controller,
+            controllerUrl: Entity.client.controllerUrl
+        }));
+
+        $routeProvider.when('/client/edit/company/:id', angularAMD.route({
+            templateUrl: '/views/client/formCompany.html',
+            controller: Entity.client.controller,
+            controllerUrl: Entity.client.controllerUrl
+        }));
+
+        $routeProvider.otherwise({redirectTo: '/'});
     });
 
     angularAMD.bootstrap(app);
     return app;
-})
+});

@@ -5,6 +5,5 @@ define(['./../directive-module','text!/views/elements/common/newSearch.html'], f
             replace:true,
             template : template
         }
-
     });
 });

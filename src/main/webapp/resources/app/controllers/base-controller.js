@@ -1,18 +1,19 @@
 define([
     'angular',
-    './controller-module'
+    './controller-module',
+    './../services/function-service'
 ], function (angular, module) {
 
-    module.register.controller('BaseCtrl', function ($scope, $location, $log, $routeParams, localStorageService, Grids, Entity, RestService) {
+    module.register.controller('BaseCtrl', function ($scope, $location, $log, $routeParams, localStorageService, Grids, Utils, Entity, RestService) {
 
         $scope.model = {};
 
         $scope.init = function () {
-            var ent = Entity.hasOwnProperty($scope.entity) ? Entity[$scope.entity] : {};
-            $log.debug('Initialized with entity ', ent);
-            $scope.path = ent.path;
-            $scope.processedEntity = ent;
-            $scope.api = new RestService(ent.entity);
+            $scope.processedEntity = Entity.hasOwnProperty($scope.entity) ? Entity[$scope.entity] : {};
+            $log.debug('Initialized with entity ', $scope.processedEntity);
+            $scope.initModel();
+            $scope.path = $scope.processedEntity.path;
+            $scope.initApi();
             for (var k in $scope.navCallbacks) {
                 if ($location.path().indexOf(k) != -1) {
                     $scope.action = k;
@@ -22,10 +23,24 @@ define([
             }
         };
 
+        $scope.initModel = function(){
+
+        };
+
+        $scope.initApi = function(){
+            $scope.api = new RestService($scope.processedEntity.entity);
+        };
+
+        $scope.initField = function (fieldName, value) {
+            if (!$scope.model[fieldName]) {
+                $scope.model[fieldName] = value;
+            }
+        };
+
         /*Grid system*/
-        $scope.initGridOptions = function (ent) {
-            $scope.options = new Grids.defaultGrid($scope, localStorageService, ent.entity);
-            $scope.options.columnDefs = ent.columnDefs;
+        $scope.initGridOptions = function () {
+            $scope.options = new Grids.defaultGrid($scope, localStorageService, $scope.processedEntity.entity);
+            $scope.options.columnDefs = $scope.processedEntity.columnDefs;
             $scope.options.fetchData = function () {
                 $scope.api.gridResult($scope.prepareParams(), {
                     success: function (data) {
@@ -86,24 +101,23 @@ define([
 
         /*Navigation*/
         $scope.toList = function () {
-            $location.path($scope.path + '/list');
+            $location.path(Utils.makePath($scope.path ,'list'));
         };
 
         $scope.toNew = function () {
-            var hash = $scope.path + '/new';
-            $location.path(hash);
+            $location.path(Utils.makePath($scope.path ,'new'));
         };
 
         $scope.toView = function (mdl) {
-            mdl = mdl || $scope.model;
-            var hash = $scope.path + '/view/' + mdl.id;
-            $location.path(hash);
+            $location.path(Utils.makePath($scope.path ,'view', mdl ? mdl.id : $scope.model.id));
         };
 
         $scope.toEdit = function (mdl) {
-            mdl = mdl || $scope.model;
-            var hash = $scope.path + '/edit/' + mdl.id;
-            $location.path(hash);
+            $location.path(Utils.makePath($scope.path ,'edit', mdl ? mdl.id : $scope.model.id));
+        };
+
+        $scope.singleReadCallback = function(){
+
         };
 
         $scope.navCallbacks = {
@@ -112,19 +126,26 @@ define([
                 $scope.options.fetchData();
             },
             'view': function () {
-                $scope.model = $scope.api.read($routeParams.id);
+                $scope.model = $scope.api.read($routeParams.id,{success:$scope.singleReadCallback});
+                $scope.tabIndex = $routeParams.index || 0;
             },
             'edit': function () {
-                $scope.model = $scope.api.read($routeParams.id);
+                $scope.model = $scope.api.read($routeParams.id,{success:$scope.singleReadCallback});
             }
         };
 
         $scope.addNavCallback = function (action, callback) {
-            var old = $scope.navCallbacks[action];
-            $scope.navCallbacks[action] = function () {
-                if (old) old();
-                callback();
-            };
+            if(!action) return;
+            var actions = action.split(' ');
+            for (var k in actions){
+                var a = actions[k];
+                var old = $scope.navCallbacks[a];
+                $scope.navCallbacks[a] = function () {
+                    if (old) old();
+                    callback();
+                };
+            }
+
         };
 
         /*Navigation*/

@@ -43,26 +43,25 @@ define(['angular', './service-module'], function (angular, services) {
                 return data;
             }
 
-            var resolvePromise = function (httpPromise, callbacks) {
-                var deffered = $q.defer();
+            var resolvePromise = function (httpPromise, callbacks,isArray) {
+                var result = isArray ? [] : {};
                 httpPromise.success(function (data) {
                     data = halModelProcess(data);
                     $timeout(function () {
-                        deffered.resolve(data);
-                        unwrap(deffered.promise,data);
+                        copy(data,result);
+//                        unwrap(deffered.promise,data);
                         if (callbacks && callbacks.success) {
                             callbacks.success(data);
                         }
                     }, 0);
                 }).error(function () {
                     $timeout(function () {
-                        deffered.reject();
                         if (callbacks && callbacks.error) {
                             callbacks.error.apply(this, data);
                         }
                     }, 0);
                 });
-                return deffered.promise;
+                return result;
             }
 
 
@@ -97,10 +96,13 @@ define(['angular', './service-module'], function (angular, services) {
                         method : 'PATCH',
                         url : this.baseUrl + '/' + this.entity + '/' + model.id,
                         parameters : model
-                    }),cbs);
+                    }),null);
                 },
                 active: function () {
-                    return $http.get(this.baseUrl + '/' + this.entity + this.activeRecordsSuffix);
+                    return resolvePromise($http({
+                        method : 'GET',
+                        url : this.baseUrl + '/' + this.entity + this.activeRecordsSuffix
+                    }),null,true);
                 },
                 autocomplete: function (parameters,cbs) {
                     return resolvePromise($http({

@@ -10,6 +10,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.*;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
+import java.util.List;
+
 /**
  * Created by oleg on 1/8/15.
  */
@@ -19,7 +21,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @Import({RestDataConfig.class,DatabaseConfig.class,Security.class})
 //@ImportResource(value = "classpath:security.xml")
 @EnableAutoConfiguration
-public class Application {
+public class Application{
 
     static ApplicationContext ctx;
 
@@ -41,7 +43,7 @@ public class Application {
 
     @Bean
     public ServletListenerRegistrationBean<SessionListener> sessionTimeoutListener(){
-        return new ServletListenerRegistrationBean<>(new SessionListener(timeout));
+        return new ServletListenerRegistrationBean<SessionListener>(new SessionListener(timeout));
     }
 
 }

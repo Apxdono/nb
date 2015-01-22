@@ -24,21 +24,37 @@ define([
         coop: {
             entity: 'cooperatives',
             path: '/cooperative',
-            controller: 'BaseCtrl',
-            controllerUrl : './controllers/base-controller'
+            controller: 'CoopCtrl',
+            controllerUrl : './controllers/coop-controller',
+            columnDefs : [
+                {name: 'Название', width: '30%', field: 'name', sort: {direction: 'asc'}, cellTemplate: '<div class="ui-grid-cell-contents"><a href="#/cooperative/view/{{row.entity.id}}">{{row.entity[col.field]}}</a> </div>'},
+                {name: 'Внутреннее имя', width: '30%', field: 'internalName'},
+                {name: 'Председатель', width: '30%', field: 'chairman'},
+                {name: 'Активна', width: '10%', minwidth:50, field: 'active', cellTemplate: deletedTpl}
+            ]
         },
         client: {
             entity: 'clients',
-            subtypes: ['privateClients', 'companies'],
+            subtypes: { 'PRIVATE':'privateClients', 'COMPANY':'companies'},
             path: '/client',
-            controller: 'BaseCtrl',
-            controllerUrl : './controllers/base-controller'
+            controller: 'ClientCtrl',
+            controllerUrl : './controllers/client-controller',
+            columnDefs : [
+                {name: 'ФИО/Название', field: 'name', sort: {direction: 'asc'}, cellTemplate: '<div class="ui-grid-cell-contents"><a href="#/client/view/{{row.entity.id}}">{{row.entity[col.field]}}</a> </div>'},
+                {name: 'Тип', field: 'type', cellTemplate: '<div class="ui-grid-cell-contents"><span>{{row.entity.type =="PRIVATE"? "Физ. лицо" : "Юр. лицо"}}</span> </div>'},
+                {name: 'Запись активна', field: 'active', cellTemplate: deletedTpl}
+            ]
         },
         house: {
             entity: 'houses',
             path: '/house',
             controller: 'BaseCtrl',
-            controllerUrl : './controllers/base-controller'
+            controllerUrl : './controllers/base-controller',
+            columnDefs : [
+                {name: 'Адрес', width: '30%', field: 'address', sort: {direction: 'asc'}, cellTemplate: '<div class="ui-grid-cell-contents"><a href="#/house/view/{{row.entity.id}}">{{row.entity[col.field]+" "+row.entity.zipCode}}</a> </div>'},
+                {name: 'Строительный номер', width: '30%', field: 'structuralNumber'},
+                {name: 'Активна', width: '10%', minwidth: 50, field: 'active', cellTemplate: deletedTpl}
+            ]
         },
         section: {
             entity: 'sections',
@@ -51,6 +67,7 @@ define([
             path: '/unit',
             controller: 'BaseCtrl',
             controllerUrl : './controllers/base-controller'
+
         }
     }).constant('ContactTypeLabels', {
         "CONTACT_PHONE": "Контактный телефон",
