@@ -24,7 +24,7 @@ try{
                 'angular-ui-bootstrap': '/webjars/angular-ui-bootstrap/0.12.0/ui-bootstrap',
                 'angular-ui-bootstrap-tpls': '/webjars/angular-ui-bootstrap/0.12.0/ui-bootstrap-tpls',
                 'russian-locale': '/resources/js/lib/russian-locale',
-                'ui-grid': '/webjars/ui-grid/3.0.0-rc.11/ui-grid',
+                'ui-grid': '/webjars/ui-grid/3.0.0-rc.18/ui-grid',
                 'xtform': '/resources/js/lib/xtform'
             },
 

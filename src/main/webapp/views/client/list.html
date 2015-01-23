@@ -1,4 +1,6 @@
-<div  ng-cloak ng-init="entity='client'">
+<div ng-cloak>
+    <post-render entity="client"></post-render>
+
     <heading icon="glyphicon-list" label="Список клиентов"></heading>
 
     <h4>Поиск</h4>
@@ -8,7 +10,7 @@
             <filter-input label="Отображаемое имя" field="name" options="options"></filter-input>
         </form>
     </div>
-    <div class="row" style="margin-top: 10px">
+    <div class="row top-spacer">
         <div class="col-sm-4">
             <button class="btn btn-success" ng-click="newClient()">Новая запись</button>
             <button class="btn btn-primary" ng-click="options.fetchData()">Поиск</button>
@@ -16,10 +18,9 @@
     </div>
     <paging options="options"></paging>
 
-    <div ng-if="options" ui-grid="options" ui-grid-pagination class="grid" ng-show="options.data.length > 0"></div>
-    <h4 ng-hide="options.data.length > 0">Нет данных для просмотра</h4>
+    <div ui-grid="options" ui-grid-pagination class="grid" ng-show="options && options.dataLoaded && options.data.length > 0"></div>
+    <h4 ng-show="options && options.dataLoaded && options.data.length < 1">Нет данных для просмотра</h4>
 
     <paging options="options"></paging>
 
-    <post-render></post-render>
 </div>

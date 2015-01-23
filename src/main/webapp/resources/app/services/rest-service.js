@@ -6,9 +6,9 @@ define(['angular', './service-module'], function (angular, services) {
 
             var halExtra = {
 
-                getResource: function (resName) {
+                getResource: function (resName,cbs) {
                     if (this['_links'] && this['_links'][resName]) {
-                        return service.getResource(this['_links'][resName]['href']);
+                        return service.getResource(this['_links'][resName]['href'],cbs);
                     }
                     return null;
                 },
@@ -47,6 +47,7 @@ define(['angular', './service-module'], function (angular, services) {
                 var result = isArray ? [] : {};
                 httpPromise.success(function (data) {
                     data = halModelProcess(data);
+                    data = isArray ? service.embedded(data) : data;
                     $timeout(function () {
                         copy(data,result);
 //                        unwrap(deffered.promise,data);

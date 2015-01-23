@@ -1,4 +1,6 @@
-<div ng-init="entity='unitType'">
+<div ng-cloak>
+    <post-render entity="unitType"></post-render>
+
     <heading icon="glyphicon-list" label="Список типов объекта"></heading>
 
     <h4>Поиск</h4>
@@ -9,11 +11,10 @@
         </form>
     </div>
     <new-search></new-search>
-    <paging ng-if="dataFetched" options="options"></paging>
+    <paging options="options"></paging>
 
-    <div ng-if="options" ui-grid="options" ui-grid-pagination class="grid" ng-show="dataFetched && options.data.length > 0"></div>
-    <h4 ng-if="dataFetched" ng-show="dataFetched && options.data.length < 1">Нет данных для просмотра</h4>
+    <div ui-grid="options" ui-grid-pagination class="grid" ng-show="options.dataLoaded && options.data.length > 0"></div>
+    <h4  ng-show="options.dataLoaded && options.data.length < 1">Нет данных для просмотра</h4>
 
-    <paging ng-if="dataFetched" options="options"></paging>
-    <post-render></post-render>
+    <paging options="options"></paging>
 </div>

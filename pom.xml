@@ -97,7 +97,7 @@
         <dependency>
             <groupId>org.webjars</groupId>
             <artifactId>ui-grid</artifactId>
-            <version>3.0.0-rc.11</version>
+            <version>3.0.0-rc.18</version>
         </dependency>
 
         <dependency>

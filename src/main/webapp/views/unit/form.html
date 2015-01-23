@@ -1,4 +1,6 @@
-<div ng-init="entity='unit'">
+<div ng-cloak>
+    <post-render entity="unit"></post-render>
+
 
     <heading label="Дом" icon="glyphicon-home" has-next="true" href="#/house/view/{{house.id}}/1"></heading>
     <heading label="Секция" icon="glyphicon-th-large" has-next="true" href="#/section/view/{{section.id}}/1"></heading>
@@ -145,5 +147,4 @@
         <save-cancel></save-cancel>
     </form>
 
-    <post-render></post-render>
 </div>

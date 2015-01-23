@@ -53,6 +53,11 @@ footer {
 }
 
 
+.top-spacer{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
 .reddish{
     color: darkred;
 }

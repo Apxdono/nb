@@ -48,8 +48,8 @@ define([
         house: {
             entity: 'houses',
             path: '/house',
-            controller: 'BaseCtrl',
-            controllerUrl : './controllers/base-controller',
+            controller: 'HouseCtrl',
+            controllerUrl : './controllers/house-controller',
             columnDefs : [
                 {name: 'Адрес', width: '30%', field: 'address', sort: {direction: 'asc'}, cellTemplate: '<div class="ui-grid-cell-contents"><a href="#/house/view/{{row.entity.id}}">{{row.entity[col.field]+" "+row.entity.zipCode}}</a> </div>'},
                 {name: 'Строительный номер', width: '30%', field: 'structuralNumber'},
@@ -61,13 +61,6 @@ define([
             path: '/section',
             controller: 'BaseCtrl',
             controllerUrl : './controllers/base-controller'
-        },
-        unit: {
-            entity: 'units',
-            path: '/unit',
-            controller: 'BaseCtrl',
-            controllerUrl : './controllers/base-controller'
-
         }
     }).constant('ContactTypeLabels', {
         "CONTACT_PHONE": "Контактный телефон",
@@ -90,17 +83,20 @@ define([
             var self =
             {
                 target: entity,
+                dataLoaded : false,
                 filters: lsserv.get(fkey) || {},
                 enableSorting: true,
                 columnDefs: [],
                 enableScrollbars: false,
+                enableVerticalScrollbar: false,
+                enableHorizontalScrollbar: false,
                 enableColumnResizing: false,
                 enableColumnMenu: false,
                 pageSizes: [5, 10, 15, 20, 25],
                 paging: { page: _currentPage - 1, size: _pageSize },
                 initFilter: function (filterName, val) {
                     if (!self.filters.hasOwnProperty(filterName)) {
-                        self.filters[filterName] = val
+                        self.filters[filterName] = val || '';
                     }
                 },
                 currentPage: function (value) {

@@ -1,4 +1,5 @@
-<div ng-init="entity='unitType'">
+<div ng-cloak>
+    <post-render entity="unitType"></post-render>
 
     <heading icon=" glyphicon-align-left" label="Тип объекта"></heading>
 
@@ -8,5 +9,4 @@
         <checkbox field="active" model="model" label="Запись активна"/>
         <save-cancel></save-cancel>
     </form>
-    <post-render></post-render>
 </div>

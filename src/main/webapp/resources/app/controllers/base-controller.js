@@ -17,7 +17,9 @@ define([
             for (var k in $scope.navCallbacks) {
                 if ($location.path().indexOf(k) != -1) {
                     $scope.action = k;
-                    if ($scope.navCallbacks[k]()) $scope.navCallbacks[k]();
+                    for(var i in $scope.navCallbacks[k]){
+                        $scope.navCallbacks[k][i]();
+                    }
                     break;
                 }
             }
@@ -45,7 +47,7 @@ define([
                 $scope.api.gridResult($scope.prepareParams(), {
                     success: function (data) {
                         $scope.options.data = $scope.api.embedded(data);
-                        $scope.dataFetched = true;
+                        $scope.options.dataLoaded = true;
                         $scope.options.pageData = $scope.api.pageData(data);
                         if ($scope.options.currentPage() > $scope.options.pageData.number + 1) {
                             $scope.options.currentPage($scope.options.pageData.number + 1);
@@ -121,29 +123,26 @@ define([
         };
 
         $scope.navCallbacks = {
-            'list': function () {
+            'list': [function () {
                 $scope.initGridOptions($scope.processedEntity);
                 $scope.options.fetchData();
-            },
-            'view': function () {
+            }],
+            'new' : [],
+            'view': [function () {
                 $scope.model = $scope.api.read($routeParams.id,{success:$scope.singleReadCallback});
-                $scope.tabIndex = $routeParams.index || 0;
-            },
-            'edit': function () {
+                $scope.tabIndex = parseInt($routeParams.index || 0);
+            }],
+            'edit': [function () {
                 $scope.model = $scope.api.read($routeParams.id,{success:$scope.singleReadCallback});
-            }
+            }]
         };
 
         $scope.addNavCallback = function (action, callback) {
-            if(!action) return;
+            if(!action || !callback) return;
             var actions = action.split(' ');
             for (var k in actions){
                 var a = actions[k];
-                var old = $scope.navCallbacks[a];
-                $scope.navCallbacks[a] = function () {
-                    if (old) old();
-                    callback();
-                };
+                $scope.navCallbacks[a].push(callback);
             }
 
         };

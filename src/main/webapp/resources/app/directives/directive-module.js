@@ -32,10 +32,13 @@ define([
     directives.directive('postRender', [ '$timeout', function($timeout) {
         var def = {
             restrict : 'E',
-            terminal : true,
-            transclude : true,
+            scope : {
+                entity : '@'
+            },
             link : function(scope, element, attrs) {
-                $timeout(function(){scope.init()}, 0);  //Calling a scoped method
+                scope.$parent.entity  = scope.entity;
+                scope.$parent.init();
+//                $timeout(function(){scope.init()}, 0);  //Calling a scoped method
             }
         };
         return def;
@@ -92,7 +95,7 @@ define([
             restrict: 'E',
             replace:true,
             template : [
-            '<div class="row" style="margin-top: 10px">',
+            '<div class="row top-spacer">',
                 '<div class="col-sm-4 col-sm-2">',
                     '<button class="btn btn-success" ng-click="toNew()">Новая запись</button>&nbsp;',
                     '<button class="btn btn-primary" ng-click="options.fetchData()">Поиск</button>',
@@ -263,11 +266,18 @@ define([
                 options:'=',
                 label: '@'
             },
+            link : function($scope, $element, $attrs){
+                $scope.$watch('options',function(n,o){
+                    if(n){
+                        $scope.options.initFilter($scope.field,'');
+                    }
+                });
+            },
             template : [
                 '<div class="col-sm-4">',
                     '<div class="input-group">',
                         '<label class="sr-only">{{label}}</label>',
-                        '<input type="text" class="form-control" placeholder="{{label}}" ng-model="options.filters[field]" ng-init="options.initFilter(field,&quot;&quot;)">',
+                        '<input type="text" class="form-control" placeholder="{{label}}" ng-model="options.filters[field]">',
                         '<div class="btn input-group-addon "  ng-click="options.filters[field] = &quot;&quot;;options.fetchData()">',
                             '<span style="color:dimgray" class="glyphicon glyphicon-remove"></span>',
                         '</div>',
@@ -282,6 +292,14 @@ define([
             restrict: 'E',
             scope: {
                 options: '='
+            },
+            link : function($scope, $element, $attrs){
+                $element.hide();
+                $scope.$watch('options.dataLoaded',function(n,o){
+                    if(n && $scope.options.data.length > 0){
+                        $element.show();
+                    }
+                });
             },
             template: pagingTpl
         }

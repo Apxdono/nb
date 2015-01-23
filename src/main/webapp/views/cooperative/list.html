@@ -1,4 +1,6 @@
-<div  ng-cloak ng-init="entity='coop'">
+<div  ng-cloak>
+    <post-render entity="coop"></post-render>
+
     <heading icon="glyphicon-list" label="Список кооперативов"></heading>
 
     <h4>Поиск</h4>
@@ -11,9 +13,8 @@
     <new-search></new-search>
     <paging options="options"></paging>
 
-    <div ng-if="options" ui-grid="options" ui-grid-pagination class="grid" ng-show="options.data.length > 0"></div>
-    <h4 ng-hide="options.data.length > 0">Нет данных для просмотра</h4>
+    <div ui-grid="options" ui-grid-pagination class="grid" ng-show="options.dataLoaded && options.data.length > 0"></div>
+    <h4 ng-show="options.dataLoaded && options.data.length < 1">Нет данных для просмотра</h4>
 
     <paging options="options"></paging>
-    <post-render></post-render>
 </div>
