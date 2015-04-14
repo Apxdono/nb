@@ -1,4 +1,5 @@
-<div ng-init="entity='section'">
+<div >
+    <post-render entity="section"></post-render>
 
     <a href="#/house/view/{{house.id}}/1"><strong><i class="glyphicon glyphicon-home"></i> Дом </strong></a>
     <span class="bread"></span>
@@ -34,11 +35,11 @@
 
         </div>
         <br/>
-        <div ui-grid="nestedOptions" ui-grid-pagination class="grid" ng-show="nestedOptions.data.length > 0">
+        <div ui-grid="nestedOptions" ui-grid-pagination class="grid" ng-show="nestedOptions.data.length > 0" ng-if="nestedOptions">
         </div>
 
 
-        <h4 ng-hide="nestedOptions.data.length > 0">Нет данных для просмотра</h4>
+        <h4 ng-hide="nestedOptions.data.length > 0" ng-if="nestedOptions">Нет данных для просмотра</h4>
     </div>
-    <post-render></post-render>
+
 </div>

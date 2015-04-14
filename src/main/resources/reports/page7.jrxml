@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="page7" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="fabb0e0c-cfa6-4d8f-80f3-decea56b9939">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="coop_name" class="java.lang.String"/>
+	<parameter name="coop_ruk" class="java.lang.String"/>
+	<parameter name="client_name" class="java.lang.String"/>
+	<parameter name="pasport_num" class="java.lang.String"/>
+	<parameter name="pasport_vidan" class="java.lang.String"/>
+	<parameter name="client_address" class="java.lang.String"/>
+	<parameter name="inn" class="java.lang.String"/>
+	<parameter name="object_kv" class="java.lang.String"/>
+	<parameter name="object_square" class="java.lang.String"/>
+	<parameter name="object_level" class="java.lang.String"/>
+	<parameter name="object_parad" class="java.lang.String"/>
+	<parameter name="object_num" class="java.lang.String"/>
+	<parameter name="coop_account" class="java.lang.String"/>
+	<title>
+		<band height="802" splitType="Stretch">
+			<textField>
+				<reportElement x="278" y="0" width="277" height="25" uuid="9bd28f24-756c-407e-9007-7216dce8e7b2"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["ЗАТВЕРДЖЕНО"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="278" y="25" width="277" height="38" uuid="e0af4072-2ef2-42b4-8abd-733d5e5c7625"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Загальними зборами членів Обслуговуючого кооперативу "+$P{coop_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="278" y="63" width="277" height="19" uuid="c2856c6c-ff4e-4a98-b516-3b6d63e73da2"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Протокол № __________"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="278" y="82" width="277" height="17" uuid="3c3664bb-5fc1-4487-8172-8ee73611cc8f"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["від \"___\"_________ 201___ року"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="99" width="555" height="29" uuid="32557462-0742-4530-a41a-d2a3b986f0af"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="16" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Р І Ш Е Н Н Я № ______________"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="128" width="555" height="16" uuid="18eed3be-19a6-47ff-8489-1f99cf9090f4"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["виконавчого органу"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="144" width="555" height="16" uuid="d513ac0b-05d7-4ab2-aeee-45fb813d3e92"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Обслуговуючого кооперативу "+$P{coop_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="160" width="555" height="16" uuid="fec255f7-014d-433f-8728-e58705b51642"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["від \"___\"_________ 201___ року"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="194" width="555" height="20" uuid="dec20312-e0cc-48ff-bfac-e3f4fa11ca86"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Про прийом до членів Обслуговуючого кооперативу "+$P{coop_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="214" width="555" height="35" uuid="fb4ad096-1b18-4dae-9c03-2e43193136de"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Відповідно до п. 4 статті IV Статуту Обслуговуючого кооперативу "+$P{coop_name}+ " та на підставі заяв(и) про вступ до Обслуговуючого кооперативу "+$P{coop_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="270" width="555" height="61" uuid="9694b01d-a0f7-4178-a820-adf0ab6050e3"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Times New Roman" size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Прийняти до асоційованих членів кооперативу громадянина України "+$P{client_name}+", паспорт "+$P{pasport_num}+", винданий "+$P{pasport_vidan}+", що проживає за адресою: "+$P{client_address}+", ідентифікаційний номер: "+$P{inn}+"."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="331" width="555" height="35" uuid="05c6f6e9-aa79-4885-9543-01ded833c499"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Відповідно до п. 5 статті IV Статуту Обслуговуючого кооперативу "+$P{coop_name}+ " та на підставі заяв(и) про розподіл квартир"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="366" width="555" height="108" uuid="d33f0b63-e685-4df2-a53d-052231e60cc3"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Times New Roman" size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["      Розподілити прийнятому Асоціованому члену наступну квартиру № "+$P{object_kv}+" загальною площею "+$P{object_square}+" кв.м, розташовану на "+$P{object_level}+" поверсі в парадній № "+$P{object_parad}+" в осях ____ житлового будинку в мкр \"В\" жилого району ім. Таїрова, будівельний № "+$P{object_num}+" в м. Одесса, Україна. Загальна площа є проєктною. Фактична площа підлягає визначенню Бюро технічнох інвентарізації. При збільшені площі квартири або житлового приміщення асоційований член кооперативу вносить додатковий пай, при зменшенні Кооператив робить перерахунок частину зайво внесених пайових внесків."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="474" width="555" height="44" uuid="8d975a50-e590-4bf2-b45a-6421694563da"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Times New Roman" size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["      Встановитити розмір вступного внеску ________ (___________________________) гривень, термін сплати вступного внеску до \"___\"________201__року."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="518" width="555" height="36" uuid="af35db48-1a94-44e8-8c84-8bf27dc6a8c3"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Times New Roman" size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["      Встановитити розмір пайового внеску на момент подачі заяви ________ (_______________________) гривень, термін сплати пайового внеску до \"___\"________201__року."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="554" width="555" height="20" uuid="a68cc3a0-428d-45fd-b82a-beb0655dd255"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Times New Roman" size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["      Розмір пайового внеску може змінюватись на частину не оплаченої загальної площи."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="574" width="555" height="20" uuid="0678d3b0-771b-46a5-858f-563ab986a83a"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Times New Roman" size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["      Вартість частини загальної площі фактично оплаченої перегляду не підлягає."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="627" width="555" height="20" uuid="9acafa09-be8e-4156-8d22-0a461fe2e7ec"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Times New Roman" size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["      Асоційований член перераховує (вносить) пай на рахунок ОК "+$P{coop_name}+" "+$P{coop_account}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="647" width="555" height="20" uuid="07d35ae3-fc0f-4b1b-aeed-a5471ae5356a"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Times New Roman" size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["      Призначення платежу: Внесення вступного (чи пайового) внеску."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="698" width="212" height="49" uuid="65e20292-a0cf-431a-8916-ffcf0d6aad46"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Голова Обслуговуючого кооперативу" + $P{coop_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="343" y="698" width="212" height="49" uuid="2a841c22-d15e-4184-8fbb-cdec655858b1"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{coop_ruk}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+</jasperReport>

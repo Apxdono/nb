@@ -16,10 +16,10 @@ try{
                 'text' : '/webjars/requirejs-text/2.0.10-2/text',
                 'jquery': '/webjars/jquery/1.9.1/jquery.min',
                 'bootstrap': '/webjars/bootstrap/3.0.0/js/bootstrap',
-                'angular': '/webjars/angularjs/1.3.0/angular',
+                'angular': '/webjars/angularjs/1.3.6/angular',
                 'angularAMD' : '/resources/js/lib/angular-amd',
                 'angular-auth' : '/webjars/angular-http-auth/1.2.1/http-auth-interceptor',
-                'angular-route': '/webjars/angularjs/1.3.0/angular-route',
+                'angular-route': '/webjars/angularjs/1.3.6/angular-route',
                 'angular-local-storage': '/webjars/angular-local-storage/0.1.5/angular-local-storage',
                 'angular-ui-bootstrap': '/webjars/angular-ui-bootstrap/0.12.0/ui-bootstrap',
                 'angular-ui-bootstrap-tpls': '/webjars/angular-ui-bootstrap/0.12.0/ui-bootstrap-tpls',
@@ -40,6 +40,7 @@ try{
                 'angular-ui-bootstrap' : ['angular','angular-ui-bootstrap-tpls','russian-locale'],
                 'angular-ui-bootstrap-tpls' : ['angular'],
                 'ui-grid' : ['angular'],
+                'russian-locale' : ['angular'],
                 'angular-auth' : ['angular'],
                 'xtform' : {
                     deps : ['angular','bootstrap']

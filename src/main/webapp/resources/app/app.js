@@ -100,6 +100,19 @@ define([
             controllerUrl: Entity.client.controllerUrl
         }));
 
+        $routeProvider.when('/section/:house/new', angularAMD.route({
+            templateUrl: '/views/section/form.html',
+            controller: Entity.section.controller,
+            controllerUrl: Entity.section.controllerUrl
+        }));
+
+        $routeProvider.when('/unit/:section/new', angularAMD.route({
+            templateUrl: '/views/unit/form.html',
+            controller: Entity.unit.controller,
+            controllerUrl: Entity.unit.controllerUrl
+        }));
+
+
         $routeProvider.otherwise({redirectTo: '/'});
     });
 

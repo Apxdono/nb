@@ -3,6 +3,7 @@ package org.apx.nova;
 import com.jolbox.bonecp.BoneCPDataSource;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.support.PropertiesLoaderUtils;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
@@ -20,6 +21,7 @@ import java.util.Properties;
  * Created by oleg on 04.12.2014.
  */
 @Configuration
+@ComponentScan
 public class DatabaseConfig {
 
     @Value("${nova.datasource.url}")

@@ -1,18 +1,23 @@
 package org.apx.nova.rest;
 
+import com.google.common.net.MediaType;
+import net.sf.jasperreports.engine.JRException;
 import org.apx.nova.model.enums.ContactType;
 import org.apx.nova.model.security.User;
 import org.apx.nova.repo.UserRepo;
+import org.apx.nova.reports.ReportProcessor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.PostConstruct;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.Serializable;
@@ -31,6 +36,9 @@ public class SessionBean implements Serializable {
 
     User user;
 
+    @Autowired
+    ReportProcessor reportProcessor;
+
     @PostConstruct
     public void init() {
 
@@ -45,6 +53,13 @@ public class SessionBean implements Serializable {
     public List<ContactType> contactTypes(){
 
         return Arrays.asList(ContactType.values());
+    }
+
+    @RequestMapping(value = "/user/reports/{report}",method = RequestMethod.GET,produces = {"application/vnd.openxmlformats-officedocument.wordprocessingml.document"} )
+    @ResponseBody
+    public byte[] processReport(@PathVariable("report") String report, HttpServletRequest request,HttpServletResponse  response) throws JRException, IOException {
+        byte[] result = reportProcessor.processReport(report,request.getParameterMap());
+        return result;
     }
 
     protected User fetchUser(HttpServletResponse response) throws IOException {

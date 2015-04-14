@@ -18,8 +18,8 @@ define([
         unit: {
             entity: 'units',
             path: '/unit',
-            controller: 'BaseCtrl',
-            controllerUrl : './controllers/base-controller'
+            controller: 'UnitCtrl',
+            controllerUrl : './controllers/unit-controller'
         },
         coop: {
             entity: 'cooperatives',
@@ -59,8 +59,8 @@ define([
         section: {
             entity: 'sections',
             path: '/section',
-            controller: 'BaseCtrl',
-            controllerUrl : './controllers/base-controller'
+            controller: 'SectionCtrl',
+            controllerUrl : './controllers/section-controller'
         }
     }).constant('ContactTypeLabels', {
         "CONTACT_PHONE": "Контактный телефон",
@@ -176,6 +176,8 @@ define([
             enableSorting: true,
             columnDefs: [],
             enableScrollbars: false,
+            enableVerticalScrollbar: false,
+            enableHorizontalScrollbar: false,
             enableColumnResizing: false,
             enableColumnMenu: false,
             fetchData: function () {

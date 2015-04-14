@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="page6" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="edde4b7a-1e7c-4c29-964e-8a0960e01016">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="coop_name" class="java.lang.String"/>
+	<parameter name="coop_adr_street_ua" class="java.lang.String"/>
+	<parameter name="coop_adr_street_ru" class="java.lang.String"/>
+	<parameter name="coop_tel" class="java.lang.String"/>
+	<parameter name="client_name" class="java.lang.String"/>
+	<parameter name="resh_num" class="java.lang.String"/>
+	<parameter name="object_type" class="java.lang.String"/>
+	<parameter name="object_num" class="java.lang.String"/>
+	<parameter name="object_square" class="java.lang.String"/>
+	<parameter name="object_level" class="java.lang.String"/>
+	<parameter name="object_address" class="java.lang.String"/>
+	<parameter name="coop_ruk" class="java.lang.String"/>
+	<title>
+		<band height="802" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="277" height="78" uuid="d814cb1e-715c-40e2-98c3-31a1e50c9f77"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="24" isBold="true" isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["ОК \"Королева 50А\""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="277" y="0" width="278" height="78" uuid="2dbf9f55-4add-40be-99d5-49fc8334ae0c"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="24" isBold="true" isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["ОК \"Корольова 50А\""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="78" width="277" height="20" uuid="5f7092d1-d3f5-4516-8f14-fbda655045a0"/>
+				<box>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Україна, м. Одеса"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="277" y="78" width="278" height="20" uuid="d938f63a-2383-4598-bf8a-ff39b462dca0"/>
+				<box>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Украина, г. Одесса"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="184" width="555" height="28" uuid="68a899af-e4f4-4edd-8a9d-f6b49621cb09"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["№___  \"___\"____________201__ року"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="277" y="98" width="278" height="20" uuid="19bdae17-2b1e-4203-8499-a4526b007e53"/>
+				<box>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["ул. "+$P{coop_adr_street_ru}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="98" width="277" height="20" uuid="aec8fecc-9768-4a71-b52f-5b9f3302f3da"/>
+				<box>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["вул. "+$P{coop_adr_street_ua}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="118" width="277" height="20" uuid="d69f0aa6-600e-4f0b-8afc-8fde379e2134"/>
+				<box>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["тел. "+$P{coop_tel}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="277" y="118" width="278" height="20" uuid="08ba9a53-d3fc-436c-a9f3-42c1baa98396"/>
+				<box>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["тел. "+$P{coop_tel}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="239" width="555" height="28" uuid="b1284635-9db2-400f-8d76-a4d12a55c6c6"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["ДОВІДКА"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="105" y="267" width="345" height="39" uuid="4a46c886-520f-4fbf-8294-52a6018c8f53"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Про внесення паю за кладове приміщення членом кооперативу "+$P{coop_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="306" width="555" height="85" uuid="825e02f8-1f76-4048-90a9-7d148fbd095b"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Довідка видана "+$P{client_name}+", про те, що згідно Рішення "+$P{coop_name}+" "+$P{resh_num}+" він/вона в повному обсязі (100%) вніс/внесла пай за "+$P{object_type}+" № "+$P{object_num}+" загальною площею "+$P{object_square}+" кв.м. у житловому "+$P{object_level}+"-ти поверховому будинку за адресою м. Одеса, "+$P{object_address}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="466" width="215" height="28" uuid="cadf603b-0b18-47f7-bdd0-f3be28dede19"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Голова"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="494" width="215" height="28" uuid="e3a3a6b7-ede9-435d-bd67-2fca6ec4d9f0"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{coop_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="313" y="494" width="242" height="28" uuid="2a1ee4d5-564d-411a-96c9-a0d0a2d02f9e"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{coop_ruk}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+</jasperReport>

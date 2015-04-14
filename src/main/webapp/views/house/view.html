@@ -27,9 +27,9 @@
             </div>
         </div>
         <br/>
-        <!--<div ui-grid="nestedOptions" ui-grid-pagination class="grid" ng-show="nestedOptions.data.length > 0">-->
+        <div ui-grid="nestedOptions" ui-grid-pagination class="grid" ng-show="nestedOptions.data.length > 0" ng-if="nestedOptions">
 
-        <!--</div>-->
-        <!--<h4 ng-hide="nestedOptions.data.length > 0">Нет данных для просмотра</h4>-->
+        </div>
+        <h4 ng-hide="nestedOptions.data.length > 0" ng-if="nestedOptions">Нет данных для просмотра</h4>
     </div>
 </div>

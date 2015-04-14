@@ -28,6 +28,7 @@ public class RestDataConfig extends RepositoryRestMvcConfiguration {
     protected void configureRepositoryRestConfiguration(RepositoryRestConfiguration config) {
         super.configureRepositoryRestConfiguration(config);
         try {
+
             config.setBaseUri(new URI("/rest/api"));
             config.setReturnBodyOnCreate(true).setReturnBodyOnUpdate(true);
             Set<ManagedType<?>> l  = em.getMetamodel().getManagedTypes();

@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="page1" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2ed15996-ed15-40c6-a011-1796c7eb74fd">
+	<property name="ireport.zoom" value="1.4641000000000013"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="287"/>
+	<style name="table">
+		<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+			<topPen lineWidth="0.5"/>
+			<leftPen lineWidth="0.5"/>
+			<bottomPen lineWidth="0.5"/>
+			<rightPen lineWidth="0.5"/>
+		</box>
+	</style>
+	<subDataset name="ds_date_list" uuid="37ffb3f5-9c5b-4364-bcc1-023bd5eaa2e7">
+		<queryString language="xPath">
+			<![CDATA[/datasource/date_list]]>
+		</queryString>
+		<field name="date" class="java.lang.String">
+			<fieldDescription><![CDATA[date]]></fieldDescription>
+		</field>
+	</subDataset>
+	<parameter name="client_name" class="java.lang.String"/>
+	<parameter name="client_tel" class="java.lang.String"/>
+	<parameter name="object_num" class="java.lang.String"/>
+	<parameter name="object_sec" class="java.lang.String"/>
+	<parameter name="object_level" class="java.lang.String"/>
+	<parameter name="object_kv" class="java.lang.String"/>
+	<parameter name="object_room_num" class="java.lang.String"/>
+	<parameter name="object_square" class="java.lang.String"/>
+	<parameter name="object_down_pay" class="java.lang.String"/>
+	<parameter name="object_cost_m2" class="java.lang.String"/>
+	<parameter name="object_cost" class="java.lang.String"/>
+	<parameter name="object_down_pay_all" class="java.lang.String"/>
+	<parameter name="object_down_pay_5" class="java.lang.String"/>
+	<parameter name="object_down_pay_share" class="java.lang.String"/>
+	<parameter name="pay_date" class="java.lang.String"/>
+	<parameter name="pay_cost" class="java.lang.String"/>
+	<parameter name="dop_inform" class="java.lang.String"/>
+	<parameter name="year" class="java.lang.String"/>
+	<group name="data_list">
+		<groupExpression><![CDATA[""]]></groupExpression>
+		<groupHeader>
+			<band height="23">
+				<componentElement>
+					<reportElement x="0" y="0" width="555" height="23" uuid="c2e77311-4e06-4818-8486-dff8092c6d1f"/>
+					<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+						<datasetRun subDataset="ds_date_list" uuid="32fd6a0a-5ea4-4681-9a23-60b569d9e57e">
+							<parametersMapExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}]]></parametersMapExpression>
+							<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+						</datasetRun>
+						<jr:listContents height="23" width="555">
+							<textField>
+								<reportElement style="table" x="277" y="0" width="278" height="23" uuid="7eaeab07-02a8-412b-9078-139c2e085d5d"/>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Times New Roman" size="12" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{date}]]></textFieldExpression>
+							</textField>
+							<textField>
+								<reportElement x="0" y="0" width="277" height="23" uuid="735e6727-1987-467e-910e-7e1823e424db"/>
+								<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+									<topPen lineWidth="0.0"/>
+									<leftPen lineWidth="0.5"/>
+									<rightPen lineWidth="0.5"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Times New Roman" size="12" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{COLUMN_COUNT}==1?"График поэтапной оплаты":""]]></textFieldExpression>
+							</textField>
+						</jr:listContents>
+					</jr:list>
+				</componentElement>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="159">
+				<staticText>
+					<reportElement x="31" y="52" width="100" height="20" uuid="2694d4ee-4309-4a46-a06c-a379bfc9d5f4"/>
+					<textElement>
+						<font fontName="Times New Roman" size="11" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Подпись клиента]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="316" y="52" width="158" height="20" uuid="8c0f42cc-9f97-49ee-8c24-ec8ffc11abcd"/>
+					<textElement>
+						<font fontName="Times New Roman" size="11" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Директор отдела продаж]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="0" y="88" width="212" height="20" uuid="0f3ee218-37ee-4c95-a3eb-9f43e4b5eba3"/>
+					<textElement>
+						<font fontName="Times New Roman"/>
+					</textElement>
+					<textFieldExpression><![CDATA["__________________/________________"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="288" y="88" width="212" height="20" uuid="ff40630a-e35a-44a4-b08b-2d7f987ede81"/>
+					<textElement>
+						<font fontName="Times New Roman"/>
+					</textElement>
+					<textFieldExpression><![CDATA["__________________/________________"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="0" y="128" width="212" height="20" uuid="a70aaef1-d2cf-49c0-8fd1-135f27c4be40"/>
+					<textElement>
+						<font fontName="Times New Roman"/>
+					</textElement>
+					<textFieldExpression><![CDATA["\"___\"_________________"+$P{year}+" года"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="288" y="128" width="212" height="20" uuid="bec3c4a6-d0b4-45b6-a3c6-a04359c8b869"/>
+					<textElement>
+						<font fontName="Times New Roman"/>
+					</textElement>
+					<textFieldExpression><![CDATA["\"___\"_________________"+$P{year}+" года"]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="table" x="277" y="0" width="278" height="44" uuid="74ac7f68-e364-4cdc-801a-10974030e290"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="12" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{dop_inform}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="table" x="0" y="0" width="277" height="44" uuid="bae69ccc-27fe-41da-b274-581cba9e9f39"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="12" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Дополнительная информация"]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<title>
+		<band height="409" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="555" height="41" uuid="fae6c0e3-782c-41e6-a6b1-a4e6caf2b59b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["ЗАЯВКА НА РЕЗЕРВИРОВАНИЕ ЖК \"ВЕРНИСАЖ\""]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="table" x="0" y="41" width="277" height="23" uuid="6a2e1174-517c-4581-8672-4ee8a6386bb7"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Ф.И.О. клиента"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="table" x="277" y="41" width="278" height="23" uuid="f52d8cc6-3580-4756-ae7d-e51a059a9e9b"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{client_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="table" x="0" y="64" width="277" height="23" uuid="92817361-7933-4bf5-9013-56822e892758"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Контактные телефоны клиента"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="table" x="277" y="64" width="278" height="23" uuid="4710013a-6ce0-4076-ac81-3ce23d65c473"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{client_tel}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="table" x="0" y="87" width="277" height="23" uuid="63884e59-b921-4114-b1f6-c86e0335c54c"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Дом"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="table" x="277" y="87" width="278" height="23" uuid="5ce56eaf-75a4-4ecc-a858-57bab7becebc"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{object_num}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="table" x="0" y="110" width="277" height="23" uuid="e9839ba8-0113-41eb-87ba-cdac25a98bd7"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Секция"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="table" x="277" y="110" width="278" height="23" uuid="2833dbe2-7510-4488-8f6c-cc985265f1d3"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{object_sec}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="table" x="0" y="133" width="277" height="23" uuid="c9f60f0c-9c57-4986-b03d-c71530b76452"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Этаж"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="table" x="277" y="133" width="278" height="23" uuid="7fbf540d-a2c4-4be8-93d3-e18c1a99fb97"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{object_level}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="table" x="0" y="156" width="277" height="23" uuid="73696207-2865-45d9-a673-3ddc6ba1364d"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["№ квартиры"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="table" x="277" y="156" width="278" height="23" uuid="44c4b75a-be0b-4f91-9809-8ed7f6aa6fc0"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{object_kv}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="table" x="0" y="179" width="277" height="23" uuid="08487912-34fe-4eb5-b004-d16ff1d779bd"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Кол-во комнат (шт.)"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="table" x="277" y="179" width="278" height="23" uuid="0a46fd75-f8fc-4b8b-87d6-4325327963e2"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{object_room_num}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="table" x="0" y="202" width="277" height="23" uuid="397f0be5-b838-4fe0-9ed1-e35422ee8292"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Общая площадь (м2)"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="table" x="277" y="202" width="278" height="23" uuid="b2cec989-460c-4863-ba50-6607a462e6e7"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{object_square}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="table" x="0" y="225" width="277" height="23" uuid="aba4d5f5-ba60-471c-a82e-13750d64c95f"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Первоначальный взнос (%)"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="table" x="277" y="225" width="278" height="23" uuid="d40e2d97-264c-4dc6-9029-8d747ad47975"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{object_down_pay}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="table" x="0" y="248" width="277" height="23" uuid="9c07acb3-48e0-40e8-a62e-a1d7989b8ed0"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Стоимость м2 (грн)"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="table" x="277" y="248" width="278" height="23" uuid="444daed5-6145-4196-85a8-c851aded275a"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{object_cost_m2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="table" x="0" y="271" width="277" height="23" uuid="3b069835-e60a-4c8f-8866-9657e5f1f920"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Стоимость квартиры (грн)"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="table" x="277" y="271" width="278" height="23" uuid="fe8f9da8-62e5-47f4-862e-b0a28912b518"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{object_cost}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="table" x="277" y="294" width="278" height="23" uuid="088cf6da-0110-4871-b43c-e9f0a6d9abdd"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{object_down_pay_all}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="table" x="77" y="294" width="200" height="23" uuid="75e9038f-6671-4a73-8f86-2f06658add6c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Всего (грн)"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="table" x="277" y="317" width="278" height="23" uuid="17a44473-7547-4c9d-9d0a-73c0ccd03f14"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{object_down_pay_5}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="table" x="77" y="317" width="200" height="23" uuid="086f2b92-7bc2-4dbc-a11a-141b7431d325"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Вступительный взнос (5%) грн"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="table" x="277" y="340" width="278" height="23" uuid="fcef0798-9e19-4bba-9238-690623ba4edb"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{object_down_pay_share}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="table" x="77" y="340" width="200" height="23" uuid="ff182076-8a17-4a26-857c-6ad2d987d71c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Паевой взнос (грн)"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="table" x="0" y="294" width="77" height="69" uuid="9a1738ef-4c93-4e82-b137-052be5256f9b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Первонач. Взнос"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="table" x="277" y="363" width="278" height="23" uuid="ccccd1d7-e7e3-42a6-ad03-665c07d6f8ea"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{pay_date}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="table" x="0" y="363" width="277" height="23" uuid="29de4927-9c05-4087-b16e-d7f0acd3d50e"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Планируемая дата первого взноса"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="table" x="277" y="386" width="278" height="23" uuid="2c821319-946c-4b85-84f3-14a1b820a114"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{object_down_pay_share}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="table" x="0" y="386" width="277" height="23" uuid="c6e51298-2706-4ed0-b59a-ce214095231b"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Сумма остатка на поэтапную оплату (грн)"]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+</jasperReport>

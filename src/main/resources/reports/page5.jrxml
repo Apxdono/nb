@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="page5" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6cdec93b-29ea-43a6-8820-ac1472c2dfed">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="coop_name" class="java.lang.String"/>
+	<parameter name="coop_ruk" class="java.lang.String"/>
+	<parameter name="act_num" class="java.lang.String"/>
+	<parameter name="act_date" class="java.lang.String"/>
+	<parameter name="object_num_str" class="java.lang.String"/>
+	<parameter name="object_org" class="java.lang.String"/>
+	<parameter name="object_org_ruk" class="java.lang.String"/>
+	<parameter name="client_name" class="java.lang.String"/>
+	<parameter name="pasport_num" class="java.lang.String"/>
+	<parameter name="pasport_vidan" class="java.lang.String"/>
+	<parameter name="object_type" class="java.lang.String"/>
+	<parameter name="object_square" class="java.lang.String"/>
+	<parameter name="object_parad" class="java.lang.String"/>
+	<parameter name="object_num" class="java.lang.String"/>
+	<parameter name="object_street" class="java.lang.String"/>
+	<title>
+		<band height="802" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="555" height="22" uuid="97a423bf-34d8-43db-87d9-2852dd360c21"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["АКТ"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="22" width="555" height="20" uuid="ebf39ed3-7b62-40f0-907c-1d0c583ace54"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["прийому - передачі кладового приміщення"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="42" width="100" height="20" uuid="4c75d729-0e2a-4aba-9f3a-35c51c2018ba"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["м. Одеса"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="375" y="42" width="180" height="20" uuid="a9097c44-1b9c-492e-8985-256d911be15a"/>
+				<textElement textAlignment="Right">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["\"___\"________2012р."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="62" width="555" height="70" uuid="f0ec5a85-25e9-4789-881a-e3e729b47e50"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["      Цей акт складений про те, що згідно Рішення "+$P{coop_name}+" № "+$P{act_num}+" від "+$P{act_date}+"., про будівництво житлового будинку в мкр. _______________________ (будівельний №"+$P{object_num_str}+") в м. Одеса, сторони виконали взаємні зобов'язання у повному обсязі, у зв'язку з чим:"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="132" width="555" height="95" uuid="d7e80f42-fa5c-4073-8b94-0968e6ffce8b"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["         1. "+$P{object_org}+", в особі директора "+$P{coop_ruk}+", передає, а громадянин(нка) "+$P{client_name}+" паспорт "+$P{pasport_num}+" виданий "+$P{pasport_vidan}+" приймає "+$P{object_type}+" № "+$P{object_num}+" загальною площею "+$P{object_square}+"м2 _________________________________________________ у парадній № "+$P{object_parad}+" житлового будинку №"+$P{object_num} +" по "+$P{object_street}+" м. Одеса"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="227" width="555" height="31" uuid="31325efe-bf1c-413a-9901-e494fd5cd0cd"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["         2. Після підписання цього акту Інвестор несе відповідальність за охорону свого приміщення."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="258" width="555" height="24" uuid="fff7de04-acfe-49a9-8a10-03384091987f"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["         3. Інвестор претензіій до "+$P{object_org}+" не має."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="282" width="555" height="39" uuid="2a9318a0-1810-44fb-94a6-473b7f86ec3c"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["         4. Цей акт є підставою для оформлення "+$P{client_name}+" свідотцтва на право власності на вищевказане кладове приміщення."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="348" width="555" height="24" uuid="265085ff-58fd-4cd6-8dbb-542d7c2d07d7"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Підписи сторін:"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="412" width="225" height="33" uuid="ea1e6377-3a1e-46c0-971e-c44eb19c2a77"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Директор "+$P{object_org}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="445" width="225" height="24" uuid="cc0c7975-bbbe-43ab-8b1a-12d44fc93676"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["________________"+$P{object_org_ruk}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="548" width="225" height="24" uuid="046c948b-c2c8-4087-9a0c-65e3dcc20416"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["________________"+$P{coop_ruk}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="516" width="225" height="32" uuid="cab3888e-2476-430c-b858-138faf2a79ad"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Голова "+$P{coop_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="309" y="548" width="109" height="24" uuid="9e100da1-5d06-4d28-b010-7bf9f80365c9"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["________________"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="418" y="548" width="137" height="45" uuid="372690fd-d769-4f0b-ac5e-4792c6f7bbda"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{client_name}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+</jasperReport>
