@@ -202,7 +202,7 @@ define([
             },
             template : [
             '<div ng-class="{\'form-group\' : !noGroup}">',
-                '<div class="col-sm-offset-{{ inputSpan || \'2\'}} col-sm-{{ labelSpan|| \'10\'}}">',
+                '<div class="col-sm-offset-{{ inputSpan || 2}} col-sm-{{ labelSpan|| 10}}">',
                     '<div class="checkbox">',
                     '<label>',
                         '<input type="checkbox" ng-model="model[field]"> {{label}}',
@@ -220,11 +220,14 @@ define([
             replace:true,
             scope: {
                 value:'=',
-                label: '@'
+                label: '@',
+                labelSpan : '@',
+                valueSpan: '@',
+                noGroup: '='
             },
             template : [
-                '<div class="form-group">',
-                    '<div class="col-sm-offset-2 col-sm-10">',
+                '<div ng-class="{&quot;form-group&quot; : !noGroup}">',
+                    '<div class="col-sm-offset-{{ inputSpan || 2}} col-sm-{{ labelSpan|| 10}}">',
                         '<div class="checkbox">',
                             '<label>',
                                 '<input type="checkbox" disabled ng-model="value"> {{label}}',

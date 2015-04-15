@@ -23,6 +23,8 @@
             <div class="form-group">
                 <view-row label="Стоимость ( 100% )" value="model.startingPrice" value-span="2" no-group="true"></view-row>
                 <view-row label="Тип" value="model.type.name" value-span="2" no-group="true"></view-row>
+                <view-checkbox label="Забронирована" value="model.booked" label-span="2" no-group="true"></view-checkbox>
+
             </div>
 
             <h4 class="section">Метраж</h4>
@@ -37,18 +39,18 @@
                 <view-row label="Фактический" value="model.areas.ACTUAL" label-span="1" value-span="1"
                           no-group="true"></view-row>
             </div>
-
-            <h4 class="section">Клиент</h4>
-            <div class="form-group">
-                <view-row label="Клиент" value="clientFound.name" no-group="true" value-span="2"></view-row>
-                <div class="col-sm-2">
-                    <p class="form-control-static">
-                        <a class="" href="#/client/view/{{clientFound.id}}" target="_blank">Просмотр</a>
-                    </p>
+            <div ng-show="clientFound && clientFound.id">
+                <h4 class="section">Клиент</h4>
+                <div class="form-group">
+                    <view-row label="Клиент" value="clientFound.name" no-group="true" value-span="2"></view-row>
+                    <div class="col-sm-2">
+                        <p class="form-control-static">
+                            <a class="" href="#/client/view/{{clientFound.id}}" target="_blank">Просмотр</a>
+                        </p>
+                    </div>
                 </div>
             </div>
 
-            <view-checkbox label="Забронирована" value="model.booked"></view-checkbox>
         </fieldset>
         <view-edit></view-edit>
     </form>
