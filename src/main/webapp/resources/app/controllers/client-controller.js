@@ -5,9 +5,9 @@ define([
     './../services/contact-type-service',
     './base-controller'
 ], function (angular, module,preCreateDialogTpl) {
-    module.register.controller('ClientCtrl',function($scope,$controller, $location, $log, $modal,RestService,Utils, ContactTypes){
+    module.register.controller('ClientCtrl',function($scope,$setup,$controller, $location, $log, $modal,RestService,Utils, ContactTypes){
 
-        $controller('BaseCtrl',{$scope:$scope});
+        $controller('BaseCtrl',{$scope:$scope,$setup:$setup});
         $log.debug('initialized client ctrl');
         var dialog;
 

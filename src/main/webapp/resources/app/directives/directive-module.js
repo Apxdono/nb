@@ -3,8 +3,9 @@ define([
     'jquery',
     'text!/views/elements/table/paging.html',
     'angular-auth',
+    'angular-ui-bootstrap',
     '../constants'], function (angular, $,pagingTpl) {
-    var directives = angular.module('nova.directives', ['nova.constants']);
+    var directives = angular.module('nova.directives', ['nova.constants','ui.bootstrap','ui.bootstrap.tpls']);
 
     /*Authorization*/
     directives.directive('authContainer', function (Events) {
@@ -194,18 +195,21 @@ define([
             scope: {
                 field: '@',
                 model:'=',
-                label: '@'
+                label: '@',
+                labelSpan : '@',
+                inputSpan: '@',
+                noGroup : '='
             },
             template : [
-                '<div class="form-group">',
-                    '<div class="col-sm-offset-2 col-sm-10">',
-                        '<div class="checkbox">',
-                            '<label>',
-                                '<input type="checkbox" ng-model="model[field]"> {{label}}',
-                            '</label>',
-                        '</div>',
+            '<div ng-class="{\'form-group\' : !noGroup}">',
+                '<div class="col-sm-offset-{{ inputSpan || \'2\'}} col-sm-{{ labelSpan|| \'10\'}}">',
+                    '<div class="checkbox">',
+                    '<label>',
+                        '<input type="checkbox" ng-model="model[field]"> {{label}}',
+                    '</label>',
                     '</div>',
-                '</div>'
+                '</div>',
+            '</div>',
             ].join('')
         }
     });

@@ -3,7 +3,8 @@ define([
         './service-module'
     ],
     function(angular,module){
-        module.register.service('Utils',function(){
+        var provider = module.register || module;
+        provider.service('Utils',function(){
             var service = {};
 
             service.copy = function(s,d){

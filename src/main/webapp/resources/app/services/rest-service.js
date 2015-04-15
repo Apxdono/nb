@@ -89,6 +89,19 @@ define(['angular', './service-module'], function (angular, services) {
                         data : model
                     }),cbs);
                 },
+                partialSave : function(model,attrs,cbs){
+                    var method = 'PATCH';
+                    var url = model.getLink('self');
+                    var data = {};
+                    for(var i =0; i< attrs.length; i++){
+                        data[attrs[i]] = model[attrs[i]];
+                    }
+                    resolvePromise($http({
+                        method : method,
+                        url : url,
+                        data : data
+                    }),cbs);
+                },
                 destroy: function (model) {
                     return $http.delete(this.baseUrl + '/' + this.entity + '/' + model.id, model);
                 },
@@ -139,6 +152,12 @@ define(['angular', './service-module'], function (angular, services) {
 //                        "totalElements" : 6,
 //                        "totalPages" : 1,
 //                        "number" : 0
+                },
+                deleteAssociation: function (url, success, error) {
+                    $http({
+                        method: 'DELETE',
+                        url: url
+                    }).success(success).error(error);
                 },
                 getResource: function (url,cbs) {
                     return resolvePromise($http({

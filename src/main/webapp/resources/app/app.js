@@ -10,6 +10,7 @@ define([
     './services/service-module',
     './directives/directive-module',
     './controllers/controller-module',
+    './services/navigation-service',
     './controllers/main-ctrl'
 ], function (jQuery, angularAMD, angular) {
 
@@ -34,15 +35,22 @@ define([
 //        localStorageServiceProvider.setStorageCookieDomain('example.com');
 //        localStorageServiceProvider.setStorageType('sessionStorage');
 
+        function StandartResolve(act,path){
+            return function(Navigation){
+                return {
+                    navigation : new Navigation(path),
+                    action : act
+                }
+            };
+        }
+
         angular.forEach(Entity, function (object, key) {
             $routeProvider.when(object.path + '/list', angularAMD.route({
                 templateUrl: '/views' + object.path + '/list.html',
                 controller: object.controller,
                 controllerUrl: object.controllerUrl,
-                resolve: {
-                    isFiltered: function () {
-                        return true;
-                    }
+                resolve : {
+                    $setup : new StandartResolve('list',object.path)
                 }
             }));
             if (!object.hasOwnProperty("subtypes")) {
@@ -50,21 +58,25 @@ define([
                     templateUrl: '/views' + object.path + '/form.html',
                     controller: object.controller,
                     controllerUrl: object.controllerUrl,
-                    resolve: {
-                        isFiltered: function () {
-                            return true;
-                        }
+                    resolve : {
+                        $setup : new StandartResolve('new',object.path)
                     }
                 }));
                 $routeProvider.when(object.path + '/view/:id/:index?', angularAMD.route({
                     templateUrl: '/views' + object.path + '/view.html',
                     controller: object.controller,
-                    controllerUrl: object.controllerUrl
+                    controllerUrl: object.controllerUrl,
+                    resolve : {
+                        $setup : new StandartResolve('view',object.path)
+                    }
                 }));
                 $routeProvider.when(object.path + '/edit/:id', angularAMD.route({
                     templateUrl: '/views' + object.path + '/form.html',
                     controller: object.controller,
-                    controllerUrl: object.controllerUrl
+                    controllerUrl: object.controllerUrl,
+                    resolve : {
+                        $setup : new StandartResolve('edit',object.path)
+                    }
                 }));
             }
 
@@ -73,43 +85,64 @@ define([
         $routeProvider.when('/client/view/:id/:index?', angularAMD.route({
             templateUrl: '/views/client/view.html',
             controller: Entity.client.controller,
-            controllerUrl: Entity.client.controllerUrl
+            controllerUrl: Entity.client.controllerUrl,
+            resolve : {
+                $setup : new StandartResolve('view','/client')
+            }
         }));
 
         $routeProvider.when('/client/new/private', angularAMD.route({
             templateUrl: '/views/client/formPrivate.html',
             controller: Entity.client.controller,
-            controllerUrl: Entity.client.controllerUrl
+            controllerUrl: Entity.client.controllerUrl,
+            resolve : {
+                $setup : new StandartResolve('new','/client')
+            }
         }));
 
         $routeProvider.when('/client/new/company', angularAMD.route({
             templateUrl: '/views/client/formCompany.html',
             controller: Entity.client.controller,
-            controllerUrl: Entity.client.controllerUrl
+            controllerUrl: Entity.client.controllerUrl,
+            resolve : {
+                $setup : new StandartResolve('new','/client')
+            }
         }));
 
         $routeProvider.when('/client/edit/private/:id', angularAMD.route({
             templateUrl: '/views/client/formPrivate.html',
             controller: Entity.client.controller,
-            controllerUrl: Entity.client.controllerUrl
+            controllerUrl: Entity.client.controllerUrl,
+            resolve : {
+                $setup : new StandartResolve('edit','/client')
+            }
         }));
 
         $routeProvider.when('/client/edit/company/:id', angularAMD.route({
             templateUrl: '/views/client/formCompany.html',
             controller: Entity.client.controller,
-            controllerUrl: Entity.client.controllerUrl
+            controllerUrl: Entity.client.controllerUrl,
+            resolve : {
+                $setup : new StandartResolve('edit','/client')
+            }
         }));
 
         $routeProvider.when('/section/:house/new', angularAMD.route({
             templateUrl: '/views/section/form.html',
             controller: Entity.section.controller,
-            controllerUrl: Entity.section.controllerUrl
+            controllerUrl: Entity.section.controllerUrl,
+            resolve : {
+                $setup : new StandartResolve('new','/section')
+            }
         }));
 
         $routeProvider.when('/unit/:section/new', angularAMD.route({
             templateUrl: '/views/unit/form.html',
             controller: Entity.unit.controller,
-            controllerUrl: Entity.unit.controllerUrl
+            controllerUrl: Entity.unit.controllerUrl,
+            resolve : {
+                $setup : new StandartResolve('new','/unit')
+            }
         }));
 
 

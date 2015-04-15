@@ -3,8 +3,9 @@ define([
     './controller-module',
     './base-controller'
 ], function (angular, module) {
-    module.register.controller('CoopCtrl',function($scope,$controller, $location, $log, $routeParams, localStorageService, Grids, Entity, RestService){
-        $controller('BaseCtrl',{$scope:$scope});
+    module.register.controller('CoopCtrl',function($scope,$setup,$controller, $location, $log, $routeParams, localStorageService, Grids, Entity, RestService){
+
+        $controller('BaseCtrl',{$scope:$scope,$setup:$setup});
         $log.debug('initialized coop ctrl')
 
         var cc = '';

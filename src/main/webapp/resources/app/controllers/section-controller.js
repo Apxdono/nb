@@ -3,9 +3,10 @@ define([
     './controller-module',
     './base-controller'
 ], function (angular, module) {
-    module.register.controller('SectionCtrl',function($scope,$controller, $location, $log,Grids,$routeParams, RestService, Utils, Entity){
+    module.register.controller('SectionCtrl',function($scope,$setup,$controller, $location, $log,Grids,$routeParams, RestService, Utils, Entity){
 
-        $controller('BaseCtrl',{$scope:$scope});
+        $controller('BaseCtrl',{$scope:$scope,$setup:$setup});
+
         $log.debug('initialized section ctrl');
         var houseService = new RestService(Entity.house.entity);
         $scope.tabIndex = parseInt($routeParams.index || 0);

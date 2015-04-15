@@ -4,9 +4,14 @@ define([
     './../services/function-service'
 ], function (angular, module) {
 
-    module.register.controller('BaseCtrl', function ($scope, $location, $log, $routeParams, localStorageService, Grids, Utils, Entity, RestService) {
+    module.register.controller('BaseCtrl', function ($scope,$setup, $location, $log, $routeParams, localStorageService, Grids, Utils, Entity, RestService) {
+
+
+        $scope.action = $setup.action;
+        angular.extend($scope,$setup.navigation);
 
         $scope.model = {};
+
 
         $scope.init = function () {
             $scope.processedEntity = Entity.hasOwnProperty($scope.entity) ? Entity[$scope.entity] : {};
@@ -14,15 +19,7 @@ define([
             $scope.initModel();
             $scope.path = $scope.processedEntity.path;
             $scope.initApi();
-            for (var k in $scope.navCallbacks) {
-                if ($location.path().indexOf(k) != -1) {
-                    $scope.action = k;
-                    for(var i in $scope.navCallbacks[k]){
-                        $scope.navCallbacks[k][i]();
-                    }
-                    break;
-                }
-            }
+            $scope.navCallbacks.executeCallbacks($scope.action);
         };
 
         $scope.initModel = function(){
@@ -102,50 +99,21 @@ define([
 
 
         /*Navigation*/
-        $scope.toList = function () {
-            $location.path(Utils.makePath($scope.path ,'list'));
-        };
 
-        $scope.toNew = function () {
-            $location.path(Utils.makePath($scope.path ,'new'));
-        };
+        $scope.addNavCallback('list',function () {
+            $scope.initGridOptions($scope.processedEntity);
+            $scope.options.fetchData();
+        });
 
-        $scope.toView = function (mdl) {
-            $location.path(Utils.makePath($scope.path ,'view', mdl ? mdl.id : $scope.model.id));
-        };
+        $scope.addNavCallback('view',function () {
+            $scope.model = $scope.api.read($routeParams.id,{success:$scope.singleReadCallback});
+            $scope.tabIndex = parseInt($routeParams.index || 0);
+        });
 
-        $scope.toEdit = function (mdl) {
-            $location.path(Utils.makePath($scope.path ,'edit', mdl ? mdl.id : $scope.model.id));
-        };
+        $scope.addNavCallback('edit',function () {
+            $scope.model = $scope.api.read($routeParams.id,{success:$scope.singleReadCallback});
+        });
 
-        $scope.singleReadCallback = function(){
-
-        };
-
-        $scope.navCallbacks = {
-            'list': [function () {
-                $scope.initGridOptions($scope.processedEntity);
-                $scope.options.fetchData();
-            }],
-            'new' : [],
-            'view': [function () {
-                $scope.model = $scope.api.read($routeParams.id,{success:$scope.singleReadCallback});
-                $scope.tabIndex = parseInt($routeParams.index || 0);
-            }],
-            'edit': [function () {
-                $scope.model = $scope.api.read($routeParams.id,{success:$scope.singleReadCallback});
-            }]
-        };
-
-        $scope.addNavCallback = function (action, callback) {
-            if(!action || !callback) return;
-            var actions = action.split(' ');
-            for (var k in actions){
-                var a = actions[k];
-                $scope.navCallbacks[a].push(callback);
-            }
-
-        };
 
         /*Navigation*/
 

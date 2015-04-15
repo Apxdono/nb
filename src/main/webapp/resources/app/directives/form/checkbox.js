@@ -6,7 +6,10 @@ define(['./../directive-module','text!/views/elements/form/baseCheckbox.html'], 
             scope: {
                 field: '@',
                 model:'=',
-                label: '@'
+                label: '@',
+                labelSpan : '@',
+                inputSpan: '@',
+                noGroup : '='
             },
             template : template
         }
