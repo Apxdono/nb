@@ -21,8 +21,10 @@ define([
             restrict: 'A',
             priority: 1,
             terminal: true,
+            scope : {
+                callback : '&ngClick'
+            },
             link: function (scope, element, attrs) {
-                $log.debug(arguments);
                 var m = attrs.bsReally;
                 element.on('click', function () {
                     var inst = $modal.open({
@@ -39,7 +41,8 @@ define([
                     inst.result.then(function (data) {
                         if (data == true) {
                             $log.debug('Yes we click')
-                            scope.$parent.$eval(attrs.ngClick)
+                            //scope.$parent.$eval(attrs.ngClick)
+                            scope.callback();
                         }
                     }, function () {
                         $log.debug('No we dont click')

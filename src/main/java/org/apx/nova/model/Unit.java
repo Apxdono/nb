@@ -122,6 +122,7 @@ public class Unit extends BaseObject {
 
 
     @OneToMany(mappedBy = "parentUnit")
+    @OrderBy("startDate ASC")
     public List<Price> getPrices() {
         return prices;
     }

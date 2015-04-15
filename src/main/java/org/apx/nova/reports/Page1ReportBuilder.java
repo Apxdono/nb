@@ -9,9 +9,7 @@ import org.springframework.stereotype.Component;
 
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by oleg on 14.04.2015.
@@ -63,6 +61,25 @@ public class Page1ReportBuilder extends AbstractReportBuilder {
             result.put("object_cost",unit.getStartingPrice()+"");
 
             result.put("year", new SimpleDateFormat("yyyy").format(new Date()));
+
+            List<Price> prices = unit.getPrices();
+            Price latest = null;
+            Calendar current = Calendar.getInstance();
+            if(prices != null && prices.size() > 0){
+                if(prices.size() > 1) {
+                    for (Price price : prices) {
+                        if( current.compareTo(price.getStartDate()) > -1  && current.compareTo(price.getEndDate()) < 1  ){
+                            latest = price;
+                            break;
+                        }
+                    }
+                }
+            }
+
+            result.put("object_down_pay_share",(unit.getStartingPrice()*0.05)+"");
+            result.put("object_cost_m2",(latest.getValue()+""));
+
+
 
         }
 

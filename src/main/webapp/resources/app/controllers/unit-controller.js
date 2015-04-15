@@ -3,11 +3,13 @@ define([
     './controller-module',
     'angular-ui-bootstrap',
     './base-controller',
-    './unit-booking-controller'
+    './unit-booking-controller',
+    './unit-price-controller'
 ], function (angular, module) {
-    module.register.controller('UnitCtrl',function($scope,$setup,$controller, $location, $log,Grids,$routeParams, RestService, Utils, Entity, $modal){
+    module.register.controller('UnitCtrl',function($scope,$setup,$controller,UnitPriceController, $location, $log,Grids,$routeParams, RestService, Utils, Entity, $modal){
 
         $controller('BaseCtrl',{$scope:$scope,$setup:$setup});
+        angular.extend($scope,UnitPriceController);
 
         $log.debug('initialized unit ctrl');
         var sectionService = new RestService(Entity.section.entity);
@@ -32,6 +34,10 @@ define([
             $scope.model.getResource('client',{success : function(data){
                 $scope.clientFound = data;
                 //$scope.model.client = data.getLink('self');
+            }});
+
+            $scope.model.getResource('prices',{success:function(data){
+                $scope.prices = $scope.api.embedded(data);
             }});
 
             $scope.model.getResource('section',{success : function(data){
