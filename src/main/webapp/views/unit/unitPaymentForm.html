@@ -1,0 +1,76 @@
+<form name="formPayments" class="form-horizontal" role="form" xt-form novalidate ng-show="tabIndex === 2" ng-if="model.id">
+    <fieldset>
+        <div>
+            <div class="form-group">
+                <base-input-required type="number" label="Разовая выплата" field="singlePayment" model="planModel" label-span="2" input-span="2" no-group="true"></base-input-required>
+                <base-input-required type="number" label="Количество платежей" field="paymentCount" model="planModel" label-span="1" input-span="2" no-group="true"></base-input-required>
+                <label class="control-label col-sm-1" >Периодичность</label>
+                <div class="col-sm-2">
+                    <select class="form-control" ng-model="planModel.period" >
+                        <option value="week">Неделя</option>
+                        <option value="month">Месяц</option>
+                        <option value="quater">Квартал</option>
+                        <option value="sixmonth">Пол года</option>
+                        <option value="year">Год</option>
+                    </select>
+                </div>
+                <div class="col-sm-1">
+                    <button type="button" class="btn btn-success" >Создать график</button>
+                </div>
+            </div>
+
+            <!--<div class="form-group">-->
+                <!--<label for="startDate" class="control-label col-sm-2">Дата с</label>-->
+
+                <!--<div class="col-sm-2">-->
+                    <!--<div class="input-group">-->
+                        <!--<input id="startDate" type="text" class="form-control" datepicker-popup="{{format}}"-->
+                               <!--ng-model="priceModel.startDate" is-open="opened1" required xt-validate-->
+                               <!--datepicker-options="dateOptions" current-text="Сегодня" clear-text="Очистить"-->
+                               <!--close-text="Готово" ng-required="true"/>-->
+
+                        <!--<div class="btn input-group-addon " ng-click="open($event,1)"><span-->
+                                <!--style="color:dimgray" class="glyphicon glyphicon-calendar"></span></div>-->
+                        <!--</span>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<label for="endDate" class="control-label col-sm-1">Дата по</label>-->
+
+                <!--<div class="col-sm-2">-->
+                    <!--<div class="input-group">-->
+                        <!--<input id="endDate" type="text" class="form-control" datepicker-popup="{{format}}"-->
+                               <!--ng-model="priceModel.endDate" is-open="opened2" required xt-validate-->
+                               <!--datepicker-options="dateOptions" current-text="Сегодня" clear-text="Очистить"-->
+                               <!--close-text="Готово" ng-required="true"/>-->
+
+                        <!--<div class="btn input-group-addon " ng-click="open($event,2)"><span-->
+                                <!--style="color:dimgray" class="glyphicon glyphicon-calendar"></span></div>-->
+                        <!--</span>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<base-input-required type="number" label="Стоимость" field="value" model="priceModel" label-span="1"-->
+                                     <!--input-span="2" no-group="true"></base-input-required>-->
+                <!--<div class="col-sm-2">-->
+                    <!--<button class="btn btn-success" ng-click="addPrice()">Добавить</button>-->
+                <!--</div>-->
+            <!--</div>-->
+
+            <!--<div class="form-group" ng-repeat="price in prices | orderBy : 'startDate'">-->
+                <!--<view-row label="Дата с" value="price.startDate | date : 'dd.MM.yyyy' " value-span="2"-->
+                          <!--no-group="true"></view-row>-->
+                <!--<view-row label="Дата по" value="price.endDate | date : 'dd.MM.yyyy' " label-span="1" value-span="2"-->
+                          <!--no-group="true"></view-row>-->
+                <!--<view-row label="Стоимость" value="price.value" label-span="1" value-span="2"-->
+                          <!--no-group="true"></view-row>-->
+                <!--<div class="col-sm-2">-->
+                    <!--<button class="btn btn-warning" ng-click="deletePrice($index)"-->
+                            <!--bs-really="Вы уверены что хотите удалить запись?">Удалить-->
+                    <!--</button>-->
+                <!--</div>-->
+            <!--</div>-->
+
+
+        </div>
+    </fieldset>
+
+</form>
