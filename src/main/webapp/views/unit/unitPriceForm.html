@@ -2,34 +2,37 @@
     <fieldset>
         <div>
             <div class="form-group">
-                <label for="startDate" class="control-label col-sm-2">Дата с</label>
+                <label class="control-label col-sm-2">Дата с</label>
 
                 <div class="col-sm-2">
                     <div class="input-group">
-                        <input id="startDate" type="text" class="form-control" datepicker-popup="{{format}}"
-                               ng-model="priceModel.startDate" is-open="opened1" required xt-validate
+                        <input type="text" class="form-control" name="startDate" datepicker-popup="{{format}}"
+                               ng-model="priceModel.startDate" is-open="opened1" required xt-validate starting-day="1"
                                datepicker-options="dateOptions" current-text="Сегодня" clear-text="Очистить"
-                               close-text="Готово" ng-required="true"/>
+                               close-text="Готово" />
 
                         <div class="btn input-group-addon " ng-click="open($event,1)"><span
                                 style="color:dimgray" class="glyphicon glyphicon-calendar"></span></div>
                         </span>
                     </div>
                 </div>
-                <label for="endDate" class="control-label col-sm-1">Дата по</label>
+
+                <label class="control-label col-sm-1">Дата по</label>
 
                 <div class="col-sm-2">
                     <div class="input-group">
-                        <input id="endDate" type="text" class="form-control" datepicker-popup="{{format}}"
-                               ng-model="priceModel.endDate" is-open="opened2" required xt-validate
+                        <input type="text" class="form-control" name="endDate" datepicker-popup="{{format}}" starting-day="1"
+                               ng-model="priceModel.endDate" is-open="opened2" required xt-validate min-date="priceModel.startDate"
                                datepicker-options="dateOptions" current-text="Сегодня" clear-text="Очистить"
-                               close-text="Готово" ng-required="true"/>
+                               close-text="Готово" />
 
                         <div class="btn input-group-addon " ng-click="open($event,2)"><span
                                 style="color:dimgray" class="glyphicon glyphicon-calendar"></span></div>
                         </span>
                     </div>
                 </div>
+
+
                 <base-input-required type="number" label="Стоимость" field="value" model="priceModel" label-span="1"
                                      input-span="2" no-group="true"></base-input-required>
                 <div class="col-sm-2">

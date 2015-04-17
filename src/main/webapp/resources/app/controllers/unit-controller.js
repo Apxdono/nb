@@ -4,12 +4,14 @@ define([
     'angular-ui-bootstrap',
     './base-controller',
     './unit-booking-controller',
-    './unit-price-controller'
+    './unit-price-controller',
+    './unit-payment-controller',
 ], function (angular, module) {
-    module.register.controller('UnitCtrl',function($scope,$setup,$controller,UnitPriceController, $location, $log,Grids,$routeParams, RestService, Utils, Entity, $modal){
+    module.register.controller('UnitCtrl',function($scope,$setup,$controller,UnitPriceController, UnitPaymentController, $location, $log,Grids,$routeParams, RestService, Utils, Entity, $modal){
 
         $controller('BaseCtrl',{$scope:$scope,$setup:$setup});
         angular.extend($scope,UnitPriceController);
+        angular.extend($scope,UnitPaymentController);
 
         $log.debug('initialized unit ctrl');
         var sectionService = new RestService(Entity.section.entity);
