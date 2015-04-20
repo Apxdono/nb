@@ -17,7 +17,7 @@ import java.util.List;
  * Created by oleg on 11/12/14.
  */
 @RepositoryRestResource()
-@PostAuthorize(value = "hasRole('superuser')")
+@PostAuthorize(value = "hasRole('user')")
 public interface ClientRepo extends PagingAndSortingRepository<Client,String> {
 
     @JsonView(Views.Shallow.class)

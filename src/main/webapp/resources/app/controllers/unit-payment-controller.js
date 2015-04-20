@@ -1,7 +1,7 @@
 define([
     'angular',
     './controller-module',
-    'angular-ui-bootstrap',
+    'angular-ui-bootstrap'
 ], function (angular, module) {
     module.register.service('UnitPaymentController',function($log, RestService){
         var pricesApi = new RestService('payments');
@@ -12,7 +12,7 @@ define([
                 if( this.formPayments.$valid){
                     $log.debug("form is valid");
                     var d;
-                    this.payments.push(this.newPayment(d,this.planModel.singlePayment));
+//                    this.payments.push(this.newPayment(d,this.planModel.singlePayment));
 
                     for(var k = 0; k < (this.planModel.paymentCount-1); k++){
                         d = this.nextDate(d);

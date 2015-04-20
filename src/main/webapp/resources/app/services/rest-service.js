@@ -43,19 +43,20 @@ define(['angular', './service-module'], function (angular, services) {
                 return data;
             }
 
-            var resolvePromise = function (httpPromise, callbacks,isArray) {
+            var resolvePromise = function (httpPromise, callbacks,isArray, multipromise) {
                 var result = isArray ? [] : {};
-                httpPromise.success(function (data) {
-                    data = halModelProcess(data);
-                    data = isArray ? service.embedded(data) : data;
+                var r = multipromise ? $q.all(httpPromise) : httpPromise;
+                r.then(function (data) {
+                    var d = isArray ? service.embedded(data.data) : data.data;
+                    d = halModelProcess(d);
                     $timeout(function () {
-                        copy(data,result);
+                        copy(d,result);
 //                        unwrap(deffered.promise,data);
                         if (callbacks && callbacks.success) {
-                            callbacks.success(data);
+                            callbacks.success(d,data.data);
                         }
                     }, 0);
-                }).error(function () {
+                },function () {
                     $timeout(function () {
                         if (callbacks && callbacks.error) {
                             callbacks.error.apply(this, data);
@@ -88,6 +89,22 @@ define(['angular', './service-module'], function (angular, services) {
                         url : url,
                         data : model
                     }),cbs);
+                },
+
+                batchSave : function(data,cbs){
+                    var deffs = [];
+                    for(var i =0; i < data.length; i++){
+                        var model = data[i];
+                        var created = model.getLink && model.getLink('self');
+                        var method = created ? 'PUT' : 'POST';
+                        var url = created ? model.getLink('self') : [this.baseUrl,'/',this.entity].join('');
+                        deffs.push($http({
+                            method : method,
+                            url : url,
+                            data : model
+                        }))
+                    }
+                    resolvePromise(deffs,cbs,true,true);
                 },
                 partialSave : function(model,attrs,cbs){
                     var method = 'PATCH';

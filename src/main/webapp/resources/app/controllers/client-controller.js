@@ -5,7 +5,7 @@ define([
     './../services/contact-type-service',
     './base-controller'
 ], function (angular, module,preCreateDialogTpl) {
-    module.register.controller('ClientCtrl',function($scope,$setup,$controller, $location, $log, $modal,RestService,Utils, ContactTypes){
+    module.register.controller('ClientCtrl',function($scope,$setup,$controller, $location, $log, $modal,RestService,Utils,Entity, ContactTypes){
 
         $controller('BaseCtrl',{$scope:$scope,$setup:$setup});
         $log.debug('initialized client ctrl');
@@ -14,6 +14,18 @@ define([
         $scope.initModel = function(){
             $scope.model.contacts = [];
         };
+
+        var overrideApi = function(){
+            var path = $scope.processedEntity.path;
+            if($scope.action == 'new'){
+                path = $location.path().indexOf('private') > 0 ? Entity.client.subtypes.PRIVATE : Entity.client.subtypes.COMPANY;
+            } else if($scope.model.id) {
+                path = Entity.client.subtypes[$scope.model.type];
+            }
+            $scope.api = new RestService(path);
+        };
+
+        $scope.addNavCallback('new',overrideApi);
 
         $scope.addNavCallback('view edit',function(){
             $scope.ctypes = ContactTypes.fetch();
@@ -27,6 +39,7 @@ define([
         };
 
         $scope.singleReadCallback = function(){
+            overrideApi();
             resetContact();
         };
 
