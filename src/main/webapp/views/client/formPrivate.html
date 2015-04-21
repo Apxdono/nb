@@ -14,7 +14,9 @@
         <form name="form" class="form-horizontal" role="form" xt-form novalidate>
             <input type="hidden" ng-model="model.type" ng-init="initField('type','PRIVATE')">
             <base-input-required label="ФИО" field="name" type="text" model="model"></base-input-required>
-            <base-input-required label="Пасспортные данные" field="passportData" type="text"
+            <base-input-required label="Паспорт №" field="passportData" type="text"
+                                 model="model"></base-input-required>
+            <base-input-required label="Выдан" field="passportGiven" type="text"
                                  model="model"></base-input-required>
             <base-input-required label="Прописка" field="registration" type="text" model="model"></base-input-required>
             <div class="form-group">

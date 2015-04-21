@@ -13,6 +13,8 @@
                 href="javascript:void(1)">Стоимость за метр</a></li>
         <li role="presentation" ng-class="{'active':tabIndex ===2}" ng-click="tabIndex = 2"><a
                 href="javascript:void(1)">Платежи</a></li>
+        <li role="presentation" ng-class="{'active':tabIndex ===3}" ng-click="tabIndex = 3"><a
+                href="javascript:void(1)">Документы</a></li>
     </ul>
     <br/>
 
@@ -95,6 +97,7 @@
 
     <div ng-include src="'views/unit/unitPriceForm.html'"></div>
     <div ng-include src="'views/unit/unitPaymentForm.html'"></div>
+    <div ng-include src="'views/unit/unitReportForm.html'"></div>
 
 
     <script type="text/ng-template" id="bookingModal.html">

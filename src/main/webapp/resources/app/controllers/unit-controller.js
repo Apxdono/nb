@@ -6,12 +6,14 @@ define([
     './unit-booking-controller',
     './unit-price-controller',
     './unit-payment-controller',
+    './unit-reports-controller',
 ], function (angular, module) {
-    module.register.controller('UnitCtrl',function($scope,$setup,$controller,UnitPriceController, UnitPaymentController, $location, $log,Grids,$routeParams, RestService, Utils, Entity, $modal){
+    module.register.controller('UnitCtrl',function($scope,$setup,$controller,UnitPriceController, UnitPaymentController,UnitReportsCtrl, $location, $log,Grids,$routeParams, RestService, Utils, Entity, $modal){
 
         $controller('BaseCtrl',{$scope:$scope,$setup:$setup});
         angular.extend($scope,UnitPriceController);
         angular.extend($scope,UnitPaymentController);
+        angular.extend($scope,UnitReportsCtrl);
 
         $log.debug('initialized unit ctrl');
         var sectionService = new RestService(Entity.section.entity);
@@ -32,11 +34,14 @@ define([
         });
 
         $scope.singleReadCallback = function(){
+            $scope.initReportParams();
 
             $scope.model.getResource('client',{success : function(data){
                 $scope.clientFound = data;
                 //$scope.model.client = data.getLink('self');
             }});
+
+            $scope.getPayments();
 
             $scope.model.getResource('prices',{success:function(data){
                 $scope.prices = $scope.api.embedded(data);

@@ -64,7 +64,7 @@
 				<textElement textAlignment="Center">
 					<font fontName="Times New Roman" size="12"/>
 				</textElement>
-				<textFieldExpression><![CDATA["про встцп до Асоційованих членів Кооперативу"]]></textFieldExpression>
+				<textFieldExpression><![CDATA["про вступ до Асоційованих членів Кооперативу"]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="0" y="252" width="555" height="49" uuid="7d338e14-9815-4ac7-af2f-504300f5cd4a"/>

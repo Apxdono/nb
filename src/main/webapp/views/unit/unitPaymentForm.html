@@ -1,72 +1,89 @@
-<form name="formPayments" class="form-horizontal" role="form" xt-form novalidate ng-show="tabIndex === 2" ng-if="model.id">
+<form name="formPayments" class="form-horizontal" role="form" xt-form novalidate ng-show="tabIndex === 2"
+      ng-if="model.id">
     <fieldset>
         <div>
-            <div class="form-group">
-                <base-input-required type="number" label="Разовая выплата" field="singlePayment" model="planModel" label-span="2" input-span="2" no-group="true"></base-input-required>
-                <base-input-required type="number" label="Количество платежей" field="paymentCount" model="planModel" label-span="2" input-span="2" no-group="true"></base-input-required>
-                <label class="control-label col-sm-1" >Периодичность</label>
-                <div class="col-sm-1">
-                    <select class="form-control" required xt-validate ng-model="planModel.period" >
-                        <option value="week">Неделя</option>
-                        <option value="month">Месяц</option>
-                        <option value="quarter">Квартал</option>
-                        <option value="sixmonth">Пол года</option>
-                        <option value="year">Год</option>
-                    </select>
-                </div>
-                <div class="col-sm-1">
-                    <button type="submit" class="btn btn-success" ng-click="generatePlan()" >Создать график</button>
-                </div>
-            </div>
 
+            <div ng-if="paymentsLoaded && payments.length < 1">
+                <div class="form-group">
+                    <base-input-required type="number" label="Разовая выплата" field="singlePayment" model="planModel"
+                                         label-span="2" input-span="2" no-group="true"></base-input-required>
+                    <base-input-required type="number" label="Количество платежей" field="paymentCount"
+                                         model="planModel"
+                                         label-span="2" input-span="2" no-group="true"></base-input-required>
+                    <label class="control-label col-sm-1">Периодичность</label>
 
-            <div class="form-group">
-                <label class="control-label col-sm-2">Дата первой выплаты</label>
-
-
-                <div class="col-sm-2">
-                    <div class="input-group">
-                        <input type="text" class="form-control" name="startDate" datepicker-popup="{{format}}"
-                               ng-model="planModel.startDate" is-open="opened3" required xt-validate starting-day="1"
-                               datepicker-options="dateOptions" current-text="Сегодня" clear-text="Очистить"
-                               close-text="Готово" />
-
-                        <div class="btn input-group-addon " ng-click="open($event,3)"><span
-                                style="color:dimgray" class="glyphicon glyphicon-calendar"></span></div>
-                        </span>
+                    <div class="col-sm-1">
+                        <select class="form-control" required xt-validate ng-model="planModel.period">
+                            <option value="week">Неделя</option>
+                            <option value="month">Месяц</option>
+                            <option value="quarter">Квартал</option>
+                            <option value="sixmonth">Пол года</option>
+                            <option value="year">Год</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-1">
+                        <button type="submit" class="btn btn-success" ng-click="generatePlan()">Создать график</button>
                     </div>
                 </div>
 
-                <label class="control-label col-sm-2">Дата последней выплаты</label>
 
-                <div class="col-sm-2">
-                    <div class="input-group">
-                        <input type="text" class="form-control" name="endDate" datepicker-popup="{{format}}" starting-day="1"
-                               ng-model="planModel.endDate" is-open="opened4" required xt-validate min-date="planModel.startDate"
-                               datepicker-options="dateOptions" current-text="Сегодня" clear-text="Очистить"
-                               close-text="Готово" />
+                <div class="form-group">
+                    <label class="control-label col-sm-2">Дата первой выплаты</label>
 
-                        <div class="btn input-group-addon " ng-click="open($event,4)"><span
-                                style="color:dimgray" class="glyphicon glyphicon-calendar"></span></div>
-                        </span>
+
+                    <div class="col-sm-2">
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="startDate" datepicker-popup="{{format}}"
+                                   ng-model="planModel.startDate" is-open="opened3" required xt-validate
+                                   starting-day="1"
+                                   datepicker-options="dateOptions" current-text="Сегодня" clear-text="Очистить"
+                                   close-text="Готово"/>
+
+                            <div class="btn input-group-addon " ng-click="open($event,3)"><span
+                                    style="color:dimgray" class="glyphicon glyphicon-calendar"></span></div>
+                            </span>
+                        </div>
+                    </div>
+
+                    <label class="control-label col-sm-2">Дата последней выплаты</label>
+
+                    <div class="col-sm-2">
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="endDate" datepicker-popup="{{format}}"
+                                   starting-day="1"
+                                   ng-model="planModel.endDate" is-open="opened4" required xt-validate
+                                   min-date="planModel.startDate"
+                                   datepicker-options="dateOptions" current-text="Сегодня" clear-text="Очистить"
+                                   close-text="Готово"/>
+
+                            <div class="btn input-group-addon " ng-click="open($event,4)"><span
+                                    style="color:dimgray" class="glyphicon glyphicon-calendar"></span></div>
+                            </span>
+                        </div>
                     </div>
                 </div>
+
             </div>
+            <h4>График поэтапной оплаты</h4>
+            <hr/>
 
-            <!--<div class="form-group" ng-repeat="price in prices | orderBy : 'startDate'">-->
-                <!--<view-row label="Дата с" value="price.startDate | date : 'dd.MM.yyyy' " value-span="2"-->
-                          <!--no-group="true"></view-row>-->
-                <!--<view-row label="Дата по" value="price.endDate | date : 'dd.MM.yyyy' " label-span="1" value-span="2"-->
-                          <!--no-group="true"></view-row>-->
-                <!--<view-row label="Стоимость" value="price.value" label-span="1" value-span="2"-->
-                          <!--no-group="true"></view-row>-->
-                <!--<div class="col-sm-2">-->
-                    <!--<button class="btn btn-warning" ng-click="deletePrice($index)"-->
-                            <!--bs-really="Вы уверены что хотите удалить запись?">Удалить-->
-                    <!--</button>-->
-                <!--</div>-->
-            <!--</div>-->
+            <div class="form-group" ng-repeat="payment in payments | orderBy : 'payDay'">
+                <view-row label="Дата оплаты" value="payment.payDay | date : 'dd.MM.yyyy' " value-span="2"
+                          no-group="true"></view-row>
+                <view-row label="К оплате" value="payment.amount" label-span="2" value-span="2"
+                          no-group="true"></view-row>
+                <base-input type="number" label="Оплачено" field="payed" model="payment" label-span="1" input-span="2"
+                            no-group="true"></base-input>
 
+            </div>
+            <br/>
+            <div class="form-group">
+
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="button" class="btn btn-primary" ng-click="savePayments()">Сохранить график</button>
+                    <button type="button" class="btn btn-default" ng-click="cancelPayments()" bs-really="Вы уверены что хотите отметить изменения в графике платежей?">Отменить изменения</button>
+                </div>
+            </div>
 
         </div>
     </fieldset>

@@ -36,33 +36,26 @@ public class Page4ReportBuilder extends AbstractReportBuilder {
     @Override
     public Map buildParameters(Map arguments) {
         Map result = new HashMap();
-//        Unit unit = unitRepo.findOne(((String[]) arguments.get("unit"))[0]);
-//        if(unit != null && unit.getClient() != null){
-//            PrivateClient client = (PrivateClient) unit.getClient();
-//            Section section = unit.getSection();
-//            House house = section.getHouse();
-//            Cooperative coop = house.getCooperative();
-//            result.put("coop_name","\""+coop.getName()+"\"");
-//            result.put("coop_manager",coop.getChairman());
-//            result.put("from", client.getName());
-//            result.put("inn", client.getInn());
-//            result.put("address", client.getRegistration());
-//            result.put("pasport", client.getPassportData());
-//            Contact contact = null;
-//            for (Contact c : client.getContacts()) {
-//                if( c.getDeleted().equals(Boolean.FALSE) && ContactType.CONTACT_PHONE.equals(c.getType())){
-//                    contact = c;
-//                    break;
-//                }
-//            }
-//            result.put("telephone", contact != null? contact.getContact() : "<Телефон не указан>");
-//            result.put("kv_num", unit.getNumber()+"");
-//            result.put("kv_square", unit.getAreas().get(AreaType.WHOLE)+"");
-//            result.put("kv_level", unit.getFloor()+"");
-//            result.put("kv_parad", section.getPostalNumber()+"");
-//            result.put("kv_house", house.getAddress() + " " +house.getStructuralNumber()+"");
-//
-//        }
+        Unit unit = unitRepo.findOne(((String[]) arguments.get("unit"))[0]);
+        if(unit != null && unit.getClient() != null){
+            PrivateClient client = (PrivateClient) unit.getClient();
+            Section section = unit.getSection();
+            House house = section.getHouse();
+            Cooperative coop = house.getCooperative();
+            result.put("object_org","\""+coop.getName()+"\"");
+            result.put("coop_ruk",coop.getChairman());
+            result.put("from", client.getName());
+            result.put("client_name", client.getName());
+            result.put("pasport_num", client.getPassportData());
+            result.put("pasport_vidan", client.getPassportGiven());
+            result.put("client_address", client.getRegistration());
+            result.put("inn", client.getInn());
+            result.put("object_type", unit.getType().getName());
+            result.put("object_num", unit.getPostalNumber());
+            result.put("object_square", unit.getAreas().get(AreaType.WHOLE));
+            result.put("object_address", house.getAddress()+" "+house.getStructuralNumber()+"");
+        }
+
 
         return result;
     }

@@ -7,7 +7,8 @@
         <h4 class="section">Основная информация</h4>
         <fieldset disabled ng-show="model.type === 'PRIVATE'">
             <view-row label="ФИО" value="model.name"></view-row>
-            <view-row label="Пасспортные данные" value="model.passportData"></view-row>
+            <view-row label="Пасспортные №" value="model.passportData"></view-row>
+            <view-row label="Выдан" value="model.passportGiven"></view-row>
             <view-row label="Прописка" value="model.registration"></view-row>
             <view-row label="ИНН" value="model.inn"></view-row>
             <view-checkbox label="Запись активна" value="model.active"></view-checkbox>

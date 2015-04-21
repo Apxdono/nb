@@ -16,6 +16,7 @@ public class PrivateClient extends Client {
     String inn;
 
     String passportData;
+    String passportGiven;
 
     String registration;
 
@@ -23,9 +24,18 @@ public class PrivateClient extends Client {
         type = ClientType.PRIVATE;
     }
 
-    @Column(length = 14)
+    @Column(length = 10)
     public String getInn() {
         return inn;
+    }
+
+    @Column(name = "passport_given")
+    public String getPassportGiven() {
+        return passportGiven;
+    }
+
+    public void setPassportGiven(String passportGiven) {
+        this.passportGiven = passportGiven;
     }
 
     @Column(name = "passport_data",length = 512)

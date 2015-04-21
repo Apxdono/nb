@@ -12,8 +12,18 @@ public class Payment extends BaseObject {
 
     Calendar payDay;
     Double amount;
+    Double payed;
     Client client;
     Unit unit;
+
+    @Column(name = "payed")
+    public Double getPayed() {
+        return payed;
+    }
+
+    public void setPayed(Double payed) {
+        this.payed = payed;
+    }
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "pay_day")

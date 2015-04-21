@@ -7,7 +7,40 @@ define([
         var pricesApi = new RestService('payments');
         var service = {
             payments : [],
-            planModel : { singlePayment: 12000, paymentCount: 4, period: "month" },
+            paymentsLoaded : false,
+            planModel : {  },
+            getPayments : function(){
+                var self = this;
+                self.model.getResource('payments',{
+                    success : function(d){
+                        self.paymentsLoaded = true;
+                        $log.debug('loaded payments',d);
+                        self.payments = pricesApi.embedded(d);
+                    },
+                    error : function(d){
+                        self.paymentsLoaded = true;
+                    }
+                })
+            },
+
+            savePayments : function(){
+                var self = this;
+                if(self.paymentsLoaded && self.payments.length > 0){
+                    pricesApi.batchSave(self.payments,{
+                        success : function(d){
+                            $log.debug('saved payments',d);
+                            self.payments = d;
+                        },
+                        error : function(){
+                            $log.debug('didnt save payements',arguments);
+                        }
+                    })
+                }
+            },
+
+            cancelPayments :function(){
+                this.getPayments();
+            },
             generatePlan : function(){
                 if( this.formPayments.$valid){
                     $log.debug("form is valid");

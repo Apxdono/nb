@@ -37,8 +37,12 @@ define(['angular', './service-module'], function (angular, services) {
                             angular.extend(subset[e],halExtra);
                         }
                     }
-                }  else {
-                    angular.extend(data,halExtra);
+                }  else if(data instanceof Array) {
+                    for(var i =0; i < data.length; i++){
+                        angular.extend(data[i],halExtra);
+                    }
+                } else {
+                     angular.extend(data,halExtra);
                 }
                 return data;
             }
@@ -47,7 +51,13 @@ define(['angular', './service-module'], function (angular, services) {
                 var result = isArray ? [] : {};
                 var r = multipromise ? $q.all(httpPromise) : httpPromise;
                 r.then(function (data) {
-                    var d = isArray ? service.embedded(data.data) : data.data;
+                    var d;
+                    if(multipromise){
+                        d = data.map(function(e){return e.data});
+                    } else {
+                        d = isArray ? service.embedded(data.data) : data.data;
+                    }
+
                     d = halModelProcess(d);
                     $timeout(function () {
                         copy(d,result);

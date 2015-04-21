@@ -1,0 +1,54 @@
+<form name="formReports" class="form-horizontal" role="form" xt-form novalidate ng-show="tabIndex === 3"
+      ng-if="model.id">
+    <style>
+        .form-horizontal .labels-left  .control-label{
+            text-align:left !important;
+        }
+    </style>
+    <fieldset class="labels-left">
+        <div>
+            <hr/>
+
+            <div class="form-group">
+                <label class="col-sm-10 control-label" >Заявка на резервирование</label>
+                <div class="col-sm-2">
+                    <button type="button" class="btn btn-primary" ng-click="printReport('page1',{ 'unit' : model.id })" >Распечатать заявку</button>
+                </div>
+            </div>
+
+            <hr/>
+
+            <div class="form-group">
+                <label class="col-sm-10 control-label" >Заявка на вступление в кооператив</label>
+                <div class="col-sm-2">
+                    <button type="button" class="btn btn-primary" ng-click="printReport('page2',{ 'unit' : model.id })" >Распечатать заявку</button>
+                </div>
+            </div>
+            <hr/>
+
+            <div class="form-group">
+                <label class="control-label col-sm-1">Протокол </label>
+
+                <base-input-required type="number" model="reportParams" field="number" no-group="true" label="Номер"  label-span="1" input-span="2"></base-input-required>
+                <div class="col-sm-6"></div>
+                <div class="col-sm-2">
+                    <button type="button" class="btn btn-primary" ng-click="printReport('page3',{ 'unit' : model.id , 'number' : reportParams.number })" >Распечатать протокол</button>
+                </div>
+            </div>
+
+            <hr/>
+
+            <div class="form-group">
+                <label class="control-label col-sm-10">Изменения в решении</label>
+                <div class="col-sm-2">
+                    <button type="button" class="btn btn-primary" ng-click="printReport('page4',{ 'unit' : model.id })" >Распечатать протокол</button>
+                </div>
+            </div>
+
+            <hr/>
+
+        </div>
+
+    </fieldset>
+
+</form>
