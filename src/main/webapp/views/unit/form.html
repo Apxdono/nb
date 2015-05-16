@@ -11,9 +11,9 @@
                 href="javascript:void(1)">Основная информация</a></li>
         <li role="presentation" ng-class="{'active':tabIndex ===1}" ng-click="tabIndex = 1"><a
                 href="javascript:void(1)">Стоимость за метр</a></li>
-        <li role="presentation" ng-class="{'active':tabIndex ===2}" ng-click="tabIndex = 2"><a
+        <li role="presentation" ng-class="{'active':tabIndex ===2}" ng-click="tabIndex = 2" ng-show="model.sold"><a
                 href="javascript:void(1)">Платежи</a></li>
-        <li role="presentation" ng-class="{'active':tabIndex ===3}" ng-click="tabIndex = 3"><a
+        <li role="presentation" ng-class="{'active':tabIndex ===3}" ng-click="tabIndex = 3" ng-show="model.sold"><a
                 href="javascript:void(1)">Документы</a></li>
     </ul>
     <br/>
@@ -87,9 +87,11 @@
             <div class="col-sm-offset-2 col-sm-10">
                 <button class="btn btn-primary" ng-click="save()">Сохранить</button>
                 <button class="btn btn-primary" ng-click="doBooking();" ng-if="!model.booked">Бронирование</button>
-                <button class="btn btn-primary" ng-click="cancelBooking()" ng-if="model.booked"
+                <button class="btn btn-primary" ng-click="cancelBooking()" ng-if="model.booked && !model.sold"
                         bs-really="Отменить бронь?">Снять бронь
                 </button>
+
+                <button class="btn btn-info" ng-click="sellUnit()" ng-if="model.booked && !model.sold" bs-really="Вы уверены что хотите начать оформление покупки?">Оформить покупку</button>
                 <button class="btn btn-default" ng-click="cancel()">Отмена</button>
             </div>
         </div>

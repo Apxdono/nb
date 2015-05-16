@@ -42,7 +42,7 @@ public class Page2ReportBuilder extends AbstractReportBuilder {
             Section section = unit.getSection();
             House house = section.getHouse();
             Cooperative coop = house.getCooperative();
-            result.put("coop_name","\""+coop.getName()+"\"");
+            result.put("coop_name","\""+coop.getInternalName()+"\"");
             result.put("coop_manager",coop.getChairman());
             result.put("from", client.getName());
             result.put("inn", client.getInn());
@@ -61,6 +61,7 @@ public class Page2ReportBuilder extends AbstractReportBuilder {
             result.put("kv_level", unit.getFloor()+"");
             result.put("kv_parad", section.getPostalNumber()+"");
             result.put("kv_house", house.getAddress() + " " +house.getStructuralNumber()+"");
+            result.put("_filename","Заявка на вступление в кооператив "+client.getName());
 
         }
 

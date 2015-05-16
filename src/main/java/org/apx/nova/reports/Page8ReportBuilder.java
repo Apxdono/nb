@@ -36,36 +36,23 @@ public class Page8ReportBuilder extends AbstractReportBuilder {
     public Map buildParameters(Map arguments) {
         Map result = new HashMap();
 
-        if(false){
-            Unit unit = unitRepo.findOne(((String[]) arguments.get("unit"))[0]);
+        Unit unit = unitRepo.findOne(((String[]) arguments.get("unit"))[0]);
+        if(unit != null && unit.getClient()!= null) {
+
             PrivateClient client = (PrivateClient) unit.getClient();
             Section section = unit.getSection();
             House house = section.getHouse();
             Cooperative coop = house.getCooperative();
-            result.put("coop_name","\""+coop.getName()+"\"");
-            result.put("coop_ruk",coop.getChairman());
-            result.put("coop_adr_street_ua",coop.getAddress());
-            result.put("coop_adr_street_ru",coop.getAddress());
-            result.put("coop_tel",coop.getRequisits());
-            result.put("client_name", client.getName());
-            result.put("resh_num", ((String[])arguments.get("decno"))[0]);
-//            result.put("address", client.getRegistration());
-//            result.put("pasport", client.getPassportData());
-//            Contact contact = null;
-//            for (Contact c : client.getContacts()) {
-//                if( c.getDeleted().equals(Boolean.FALSE) && ContactType.CONTACT_PHONE.equals(c.getType())){
-//                    contact = c;
-//                    break;
-//                }
-//            }
-//            result.put("telephone", contact != null? contact.getContact() : "<Телефон не указан>");
-            result.put("object_type", unit.getType().getInternalName());
-            result.put("object_num", unit.getPostalNumber()+"");
-            result.put("object_square", unit.getAreas().get(AreaType.WHOLE)+"");
-            result.put("object_level", unit.getFloor()+"");
-            result.put("object_address", house.getAddress() + " " +house.getStructuralNumber()+"");
+
+            result.put("coop_name", "\"" + coop.getInternalName() + "\"");
+            result.put("coop_ruk", coop.getChairman());
+
+            result.put("inn", client.getInn());
+            result.put("_filename","Свидетельство "+client.getName());
+
 
         }
+
 
         return result;
     }

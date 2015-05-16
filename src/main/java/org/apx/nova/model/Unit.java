@@ -3,10 +3,7 @@ import org.apx.nova.model.enums.AreaType;
 import org.springframework.data.rest.core.annotation.RestResource;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by oleg on 10/20/14.
@@ -45,12 +42,29 @@ public class Unit extends BaseObject {
     List<Payment> payments;
 
     boolean booked;
+    boolean sold;
 
     public Unit() {
         areas = new HashMap<AreaType, Double>();
         prices = new ArrayList<>();
         payments = new ArrayList<>();
         hasClient = false;
+        sold = false;
+    }
+
+    @Transient
+    public Price getCurrentPrice(){
+
+        if(getPrices() != null){
+            Calendar today = Calendar.getInstance();
+            for (Price price : getPrices()) {
+                if(today.compareTo(price.getStartDate()) > -1 && today.compareTo(price.getEndDate()) < 1){
+                    return price;
+                }
+            }
+        }
+
+        return null;
     }
 
     @ManyToOne(targetEntity = Section.class, fetch = FetchType.EAGER)
@@ -120,6 +134,10 @@ public class Unit extends BaseObject {
         return booked;
     }
 
+    @Column
+    public boolean isSold() {
+        return sold;
+    }
 
     @OneToMany(mappedBy = "parentUnit")
     @OrderBy("startDate ASC")
@@ -183,6 +201,10 @@ public class Unit extends BaseObject {
 
     public void setBooked(boolean booked) {
         this.booked = booked;
+    }
+
+    public void setSold(boolean sold) {
+        this.sold = sold;
     }
 
     public void setPrices(List<Price> prices) {

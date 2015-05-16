@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -36,31 +38,31 @@ public class Page7ReportBuilder extends AbstractReportBuilder {
     @Override
     public Map buildParameters(Map arguments) {
         Map result = new HashMap();
-        if(false){
-            Unit unit = unitRepo.findOne(((String[]) arguments.get("unit"))[0]);
+        Unit unit = unitRepo.findOne(((String[]) arguments.get("unit"))[0]);
+        if(unit != null && unit.getClient()!= null) {
+
             PrivateClient client = (PrivateClient) unit.getClient();
             Section section = unit.getSection();
             House house = section.getHouse();
             Cooperative coop = house.getCooperative();
-            result.put("coop_name","\""+coop.getName()+"\"");
-            result.put("coop_manager",coop.getChairman());
-            result.put("from", client.getName());
+
+            result.put("coop_name", "\"" + coop.getInternalName() + "\"");
+            result.put("coop_ruk", coop.getChairman());
+
+            result.put("client_name", client.getName());
+            result.put("pasport_num", client.getPassportData());
+            result.put("pasport_vidan", client.getPassportGiven());
+            result.put("client_address", client.getRegistration());
             result.put("inn", client.getInn());
-            result.put("address", client.getRegistration());
-            result.put("pasport", client.getPassportData());
-            Contact contact = null;
-            for (Contact c : client.getContacts()) {
-                if( c.getDeleted().equals(Boolean.FALSE) && ContactType.CONTACT_PHONE.equals(c.getType())){
-                    contact = c;
-                    break;
-                }
-            }
-            result.put("telephone", contact != null? contact.getContact() : "<Телефон не указан>");
-            result.put("kv_num", unit.getNumber()+"");
-            result.put("kv_square", unit.getAreas().get(AreaType.WHOLE)+"");
-            result.put("kv_level", unit.getFloor()+"");
-            result.put("kv_parad", section.getPostalNumber()+"");
-            result.put("kv_house", house.getAddress() + " " +house.getStructuralNumber()+"");
+
+            result.put("object_type", unit.getType().getName());
+            result.put("object_parad", section.getStructuralNumber() + "");
+            result.put("object_level", unit.getFloor() + "");
+            result.put("object_kv", unit.getPostalNumber() + "");
+            result.put("object_square", unit.getAreas().get(AreaType.WHOLE) + "");
+            result.put("object_street", house.getAddress() + " " + house.getStructuralNumber() + "");
+            result.put("object_num", house.getStructuralNumber() + "");
+            result.put("_filename","Решение "+client.getName());
 
         }
 

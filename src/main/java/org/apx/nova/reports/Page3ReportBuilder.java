@@ -44,7 +44,7 @@ public class Page3ReportBuilder extends AbstractReportBuilder {
             Section section = unit.getSection();
             House house = section.getHouse();
             Cooperative coop = house.getCooperative();
-            result.put("coop_name","\""+coop.getName()+"\"");
+            result.put("coop_name","\""+coop.getInternalName()+"\"");
             result.put("coop_ruk",coop.getChairman());
             result.put("from", client.getName());
             result.put("client_name", client.getName());
@@ -52,6 +52,8 @@ public class Page3ReportBuilder extends AbstractReportBuilder {
             result.put("pasport_vidan", client.getPassportGiven());
             result.put("client_address", client.getRegistration());
             result.put("inn", client.getInn());
+            result.put("_filename","Протокол №"+result.get("protocol_number")+" "+client.getName());
+
         }
 
         return result;

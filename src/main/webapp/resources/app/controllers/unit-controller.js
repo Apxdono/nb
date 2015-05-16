@@ -111,6 +111,20 @@ define([
         };
 
 
+        $scope.sellUnit = function(){
+            var bufModel = angular.extend({},$scope.model);
+            bufModel.sold = true;
+            $scope.api.save(bufModel,{
+                success : function(d){
+                    $scope.model = d;
+                }
+            },{
+                success : function(d){
+                    $scope.model = d;
+                }
+            })
+        }
+
 
         $scope.toList = function(){
             $location.path('/section/view/'+$scope.section.id+'/1');

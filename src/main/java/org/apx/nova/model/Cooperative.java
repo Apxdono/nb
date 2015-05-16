@@ -17,6 +17,8 @@ public class Cooperative extends BaseObject {
 
     String requisits;
 
+    String phone;
+
     String chairman;
 
 
@@ -24,6 +26,15 @@ public class Cooperative extends BaseObject {
 
     public Cooperative() {
         curators = new ArrayList<String>();
+    }
+
+    @Column
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     @Column(length = 512)

@@ -41,9 +41,9 @@ public class Application{
         SpringApplication.run(Application.class, args);
     }
 
-    @Bean
-    public ServletListenerRegistrationBean<SessionListener> sessionTimeoutListener(){
-        return new ServletListenerRegistrationBean<SessionListener>(new SessionListener(timeout));
-    }
+//    @Bean
+//    public ServletListenerRegistrationBean<SessionListener> sessionTimeoutListener(){
+//        return new ServletListenerRegistrationBean<SessionListener>(new SessionListener(timeout));
+//    }
 
 }

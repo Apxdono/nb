@@ -1,0 +1,113 @@
+<div>
+
+
+    <form name="cbform" class="form-inline">
+        <div class="form-group">
+            <label>Дом </label>
+            <input class="form-control" name="house" ng-model="houseFound" style="width:170px"
+                   typeahead="h as houseLabel(h) for h in getHouses($viewValue)"
+                   typeahead-on-select="houseChange($item)"/>
+        </div>
+        <div class="form-group">
+            <label> Секция </label>
+            <select name="section" style="width:170px" class="form-control" ng-model="sectionSelected"
+                    ng-change="sectionChanged()"
+                    ng-options="s.structuralNumber for s in houseSections track by s.id"></select>
+        </div>
+        <br/>
+        <br/>
+        <br/>
+        <div>
+            <style>
+                .table thead>tr>th, .table tbody>tr>th, .table tfoot>tr>th, .table thead>tr>td, .table tbody>tr>td, .table tfoot>tr>td{
+                    padding : 0;
+                }
+
+                .table .table{
+                    margin-bottom: 0px;
+                }
+                .table .table thead>tr>th{
+                    border-bottom: none;
+                    border-right: 1px solid #CCC;
+                }
+                .table .table thead>tr>th:last-child{
+                    border-right : none;
+                }
+
+                .table .table tbody>tr>td{
+                    border-bottom: none;
+                    border-right: 1px solid #CCC;
+                }
+                .table .table tbody>tr>td:last-child{
+                    border-right : none;
+                }
+            </style>
+            <table class="table table-bordered" ng-if="tableData.length > 0">
+
+                <thead>
+                    <tr>
+                        <th scope="row" style="width: 70px;">Этаж</th>
+                        <th ng-repeat="(spanIndex, irrel) in tableData[0] track by $index">
+                            Стояк {{spanIndex + 1}}
+                            <table class="table">
+                                <thead>
+                                    <tr scope="row">
+                                        <th ng-repeat="(roomCount,irr) in irrel track by $index" ng-if="$index > 0">{{roomCount}} комн.</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                   <tr ng-repeat="(floorIndex, spans) in tableData track by $index">
+                        <th scope="row">{{floorIndex}}</th>
+                        <td ng-repeat="(spanIndex,rooms) in spans track by $index">
+                            <table class="table table-striped" style="table-layout: fixed">
+                                <tbody>
+                                    <tr>
+                                        <td ng-repeat="(roomCount,unit) in rooms track by $index" ng-if="$index > 0">
+
+                                            <div ng-if="unit.id">
+                                                <table class="table table-striped" style="table-layout: fixed">
+                                                    <tbody>
+                                                        <tr ng-class="{'danger' : unit.sold && unit.booked,'warning' : !unit.sold && unit.booked ,'success' : !unit.sold && !unit.booked}">
+                                                            <td>{{unit.areas.WHOLE}}</td>
+                                                            <th rowspan="3">{{unit.structuralNumber}}</td>
+                                                        </tr>
+                                                        <tr ng-class="{'danger' : unit.sold && unit.booked,'warning' : !unit.sold && unit.booked ,'success' : !unit.sold && !unit.booked}">
+                                                            <td>{{unit.currentPrice ? unit.currentPrice.value : 'Н/Д'}}</td>
+
+                                                        </tr>
+                                                        <tr ng-class="{'danger' : unit.sold && unit.booked,'warning' : !unit.sold && unit.booked ,'success' : !unit.sold && !unit.booked}">
+                                                            <td>{{unit.startingPrice}}</td>
+                                                        </tr>
+                                                    </tbody>
+
+
+                                                </table>
+
+                                            </div>
+
+
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                </tr>
+
+
+                </tbody>
+
+
+            </table>
+
+
+        </div>
+
+    </form>
+
+
+</div>

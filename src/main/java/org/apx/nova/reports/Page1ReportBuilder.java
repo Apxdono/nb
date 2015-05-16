@@ -77,8 +77,10 @@ public class Page1ReportBuilder extends AbstractReportBuilder {
             }
 
             result.put("object_down_pay_share",(unit.getStartingPrice()*0.05)+"");
-            result.put("object_cost_m2",(latest.getValue()+""));
-
+            if(latest!=null){
+                result.put("object_cost_m2",(latest.getValue()+""));
+            }
+            result.put("_filename","Заявка на резирвирование "+client.getName());
 
 
         }

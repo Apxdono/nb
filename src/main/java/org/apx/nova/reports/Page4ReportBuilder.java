@@ -42,7 +42,7 @@ public class Page4ReportBuilder extends AbstractReportBuilder {
             Section section = unit.getSection();
             House house = section.getHouse();
             Cooperative coop = house.getCooperative();
-            result.put("object_org","\""+coop.getName()+"\"");
+            result.put("object_org","\""+coop.getInternalName()+"\"");
             result.put("coop_ruk",coop.getChairman());
             result.put("from", client.getName());
             result.put("client_name", client.getName());
@@ -51,9 +51,11 @@ public class Page4ReportBuilder extends AbstractReportBuilder {
             result.put("client_address", client.getRegistration());
             result.put("inn", client.getInn());
             result.put("object_type", unit.getType().getName());
-            result.put("object_num", unit.getPostalNumber());
-            result.put("object_square", unit.getAreas().get(AreaType.WHOLE));
+            result.put("object_num", unit.getPostalNumber()+"");
+            result.put("object_square", unit.getAreas().get(AreaType.WHOLE)+"");
             result.put("object_address", house.getAddress()+" "+house.getStructuralNumber()+"");
+            result.put("_filename","Изменения в решении "+client.getName());
+
         }
 
 

@@ -145,6 +145,13 @@ define([
             }
         }));
 
+        $routeProvider.when('/dashboard/checkboard', angularAMD.route({
+            templateUrl: '/views/dashboard/checkboard.html',
+            controller: 'CheckboradCtrl',
+            controllerUrl: './controllers/checkboard-ctrl'
+
+        }));
+
 
         $routeProvider.otherwise({redirectTo: '/'});
     });

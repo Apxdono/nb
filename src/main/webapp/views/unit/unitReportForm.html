@@ -27,10 +27,10 @@
             <hr/>
 
             <div class="form-group">
-                <label class="control-label col-sm-1">Протокол </label>
+                <label class="control-label col-sm-2">Протокол </label>
 
                 <base-input-required type="number" model="reportParams" field="number" no-group="true" label="Номер"  label-span="1" input-span="2"></base-input-required>
-                <div class="col-sm-6"></div>
+                <div class="col-sm-5"></div>
                 <div class="col-sm-2">
                     <button type="button" class="btn btn-primary" ng-click="printReport('page3',{ 'unit' : model.id , 'number' : reportParams.number })" >Распечатать протокол</button>
                 </div>
@@ -45,7 +45,55 @@
                 </div>
             </div>
 
+
             <hr/>
+
+
+            <div class="form-group">
+                <label class="control-label col-sm-2">Акт приёма - передачи</label>
+                <base-input-required type="number" model="reportParams" field="numberAct" no-group="true" label="Номер"  label-span="1" input-span="2"></base-input-required>
+                <div class="col-sm-5"></div>
+                <div class="col-sm-2">
+                    <button type="button" class="btn btn-primary" ng-click="printReport('page5',{ 'unit' : model.id, number : reportParams.numberAct })" >Распечатать акт</button>
+                </div>
+            </div>
+
+            <hr/>
+
+            <div class="form-group">
+                <label class="control-label col-sm-2">Справка</label>
+                <base-input-required type="number" model="reportParams" field="numberDec" no-group="true" label="Номер"  label-span="1" input-span="2"></base-input-required>
+                <div class="col-sm-5"></div>
+                <div class="col-sm-2">
+                    <button type="button" class="btn btn-primary" ng-click="printReport('page6',{ 'unit' : model.id, decno : reportParams.numberDec })" >Распечатать справку</button>
+                </div>
+            </div>
+
+
+            <hr/>
+
+
+            <div class="form-group">
+                <label class="control-label col-sm-10">Решение</label>
+                <div class="col-sm-2">
+                    <button type="button" class="btn btn-primary" ng-click="printReport('page7',{ 'unit' : model.id })" >Распечатать решение</button>
+                </div>
+            </div>
+
+
+            <hr/>
+
+            <div class="form-group">
+                <label class="control-label col-sm-10">Свидетельство</label>
+                <div class="col-sm-2">
+                    <button type="button" class="btn btn-primary" ng-click="printReport('page8',{ 'unit' : model.id })" >Распечатать свидетельство</button>
+                </div>
+            </div>
+
+
+            <hr/>
+
+
 
         </div>
 

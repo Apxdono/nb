@@ -6,6 +6,7 @@ import org.apx.nova.model.enums.ContactType;
 import org.apx.nova.model.security.User;
 import org.apx.nova.repo.UserRepo;
 import org.apx.nova.reports.ReportProcessor;
+import org.apx.nova.reports.ResultReport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
@@ -21,8 +22,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.Serializable;
+import java.net.URLEncoder;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by oleg on 24.11.2014.
@@ -56,10 +60,16 @@ public class SessionBean implements Serializable {
     }
 
     @RequestMapping(value = "/user/reports/{report}",method = RequestMethod.GET,produces = {"application/vnd.openxmlformats-officedocument.wordprocessingml.document"} )
+//    @RequestMapping(value = "/user/reports/{report}",method = RequestMethod.GET,produces = {"application/rtf"} )
     @ResponseBody
     public byte[] processReport(@PathVariable("report") String report, HttpServletRequest request,HttpServletResponse  response) throws JRException, IOException {
-        byte[] result = reportProcessor.processReport(report,request.getParameterMap());
-        return result;
+        Map m = new HashMap(request.getParameterMap());
+        ResultReport rr = reportProcessor.processReport(report,m);
+        if(rr.getFileName() !=null){
+            response.setHeader("Content-disposition", "attachment; filename=" + URLEncoder.encode(rr.getFileName(),"UTF-8").replace("+", "%20")+".docx");
+        }
+
+        return rr.getBinData();
     }
 
     protected User fetchUser(HttpServletResponse response) throws IOException {
